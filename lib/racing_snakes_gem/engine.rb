@@ -6,6 +6,11 @@ module RacingSnakes
       # override dependency injection for production
       window_adapter ||= Ruby2D::Window
       window_adapter.set(background: "black")
+      window_adapter.set(width: 640)
+      window_adapter.set(height: 480)
+      window_adapter.set(fps_cap: 60)
+
+      window_adapter.set(fullscreen: false)
       @game = RacingSnakes::Game.new
     end
     def start_game_loop
