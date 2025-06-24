@@ -53,14 +53,18 @@ RSpec.describe RacingSnakes::Engine do
         is_collision?: false
       )     
     end
+    
     subject(:engine) { described_class.new }
+    
     before do
+      RacingSnakes.configuration = RacingSnakes::Configuration.new
       engine.instance_variable_set(:@game, game)
     end
-  it "calls move when game is not paused"do
-    engine.game_tick
-    expect(game).to have_recieved(:move)
-  end
+    
+    it "calls move when game is not paused"do
+      engine.game_tick
+      expect(game).to have_recieved(:move)
+    end
 
   end
 end
