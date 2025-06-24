@@ -24,8 +24,10 @@ module RacingSnakes
       end
     end
     def game_tick
-      @window.clear
-      game.move
+      window.clear
+      unless game.is_paused?
+        game.move
+      end
     end
   end
 end
