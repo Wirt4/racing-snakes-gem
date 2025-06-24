@@ -14,6 +14,10 @@ RSpec.describe RacingSnakes::Engine do
       allow(RacingSnakes::Game).to receive(:new).and_return(mock_game)
     end
 
+    after do
+      RacingSnakes.configuration = nil
+    end
+
     it "engine has a defined Game to manipulate"do
       expect(engine.game).not_to be_nil
     end
