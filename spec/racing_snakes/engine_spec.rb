@@ -84,7 +84,7 @@ RSpec.describe RacingSnakes::Engine do
 
     it 'draws board' do
       engine.game_tick
-      expect(game).to have_recieved(:draw_board)
+      expect(game).to have_received(:draw_board)
     end
   end
 end
