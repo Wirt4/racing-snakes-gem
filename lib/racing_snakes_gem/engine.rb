@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'racing_snakes_gem/keyboard'
 
 module RacingSnakes

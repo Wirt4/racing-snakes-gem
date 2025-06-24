@@ -137,8 +137,9 @@ RSpec.describe RacingSnakes::Engine do
   end
 
   describe '#register_keystroke' do
-    include_context 'window mock'
     subject(:engine) { described_class.new(window_adapter: mock_window) }
+
+    include_context 'window mock'
 
     before do
       RacingSnakes.configuration = RacingSnakes::Configuration.new
@@ -149,12 +150,13 @@ RSpec.describe RacingSnakes::Engine do
     end
 
     it 'closes the window when escape key is hit' do
-      expect(mock_window).to receive(:on).with(:key_down).and_yield(OpenStruct.new(key: RacingSnakes::Keyboard::ESCAPE))
+      allow(mock_window).to receive(:on).with(:key_down).and_yield(OpenStruct.new(key: RacingSnakes::Keyboard::ESCAPE))
       engine.register_keystroke
       expect(mock_window).to have_received(:close)
     end
-    it 'does not close the window if escape is not hit' do 
-      expect(mock_window).to receive(:on).with(:key_down).and_yield(OpenStruct.new(key: RacingSnakes::Keyboard::LEFT))
+
+    it 'does not close the window if escape is not hit' do
+      allow(mock_window).to receive(:on).with(:key_down).and_yield(OpenStruct.new(key: RacingSnakes::Keyboard::LEFT))
 
       engine.register_keystroke
       expect(mock_window).not_to have_received(:close)
