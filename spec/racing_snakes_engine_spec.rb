@@ -22,10 +22,10 @@ RSpec.describe RacingSnakes::Engine do
 
     it "sets up the game window using Settings" do
       expect(mock_window).to receive(:set).with(background: "black")
-      # expect(mock_window).to receive(:set).with(width: 640)
-      # expect(mock_window).to receive(:set).with(height: 480)
-      #  expect(mock_window).to receive(:set).with(fps_cap: 60)
-      # expect(mock_window).to receive(:set).with(fullscreen: false)
+      expect(mock_window).to receive(:set).with(width: 640)
+      expect(mock_window).to receive(:set).with(height: 480)
+      expect(mock_window).to receive(:set).with(fps_cap: 60)
+      expect(mock_window).to receive(:set).with(fullscreen: false)
 
       described_class.new(window_adapter: mock_window)
     end
