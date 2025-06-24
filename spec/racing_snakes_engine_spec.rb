@@ -18,7 +18,7 @@ RSpec.describe RacingSnakes::Engine do
       expect(engine.game).not_to be_nil
     end
 
-    it "sets up the game window using Settings" do
+    it "sets up the game window with default configurations" do
       expect(mock_window).to receive(:set).with(background: "black")
       expect(mock_window).to receive(:set).with(width: 640)
       expect(mock_window).to receive(:set).with(height: 480)
