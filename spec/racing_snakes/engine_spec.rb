@@ -24,15 +24,17 @@ RSpec.describe RacingSnakes::Engine do
     end
 
     it 'sets up the game window with default configurations' do
-            described_class.new(window_adapter: mock_window)
+      described_class.new(window_adapter: mock_window)
 
-
-      expect(mock_window).to have_received(:set).with(background: 'black')
-      expect(mock_window).to have_received(:set).with(width: 640)
-      expect(mock_window).to have_received(:set).with(height: 480)
-      expect(mock_window).to have_received(:set).with(fps_cap: 60)
-      expect(mock_window).to have_received(:set).with(fullscreen: false)
-
+      {
+        background: 'black',
+        width: 640,
+        height: 480,
+        fps_cap: 60,
+        fullscreen: false
+      }.each do |key, value|
+        expect(mock_window).to have_received(:set).with(key => value)
+      end
     end
 
     it 'stores the game instance' do
@@ -91,7 +93,8 @@ RSpec.describe RacingSnakes::Engine do
       engine.game_tick
       expect(game).to have_received(:draw_board)
     end
-    it 'if game.player_eats is true, then call eat_and_grow'do 
+
+    it 'if game.player_eats is true, then call eat_and_grow' do
       allow(game).to receive(:player_eats?).and_return(true)
       engine.game_tick
       expect(game).to have_received(:eat_and_grow)
