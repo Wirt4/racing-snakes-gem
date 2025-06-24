@@ -99,5 +99,10 @@ RSpec.describe RacingSnakes::Engine do
       engine.game_tick
       expect(game).to have_received(:eat_and_grow)
     end
+    it 'if game.player_eats if false, then do not call eat_and_grow'do
+      allow(game).to receive(:player_eats?).and_return(false)
+      engine.game_tick
+      expect(game).not_to have_received(:eat_and_grow)
+    end
   end
 end
