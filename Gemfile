@@ -9,3 +9,5 @@ gem "rake", "~> 13.0"
 
 gem "rspec", "~> 3.0"
 gem "ruby2d"
+
+gem "rubocop", "~> 1.77", :group => :development
