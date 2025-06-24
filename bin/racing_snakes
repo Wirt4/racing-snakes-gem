@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require "racing_snakes"
+require 'racing_snakes'
 
 # Run your gem's game engine or Ruby2D logic here
 RacingSnakes::CLI.run

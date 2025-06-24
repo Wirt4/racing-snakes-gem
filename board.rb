@@ -2,12 +2,7 @@ load 'constants.rb'
 load 'settings.rb'
 load 'coordinates.rb'
 class Board
-  attr_accessor :food_x
-  attr_accessor :food_y
-  attr_accessor :tie
-  attr_accessor :p1color
-  attr_accessor :p2color
-  attr_accessor :finished
+  attr_accessor :food_x, :food_y, :tie, :p1color, :p2color, :finished
 
 # colors are ruby2d keywords
   def initialize(snake1, snake2)
@@ -54,12 +49,12 @@ class Board
   end
 
   def prompt(player)
-    if player == PlayerIds::PLAYER_ONE
-      keys = Constants::PLAYER_ONE_KEYS
-    else
-      keys = Constants::PLAYER_TWO_KEYS
-    end
-    return Constants::PROMPT + ' ' + keys
+    keys = if player == PlayerIds::PLAYER_ONE
+             Constants::PLAYER_ONE_KEYS
+           else
+             Constants::PLAYER_TWO_KEYS
+           end
+    Constants::PROMPT + ' ' + keys
   end
 
   def display_player_keys
@@ -73,21 +68,18 @@ class Board
 # displays the instructions, menu screen and food
   def draw
     unless finished? || menu?
-      Square.new(x: @food_x* Settings::GRID_SIZE, y: @food_y * Settings::GRID_SIZE, size: Settings::NODE_SIZE, color: @food_color)
+      Square.new(x: @food_x* Settings::GRID_SIZE, y: @food_y * Settings::GRID_SIZE, size: Settings::NODE_SIZE,
+                 color: @food_color)
     end
 
-    if menu?
-      display_menu_prompts()
-    end
+    display_menu_prompts if menu?
 
-    display_player_keys()
+    display_player_keys
   end
 
 # returns a string of who wins
   def winner(p1, p2)
-    if @tie
-      return Settings::TIE_MESSAGE
-    end
+    return Settings::TIE_MESSAGE if @tie
     winner = if p1.crash?  || p2.hit_wall?(p1)
                p2
              else
@@ -135,13 +127,9 @@ class Board
 
   private
   def tie_lemma?(h_ndx, p1, p2, dir1, dir2)
-    if p1.head[h_ndx]-1 == p2.head[h_ndx] && p1.direction == dir1 && p2.direction == dir2
-      return true
-    end
+    return true if p1.head[h_ndx]-1 == p2.head[h_ndx] && p1.direction == dir1 && p2.direction == dir2
 
-    if p1.head[h_ndx]+1 == p2.head[h_ndx] && p1.direction == dir2 && p2.direction == dir1
-      return true
-    end
-    return false
+    return true if p1.head[h_ndx]+1 == p2.head[h_ndx] && p1.direction == dir2 && p2.direction == dir1
+    false
   end
 end

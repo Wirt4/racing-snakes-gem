@@ -6,13 +6,8 @@ load 'player_ids.rb'
 class Snake
 # using color keywords so can id players in feedback.
 
-  attr_accessor :position
-  attr_reader :turned
-  attr_accessor :growing
-  attr_reader :z
-  attr_accessor :direction
-  attr_accessor :turned
-  attr_reader :color
+  attr_accessor :position, :growing, :direction, :turned
+  attr_reader :turned, :z, :color
 
   # snakes are initialized with a color and integer, player one of two
   # colors are ruby2d keywords
@@ -35,17 +30,13 @@ class Snake
   end
 
   def get_x_pos(player_id)
-    if player_id == PlayerIds::PLAYER_ONE
-      return 2 * Settings::GRID_WIDTH / 3
-    end
-    return Settings::GRID_WIDTH / 3
+    return 2 * Settings::GRID_WIDTH / 3 if player_id == PlayerIds::PLAYER_ONE
+    Settings::GRID_WIDTH / 3
   end
 
   def select_color(player_id)
-    if player_id == PlayerIds::PLAYER_ONE
-      return Settings::PLAYER_ONE_COLORS.sample
-    end
-    return Settings::PLAYER_TWO_COLORS.sample
+    return Settings::PLAYER_ONE_COLORS.sample if player_id == PlayerIds::PLAYER_ONE
+    Settings::PLAYER_TWO_COLORS.sample
   end
 
   # determines if the snake hit the wall of the other snake
@@ -55,7 +46,7 @@ class Snake
   end
 
   def color_name
-    return @color.capitalize
+    @color.capitalize
   end
 
   # draws a snake
@@ -66,14 +57,13 @@ class Snake
   end
 
   def draw_base(node)
-    Square.new(x: node[0] * Settings::GRID_SIZE, y: node[1] * Settings::GRID_SIZE, size: Settings::NODE_SIZE, color: @color, z: @z)
+    Square.new(x: node[0] * Settings::GRID_SIZE, y: node[1] * Settings::GRID_SIZE, size: Settings::NODE_SIZE,
+               color: @color, z: @z)
   end
 
   # ensures snake can only be turned once per clock tick
   def new_direction(dir)
-    if @turned
-      return
-    end
+    return if @turned
 
     @direction = dir
     @turned = true
@@ -82,20 +72,19 @@ class Snake
   def is_allowable_direction(dir)
     case dir
       when Directions::UP
-        return @direction != Directions::DOWN
+        @direction != Directions::DOWN
       when Directions::LEFT
-        return @direction != Directions::RIGHT
+        @direction != Directions::RIGHT
       when Directions::DOWN
-        return @direction != Directions::UP
+        @direction != Directions::UP
       when Directions::RIGHT
-        return @direction != Directions::LEFT
+        @direction != Directions::LEFT
     end
   end
 
   def set_allowable_direction(dir)
-    if (is_allowable_direction(dir))
-      new_direction(dir)
-    end
+    return unless is_allowable_direction(dir)
+    new_direction(dir)
   end
 
   # converts keystroke readings to a direction const if applicable
@@ -110,14 +99,13 @@ class Snake
     when @playerButton.right
       return Directions::RIGHT
     end
-    return false
+    false
   end
 
   def detect_key(keystroke)
     dir = convert_direction(keystroke)
-    if dir !=false
-      set_allowable_direction(dir)
-    end
+    return unless dir !=false
+    set_allowable_direction(dir)
   end
 
   # moves snake along given direction once per clock tick
@@ -142,7 +130,7 @@ class Snake
 
   # returns all slots occupied by the snake minus the head
   def body
-    return @position.pop()
+    @position.pop
   end
 
   def head

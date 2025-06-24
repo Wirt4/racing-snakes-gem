@@ -8,13 +8,13 @@ require('ruby2d')
 load 'keyboard_buttons.rb'
 
 RSpec.describe Game do
-  describe "#initialize" do
-    it"it initializes a new clock object"do
+  describe '#initialize' do
+    it'it initializes a new clock object'do
       allow(GameClock).to receive(:new)
       Game.new
       expect(GameClock).to have_received(:new)
     end
-    it"it initializes a new player 1 snake and new player 2 snake"do
+    it'it initializes a new player 1 snake and new player 2 snake'do
       snake_args = []
 
       allow(Snake).to receive(:new) do | *args|
@@ -29,9 +29,9 @@ RSpec.describe Game do
       expect(snake_args[0][0]).to eq(PlayerIds::PLAYER_ONE)
       expect(snake_args[1][0]).to eq(PlayerIds::PLAYER_TWO)
     end
-    it "it creates a new board object"do
+    it 'it creates a new board object'do
       allow(Board).to receive(:new)
-      Game.new()
+      Game.new
       expect(Board).to have_received(:new)
     end
   end
@@ -118,21 +118,21 @@ RSpec.describe Game do
     it'neither Board.finished nor Board.menu is true'do
       game = Game.new
       allow(game.board).to receive(:finished?){false}
-      allow(game.board).to receive (:menu?){false}
+      allow(game.board).to receive(:menu?){false}
 
       expect(game.is_paused?).to eq(false)
     end
     it'Board.finished is true and Board.menu is false'do
       game = Game.new
       allow(game.board).to receive(:finished?){true}
-      allow(game.board).to receive (:menu?){false}
+      allow(game.board).to receive(:menu?){false}
 
       expect(game.is_paused?).to eq(true)
     end
     it'Board.finished is false and Board.menu is true'do
     game = Game.new
     allow(game.board).to receive(:finished?){false}
-    allow(game.board).to receive (:menu?){true}
+    allow(game.board).to receive(:menu?){true}
 
     expect(game.is_paused?).to eq(true)
   end
@@ -190,7 +190,7 @@ RSpec.describe Game do
       game.player1Eats = true
       allow(game.player1).to receive(:grow)
 
-      game.eat_and_grow()
+      game.eat_and_grow
 
       expect(game.player1).to have_received(:grow)
     end
@@ -199,7 +199,7 @@ RSpec.describe Game do
       game.player1Eats = false
       allow(game.player1).to receive(:grow)
 
-      game.eat_and_grow()
+      game.eat_and_grow
 
       expect(game.player1).not_to have_received(:grow)
     end
@@ -208,7 +208,7 @@ RSpec.describe Game do
       game.player2Eats = true
       allow(game.player2).to receive(:grow)
 
-      game.eat_and_grow()
+      game.eat_and_grow
 
       expect(game.player2).to have_received(:grow)
     end
@@ -217,7 +217,7 @@ RSpec.describe Game do
       game.player2Eats = false
       allow(game.player2).to receive(:grow)
 
-      game.eat_and_grow()
+      game.eat_and_grow
 
       expect(game.player2).not_to have_received(:grow)
     end
@@ -304,7 +304,7 @@ RSpec.describe Game do
 
       game.is_collision?
 
-      expect(game.board).to have_received(:collision?).with(game.player1.position(), game.player2.position())
+      expect(game.board).to have_received(:collision?).with(game.player1.position, game.player2.position)
     end
   end
   describe'#stop_game' do
@@ -330,7 +330,7 @@ RSpec.describe Game do
       allow(game.board).to receive(:winner).and_return('player 1')
       game.stop_game
 
-      expect(game.board).to have_received(:drop_shadow).with(game.board.winner, anything,  anything,)
+      expect(game.board).to have_received(:drop_shadow).with(game.board.winner, anything,  anything)
     end
 
     it "player one is not the winner, and player one Z isn't set with the Z index" do

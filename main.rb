@@ -12,31 +12,23 @@ set height: Settings::HEIGHT
 set fps_cap: Settings::FPS
 set fullscreen: Settings::FULLSCREEN
 
-game = Game.new()
+game = Game.new
 game.draw_snakes
 
 # the game cycle
 update do
   clear
 
-  unless game.is_paused?
-   game.move
-  end
+  game.move unless game.is_paused?
 
   game.draw_board
 
-  if game.player_eats
-    game.eat_and_grow
-  end
+  game.eat_and_grow if game.player_eats
 
-  if game.food_time?
-    game.respawn_food
-  end
+  game.respawn_food if game.food_time?
 
 # prints out the winner of the game if it ends
-  if game.is_collision?
-    game.stop_game
-  end
+  game.stop_game if game.is_collision?
 end
 
 #player controls, is up, down, left, right /AWSD

@@ -16,9 +16,7 @@ module RacingSnakes
     
     def game_tick
       window.clear
-      unless game.is_paused?
-        game.move
-      end
+      game.move unless game.is_paused?
       game.draw_snakes
     end
 

@@ -2,22 +2,22 @@ load 'game_clock.rb'
 
 RSpec.describe GameClock do
   describe '#initalize' do
-    it "clock defaults with tick == 0" do
+    it 'clock defaults with tick == 0' do
       clock = GameClock.new
       expect(clock.tick).to eq(0)
     end
-    it "load clock with tick == 7" do
+    it 'load clock with tick == 7' do
       clock = GameClock.new(7)
       expect(clock.tick).to eq(7)
     end
   end
   describe '#increment'do
-    it "increment from 0 to 1" do
+    it 'increment from 0 to 1' do
       clock = GameClock.new
       clock.increment
       expect(clock.tick).to eq(1)
     end
-    it "increment from 7 to 8" do
+    it 'increment from 7 to 8' do
       clock = GameClock.new(7)
       clock.increment
       expect(clock.tick).to eq(8)
@@ -53,7 +53,7 @@ RSpec.describe GameClock do
     end
   end
   it 'makes sure rand is called with 300..400 as range' do
-    clock = GameClock.new()
+    clock = GameClock.new
     allow(clock).to receive(:rand_wrapper)
     clock.random_cutoff_mark
     expect(clock).to have_received(:rand_wrapper).with(300..400)

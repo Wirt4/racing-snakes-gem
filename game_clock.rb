@@ -3,27 +3,25 @@ class GameClock
     @tick = startTime
   end
 
-  def increment()
+  def increment
     @tick +=1
   end
 
-  def tick
-    @tick
-  end
+  attr_reader :tick
 
-  def reset()
+  def reset
     @tick =0
   end
 
-  def is_food_time()
-    return @tick > random_cutoff_mark
+  def is_food_time
+    @tick > random_cutoff_mark
   end
 
-  def random_cutoff_mark()
-    return rand_wrapper(300..400)
+  def random_cutoff_mark
+    rand_wrapper(300..400)
   end
 
   def rand_wrapper(range)
-    return rand(range)
+    rand(range)
   end
 end

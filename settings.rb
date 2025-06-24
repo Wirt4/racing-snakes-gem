@@ -15,8 +15,8 @@ module Settings
   GRID_WIDTH ||= WIDTH/GRID_SIZE
   GRID_HEIGHT ||= HEIGHT/GRID_SIZE
   NODE_SIZE ||= GRID_SIZE
-  PLAYER_ONE_COLORS ||= [Colors::YELLOW, Colors::ORANGE, Colors::RED, ]
-  PLAYER_TWO_COLORS ||= [Colors::FUCHSIA, Colors::BLUE, Colors::GREEN, ]
+  PLAYER_ONE_COLORS ||= [Colors::YELLOW, Colors::ORANGE, Colors::RED ]
+  PLAYER_TWO_COLORS ||= [Colors::FUCHSIA, Colors::BLUE, Colors::GREEN ]
   START_Y_TAIL ||= 3
   START_LENGTH ||= 3
   PRESS_SPACE ||= '(press space)'

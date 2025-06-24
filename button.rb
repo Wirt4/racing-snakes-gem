@@ -1,10 +1,7 @@
 load 'keyboard_buttons.rb'
 
 class Button
-  attr_accessor :up
-  attr_accessor :down
-  attr_accessor :left
-  attr_accessor :right
+  attr_accessor :up, :down, :left, :right
 
   def initialize(player_id)
     if player_id==PlayerIds::PLAYER_ONE
