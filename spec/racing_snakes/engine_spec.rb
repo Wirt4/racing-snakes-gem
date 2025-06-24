@@ -52,7 +52,8 @@ RSpec.describe RacingSnakes::Engine do
         RacingSnakes::Game,
         move: nil,
         draw_snakes: nil,
-        paused?: false
+        paused?: false,
+        draw_board: nil
       )
     end
 
@@ -61,6 +62,7 @@ RSpec.describe RacingSnakes::Engine do
     before do
       RacingSnakes.configuration = RacingSnakes::Configuration.new
       allow(game).to receive(:draw_snakes)
+      allow(game).to recieve(:draw_board)
       engine.instance_variable_set(:@game, game)
     end
 
@@ -78,6 +80,11 @@ RSpec.describe RacingSnakes::Engine do
     it 'draws snakes each game tick' do
       engine.game_tick
       expect(game).to have_received(:draw_snakes)
+    end
+
+    it 'draws board' do
+      engine.game_tick
+      expect(game).to have_recieved(:draw_board)
     end
   end
 end
