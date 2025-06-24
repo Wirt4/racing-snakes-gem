@@ -9,11 +9,7 @@ RSpec.describe RacingSnakes::Engine do
 
     before do
        RacingSnakes.configuration = RacingSnakes::Configuration.new
-       RacingSnakes.configuration.background = "black"
-       RacingSnakes.configuration.width = 640
-       RacingSnakes.configuration.height = 480
-       RacingSnakes.configuration.fps_cap = 60
-       RacingSnakes.configuration.fullscreen = false
+
 
       allow(RacingSnakes::Game).to receive(:new).and_return(mock_game)
     end
