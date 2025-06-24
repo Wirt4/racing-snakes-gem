@@ -21,6 +21,7 @@ module RacingSnakes
       game.move unless game.paused?
       game.draw_snakes
       game.draw_board
+      game.eat_and_grow
     end
 
     private
