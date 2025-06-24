@@ -1,37 +1,39 @@
-# racing_snakes
-<i>Eat the food and destroy your enemies!</i>
-<h1>About</h1>
-<p>A two-player spin on the snake game, written in <a href="https://www.ruby2d.com/">ruby 2d</a> framework and initial snake mechanics taken from Mario Visic's <a href ="https://www.youtube.com/watch?v=2UVhYHBT_1o">tutorial</a></p>
-<h1>Setup</h1>
-<p>
-<h2>Assumptions</h2>
-<ul>
-<li>You're running MacOS or Linux</li>
-<li>You're conversant with Ruby and Ruby Gems</li>
-</ul>
-<h2>Requirements</h2>
-<ol>
-<li>Install a manager for ruby (I use <code>rbenv</code>)</li>
-<li>Install the latest stable version of Ruby (<code>rbenv install 3.4.3</code>)</li>
-<li>Make sure you can use the latest version (I got lazy and set it to global <code>rbenv global 3.4.3</code>)</li>
-<li>install the gem ruby 2d <code>gem install ruby2d</code> (you may need to use <code>sudo</code>)</li>
-</ol>
-</p>
+# RacingSnakesGem
 
-<h1>To Play</h1>
-<p>Run the followoing to start the app</p>
-<code>ruby racing_snakes.rb</cold>
-<h2>The rules</h2>
-<p>A game for two players: Move your snake with either W, D keys or O,P keys. The left key turns  your snake had anticlockwise. Right turns your snake head clockwise. Eat the snake food to grow. The first snake to crash loses. Two snakes colliding directly head-on counts as a tie. Press space to pause and esc to close.</p>
-<h1>Changes Made</h1>
-<p>Mario Visic's <a href ="https://www.youtube.com/watch?v=2UVhYHBT_1o">tutorial</a> was very helpful in creating snake and game classes, and managing the snake objects growth, movement and collision detection via an array of tile coordinates. I've made the following changes from Mario's tutorial:
-  <ul>
-    <li>Two snakes that interact with each other</li>
-    <li>Food will not spawn in space occumpied by a snake</li>
-    <li>Gameplay change: only one turn per clock tick</li>
-    <li>Food respawns after 15 - 20 seconds of inactivity</li>
-    <li>Randomized colors for snakes and graphical embellishments</li>
-    <li>a pause button (space bar)</li>
-</ul>
-<h1>To Test</h1>
-<p>`rspec Tests/*`</p>
+TODO: Delete this and the text below, and describe your gem
+
+Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/racing_snakes_gem`. To experiment with that code, run `bin/console` for an interactive prompt.
+
+## Installation
+
+TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+
+Install the gem and add to the application's Gemfile by executing:
+
+    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+
+If bundler is not being used to manage dependencies, install the gem by executing:
+
+    $ gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+
+## Usage
+
+TODO: Write usage instructions here
+
+## Development
+
+After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+
+To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/racing_snakes_gem. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/racing_snakes_gem/blob/main/CODE_OF_CONDUCT.md).
+
+## License
+
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+## Code of Conduct
+
+Everyone interacting in the RacingSnakesGem project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/racing_snakes_gem/blob/main/CODE_OF_CONDUCT.md).
