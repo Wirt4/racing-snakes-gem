@@ -34,6 +34,12 @@ RSpec.describe RacingSnakes::Engine do
       engine = described_class.new(window_adapter: mock_window)
       expect(engine.game).to eq(mock_game)
     end
+    it "engine has a defined Game to manipulate" do
+      expect { described_class.new(window_adapter: mock_window) }.to raise_error(NameError)
+    end
+    it "fails intentionally so I know this is running" do
+      expect(true).to eq(false)
+    end
   end
 end
 

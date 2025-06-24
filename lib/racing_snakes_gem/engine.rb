@@ -1,9 +1,10 @@
 module RacingSnakes
   class Engine
+    def initialize
+      puts"stub"
+    end
     def start_game_loop
-      def initialize
-        put "stub intializer"
-    # stub
+      puts "stub"
     end
   end
 end
