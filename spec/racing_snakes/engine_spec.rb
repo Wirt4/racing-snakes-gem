@@ -79,16 +79,8 @@ RSpec.describe RacingSnakes::Engine do
 
     it 'draws snakes each game tick' do
       RSpec::Mocks.space.proxy_for(mock_game).reset
-      allow(mock_game).to receive(:draw_snakes)
-      allow(mock_game).to receive(:draw_board)
-      allow(mock_game).to receive(:eat_and_grow)
-      allow(mock_game).to receive(:respawn_food)
-      allow(mock_game).to receive(:paused?).and_return(false)
-      allow(mock_game).to receive(:move)
-      allow(mock_game).to receive(:player_eats?).and_return(false)
-      allow(mock_game).to receive(:food_time?).and_return(false)
-      allow(mock_game).to receive(:stop_game)
-      allow(mock_game).to receive(:is_collision?)
+      allow(mock_game).to receive_messages(draw_snakes: nil, draw_board: nil, eat_and_grow: nil, respawn_food: nil,
+                                           paused?: false, move: nil, player_eats?: false, food_time?: false, stop_game: nil, is_collision?: false)
 
       engine.game_tick
       expect(mock_game).to have_received(:draw_snakes)
@@ -161,7 +153,8 @@ RSpec.describe RacingSnakes::Engine do
       engine.register_keystroke
       expect(mock_window).not_to have_received(:close)
     end
-    it 'passes the keystroke to the game method' do 
+
+    it 'passes the keystroke to the game method' do
       allow(mock_window).to receive(:on).with(:key_down).and_yield(OpenStruct.new(key: RacingSnakes::Keyboard::LEFT))
       engine.register_keystroke
       expect(mock_game).to have_received(:keydown).with(RacingSnakes::Keyboard::LEFT)
