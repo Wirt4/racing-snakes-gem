@@ -49,7 +49,7 @@ RSpec.describe RacingSnakes::Engine do
         RacingSnakes::Game,
         move: nil,
         draw_snakes: nil,
-        is_paused?: false
+        paused?: false
       )     
     end
      
@@ -69,7 +69,7 @@ RSpec.describe RacingSnakes::Engine do
     end
 
     it 'does not call move when game is paused'do
-      allow(game).to receive(:is_paused?).and_return(true)
+      allow(game).to receive(:paused?).and_return(true)
       engine.game_tick
       expect(game).not_to have_received(:move)
     end

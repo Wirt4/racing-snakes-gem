@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 module RacingSnakes
+  # Game object for racing snakes, holds and maintains state
   class Game
     def move; end
     def draw_snakes; end
-    def is_paused?;end
+    def paused?;end
   end
 end
