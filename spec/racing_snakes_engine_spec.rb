@@ -8,11 +8,13 @@ RSpec.describe RacingSnakes::Engine do
 
 
     before do
-      stub_const("Settings::BACKGROUND", "black")
-      stub_const("Settings::WIDTH", 640)
-      stub_const("Settings::HEIGHT", 480)
-      stub_const("Settings::FPS", 60)
-      stub_const("Settings::FULLSCREEN", false)
+       RacingSnakes.configuration = RacingSnakes::Configuration.new
+       RacingSnakes.configuration.background = "black"
+       RacingSnakes.configuration.width = 640
+       RacingSnakes.configuration.height = 480
+       RacingSnakes.configuration.fps_cap = 60
+       RacingSnakes.configuration.fullscreen = false
+
       allow(RacingSnakes::Game).to receive(:new).and_return(mock_game)
     end
 
