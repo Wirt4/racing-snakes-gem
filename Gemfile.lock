@@ -47,6 +47,9 @@ GEM
     rubocop-ast (1.45.1)
       parser (>= 3.3.7.2)
       prism (~> 1.4)
+    rubocop-rspec (3.6.0)
+      lint_roller (~> 1.1)
+      rubocop (~> 1.72, >= 1.72.1)
     ruby-progressbar (1.13.0)
     ruby2d (0.12.1)
     unicode-display_width (3.1.4)
@@ -62,6 +65,7 @@ DEPENDENCIES
   rake (~> 13.0)
   rspec (~> 3.0)
   rubocop (~> 1.77)
+  rubocop-rspec (~> 3.6)
   ruby2d
 
 BUNDLED WITH
