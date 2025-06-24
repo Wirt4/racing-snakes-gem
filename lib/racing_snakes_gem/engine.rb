@@ -14,6 +14,7 @@ module RacingSnakes
 
       window_adapter.set(fullscreen: false)
       @game = RacingSnakes::Game.new
+      @game.draw_snakes
     end
     def start_game_loop
       puts "stub"

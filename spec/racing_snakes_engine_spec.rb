@@ -2,16 +2,15 @@ require "racing_snakes_gem"
 
 RSpec.describe RacingSnakes::Engine do
   describe "#initialize" do
-    let(:mock_game) { double("Game") }
     let(:mock_window) { double("Ruby2D", set: nil) }
     let(:engine) { described_class.new(window_adapter: mock_window) }
-
+    let(:mock_game) { double("Game", draw_snakes: nil) }
 
     before do
-       RacingSnakes.configuration = RacingSnakes::Configuration.new
-
+      RacingSnakes.configuration = RacingSnakes::Configuration.new
 
       allow(RacingSnakes::Game).to receive(:new).and_return(mock_game)
+      allow(RacingSnakes::Game).to receive(:draw_snakes)
     end
 
     after do
@@ -37,7 +36,9 @@ RSpec.describe RacingSnakes::Engine do
     end
 
     it"calls the draw_snakes method on game" do
-      expect(RacingSnakes::Game).to receive(:draw_snakes)
+       allow(mock_game).to receive(:draw_snakes)
+       described_class.new(window_adapter: mock_window)
+       expect(mock_game).to have_received(:draw_snakes)
     end
   end
 end
