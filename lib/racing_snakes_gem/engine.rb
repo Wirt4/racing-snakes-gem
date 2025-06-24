@@ -26,8 +26,8 @@ module RacingSnakes
       game.stop_game if game.is_collision?
     end
 
-    def handle_key(_foo)
-      game.handle_key('left')
+    def handle_key(keystroke)
+      game.handle_key(keystroke)
     end
 
     private
