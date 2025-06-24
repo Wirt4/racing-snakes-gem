@@ -12,6 +12,7 @@ RSpec.shared_context 'game mock' do
       move: nil,
       draw_snakes: nil,
       paused?: false,
+      handle_key: nil,
       draw_board: nil,
       player_eats?: false,
       eat_and_grow: nil,

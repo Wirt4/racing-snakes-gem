@@ -134,4 +134,20 @@ RSpec.describe RacingSnakes::Engine do
       expect(mock_game).not_to have_received(:stop_game)
     end
   end
+  describe '#handle_key' do
+  subject(:engine) { described_class.new(window_adapter: mock_window) }
+
+  before do
+    RacingSnakes.configuration = RacingSnakes::Configuration.new
+    allow(RacingSnakes::Game).to receive(:new).and_return(mock_game)
+    engine.instance_variable_set(:@game, mock_game)
+    allow(mock_game).to receive(:handle_key)
+  end
+
+  it 'delegates the key press to game.handle_key' do
+    engine.handle_key('left')
+    expect(mock_game).to have_received(:handle_key).with('left')
+  end
+end
+
 end
