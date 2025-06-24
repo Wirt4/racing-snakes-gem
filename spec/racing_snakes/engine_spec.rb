@@ -24,13 +24,15 @@ RSpec.describe RacingSnakes::Engine do
     end
 
     it 'sets up the game window with default configurations' do
-      expect(mock_window).to receive(:set).with(background: 'black')
-      expect(mock_window).to receive(:set).with(width: 640)
-      expect(mock_window).to receive(:set).with(height: 480)
-      expect(mock_window).to receive(:set).with(fps_cap: 60)
-      expect(mock_window).to receive(:set).with(fullscreen: false)
+            described_class.new(window_adapter: mock_window)
 
-      described_class.new(window_adapter: mock_window)
+
+      expect(mock_window).to have_received(:set).with(background: 'black')
+      expect(mock_window).to have_received(:set).with(width: 640)
+      expect(mock_window).to have_received(:set).with(height: 480)
+      expect(mock_window).to have_received(:set).with(fps_cap: 60)
+      expect(mock_window).to have_received(:set).with(fullscreen: false)
+
     end
 
     it 'stores the game instance' do
