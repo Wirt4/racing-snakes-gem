@@ -26,8 +26,10 @@ module RacingSnakes
       game.stop_game if game.is_collision?
     end
 
-    def handle_key(keystroke)
-      game.handle_key(keystroke)
+    def register_keystroke
+      window.on(:key_down) do |event|
+      window.close
+      end
     end
 
     private

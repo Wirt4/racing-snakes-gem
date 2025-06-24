@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 require 'racing_snakes_gem'
-
+require 'ostruct'
+require 'racing_snakes_gem/keyboard'
 RSpec.describe RacingSnakes::Engine do
   include_context 'window mock'
   include_context 'game mock'
@@ -135,19 +136,22 @@ RSpec.describe RacingSnakes::Engine do
     end
   end
 
-  describe '#handle_key' do
+  describe '#register_keystroke' do
+    include_context 'window mock'
     subject(:engine) { described_class.new(window_adapter: mock_window) }
 
     before do
       RacingSnakes.configuration = RacingSnakes::Configuration.new
       allow(RacingSnakes::Game).to receive(:new).and_return(mock_game)
       engine.instance_variable_set(:@game, mock_game)
-      allow(mock_game).to receive(:handle_key)
+      engine.instance_variable_set(:@game, mock_game)
+      allow(mock_window).to receive(:close)
     end
 
-    it 'delegates the key press to game.handle_key' do
-      engine.handle_key('left')
-      expect(mock_game).to have_received(:handle_key).with('left')
+    it 'closes the window when escape key is hit' do
+      expect(mock_window).to receive(:on).with(:key_down).and_yield(OpenStruct.new(key: RacingSnakes::Keyboard::ESCAPE))
+      engine.register_keystroke
+      expect(mock_window).to have_received(:close)
     end
   end
 end
