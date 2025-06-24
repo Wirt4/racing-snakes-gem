@@ -74,6 +74,8 @@ RSpec.describe RacingSnakes::Engine do
     end
 
     it 'draws snakes each game tick' do
+      RSpec::Mocks.space.proxy_for(mock_game).reset
+
       engine.game_tick
       expect(mock_game).to have_received(:draw_snakes)
     end
