@@ -55,7 +55,9 @@ RSpec.describe RacingSnakes::Engine do
         move: nil,
         draw_snakes: nil,
         paused?: false,
-        draw_board: nil
+        draw_board: nil,
+        player_eats?: false,
+        eat_and_grow: nil
       )
     end
 
@@ -65,6 +67,7 @@ RSpec.describe RacingSnakes::Engine do
       RacingSnakes.configuration = RacingSnakes::Configuration.new
       allow(game).to receive(:draw_snakes)
       allow(game).to receive(:draw_board)
+      allow(game).to receive(:eat_and_grow)
       engine.instance_variable_set(:@game, game)
     end
 
@@ -87,6 +90,11 @@ RSpec.describe RacingSnakes::Engine do
     it 'draws board' do
       engine.game_tick
       expect(game).to have_received(:draw_board)
+    end
+    it 'if game.player_eats is true, then call eat_and_grow'do 
+      allow(game).to receive(:player_eats?).and_return(true)
+      engine.game_tick
+      expect(game).to have_received(:eat_and_grow)
     end
   end
 end

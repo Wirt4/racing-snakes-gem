@@ -7,5 +7,7 @@ module RacingSnakes
     def draw_snakes; end
     def paused?;end
     def draw_board;end
+    def player_eats?;end
+    def eat_and_grow; end
   end
 end
