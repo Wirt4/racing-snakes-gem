@@ -25,9 +25,11 @@ module RacingSnakes
       game.respawn_food if game.food_time?
       game.stop_game if game.is_collision?
     end
-    def handle_key(foo);
-        game.handle_key('left')
+
+    def handle_key(_foo)
+      game.handle_key('left')
     end
+
     private
 
     def init_window(window_adapter)
