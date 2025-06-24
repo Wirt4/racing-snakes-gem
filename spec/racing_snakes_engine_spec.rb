@@ -33,7 +33,6 @@ RSpec.describe RacingSnakes::Engine do
     end
 
     it "stores the game instance" do
-      engine = described_class.new(window_adapter: mock_window)
       expect(engine.game).to eq(mock_game)
     end
   end
