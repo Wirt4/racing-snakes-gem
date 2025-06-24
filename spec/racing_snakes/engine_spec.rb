@@ -67,7 +67,7 @@ RSpec.describe RacingSnakes::Engine do
       )
     end
 
-    let(:mock_window) { double('Ruby2D', set: nil, clear: nil) }
+    let(:mock_window) { instance_double(Ruby2D::Window, set: nil, clear:nil) }
 
     before do
       RacingSnakes.configuration = RacingSnakes::Configuration.new
@@ -122,13 +122,14 @@ RSpec.describe RacingSnakes::Engine do
       engine.game_tick
       expect(game).not_to have_received(:respawn_food)
     end
-    it'if collsion, then stop_game is  called' do
+
+    it 'if collsion, then stop_game is called' do
       allow(game).to receive(:is_collision?).and_return(true)
       engine.game_tick
       expect(game).to have_received(:stop_game)
     end
 
-    it'if no collsion, then stop_game is not called' do
+    it 'if no collsion, then stop_game is not called' do
       allow(game).to receive(:is_collision?).and_return(false)
       engine.game_tick
       expect(game).not_to have_received(:stop_game)
