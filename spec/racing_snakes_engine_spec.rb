@@ -45,12 +45,7 @@ RSpec.describe RacingSnakes::Engine do
     let(:game) do
       instance_double(
         RacingSnakes::Game,
-#j=        is_paused?: false,
         move: nil,
-  #      draw_board: nil,
-  #      player_eats: false,
-  #      food_time?: false,
-  #      is_collision?: false,
         draw_snakes: nil
       )     
     end
