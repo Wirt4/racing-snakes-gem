@@ -13,14 +13,16 @@ RSpec.describe RacingSnakes::CLI do
 
     it 'initializes an engine' do
       allow(engine_double).to receive(:start_game_loop)
-      expect(RacingSnakes::Engine).to receive(:new).and_return(engine_double)
+      expect(RacingSnakes::Engine).to receive(:new)
 
       described_class.run
     end
 
     it'calls start_game_loop on the engine instance' do
-      expect(engine_double).to receive(:start_game_loop)
+      allow(engine_double).to receive(:start_game_loop)
       described_class.run
+      expect(engine_double).to have_received(:start_game_loop)
+
     end
   end
 end

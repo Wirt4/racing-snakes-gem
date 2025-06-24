@@ -4,9 +4,9 @@ require 'racing_snakes_gem'
 
 RSpec.describe RacingSnakes::Engine do
   describe '#initialize' do
-    let(:mock_window) { double('Ruby2D', set: nil) }
+    let(:mock_window) { instance_double(Ruby2D::Window, set: nil) }
     let(:engine) { described_class.new(window_adapter: mock_window) }
-    let(:mock_game) { double('Game', draw_snakes: nil) }
+    let(:mock_game) { instance_double(RacingSnakes::Game, draw_snakes: nil) }
 
     before do
       RacingSnakes.configuration = RacingSnakes::Configuration.new
