@@ -6,10 +6,8 @@ RSpec.describe RacingSnakes::Engine do
   include_context 'window mock'
   include_context 'game mock'
   describe '#initialize' do
-
     subject(:engine) { described_class.new(window_adapter: mock_window) }
 
-    
     before do
       RacingSnakes.configuration = RacingSnakes::Configuration.new
 
@@ -49,9 +47,10 @@ RSpec.describe RacingSnakes::Engine do
   end
 
   describe '#game_tick' do
+    subject(:engine) { described_class.new(window_adapter: mock_window) }
+
     include_context 'game mock'
 
-    subject(:engine) { described_class.new(window_adapter: mock_window) }
     before do
       RacingSnakes.configuration = RacingSnakes::Configuration.new
 
@@ -64,6 +63,7 @@ RSpec.describe RacingSnakes::Engine do
       allow(mock_game).to receive(:respawn_food)
       allow(mock_game).to receive(:paused?).and_return(false)
     end
+
     it 'calls move when game is not paused' do
       allow(mock_game).to receive(:paused?).and_return(false)
       engine.game_tick
