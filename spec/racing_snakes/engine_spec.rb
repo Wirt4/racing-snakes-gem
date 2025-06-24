@@ -161,5 +161,10 @@ RSpec.describe RacingSnakes::Engine do
       engine.register_keystroke
       expect(mock_window).not_to have_received(:close)
     end
+    it 'passes the keystroke to the game method' do 
+      allow(mock_window).to receive(:on).with(:key_down).and_yield(OpenStruct.new(key: RacingSnakes::Keyboard::LEFT))
+      engine.register_keystroke
+      expect(mock_game).to have_received(:keydown).with(RacingSnakes::Keyboard::LEFT)
+    end
   end
 end
