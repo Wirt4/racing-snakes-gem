@@ -4,7 +4,7 @@ module RacingSnakes
   # Game object for racing snakes, holds and maintains state
   class Game
     def move; end
-    def handle_key(keyname); end
+    def keydown(keyname); end
     def draw_snakes; end
     def paused?;end
     def draw_board;end

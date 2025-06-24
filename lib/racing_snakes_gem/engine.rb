@@ -30,6 +30,7 @@ module RacingSnakes
 
     def register_keystroke
       window.on(:key_down) do |event|
+        game.keydown(event.key)
         window.close if event.key == RacingSnakes::Keyboard::ESCAPE
       end
     end
