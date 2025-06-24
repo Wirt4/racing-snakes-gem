@@ -71,6 +71,11 @@ RSpec.describe RacingSnakes::Engine do
       engine.game_tick
       expect(game).not_to have_received(:move)
     end
+
+    it "draws snakes each game tick"do
+      engine.game_tick
+      expect(game).to have_received(:draw_snakes)
+    end
   end
 end
 

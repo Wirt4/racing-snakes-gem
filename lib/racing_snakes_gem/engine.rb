@@ -28,6 +28,7 @@ module RacingSnakes
       unless game.is_paused?
         game.move
       end
+      game.draw_snakes
     end
   end
 end
