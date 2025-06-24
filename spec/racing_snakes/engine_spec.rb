@@ -58,11 +58,14 @@ RSpec.describe RacingSnakes::Engine do
       allow(RacingSnakes::Game).to receive(:new).and_return(mock_game)
       engine.instance_variable_set(:@game, mock_game)
       allow(mock_game).to receive(:draw_snakes)
+      allow(mock_game).to receive(:move)
       allow(mock_game).to receive(:draw_board)
       allow(mock_game).to receive(:eat_and_grow)
       allow(mock_game).to receive(:respawn_food)
+      allow(mock_game).to receive(:paused?).and_return(false)
     end
     it 'calls move when game is not paused' do
+      allow(mock_game).to receive(:paused?).and_return(false)
       engine.game_tick
       expect(mock_game).to have_received(:move)
     end
@@ -75,6 +78,16 @@ RSpec.describe RacingSnakes::Engine do
 
     it 'draws snakes each game tick' do
       RSpec::Mocks.space.proxy_for(mock_game).reset
+      allow(mock_game).to receive(:draw_snakes)
+      allow(mock_game).to receive(:draw_board)
+      allow(mock_game).to receive(:eat_and_grow)
+      allow(mock_game).to receive(:respawn_food)
+      allow(mock_game).to receive(:paused?).and_return(false)
+      allow(mock_game).to receive(:move)
+      allow(mock_game).to receive(:player_eats?).and_return(false)
+      allow(mock_game).to receive(:food_time?).and_return(false)
+      allow(mock_game).to receive(:stop_game)
+      allow(mock_game).to receive(:is_collision?)
 
       engine.game_tick
       expect(mock_game).to have_received(:draw_snakes)
