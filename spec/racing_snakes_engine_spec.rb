@@ -46,7 +46,8 @@ RSpec.describe RacingSnakes::Engine do
       instance_double(
         RacingSnakes::Game,
         move: nil,
-        draw_snakes: nil
+        draw_snakes: nil,
+        is_paused?: false
       )     
     end
      
@@ -65,6 +66,11 @@ RSpec.describe RacingSnakes::Engine do
       expect(game).to have_received(:move)
     end
 
+    it "does not call move when game is paused"do
+      allow(game).to receive(:is_paused?).and_return(true)
+      engine.game_tick
+      expect(game).not_to have_received(:move)
+    end
   end
 end
 

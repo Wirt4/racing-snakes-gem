@@ -1,6 +1,7 @@
 module RacingSnakes
   class Game
-  def move; end
-  def draw_snakes; end
+    def move; end
+    def draw_snakes; end
+    def is_paused?;end
   end
 end
