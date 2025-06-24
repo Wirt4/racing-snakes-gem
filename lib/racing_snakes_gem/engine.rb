@@ -22,6 +22,7 @@ module RacingSnakes
       game.draw_snakes
       game.draw_board
       game.eat_and_grow if game.player_eats?
+      game.respawn_food
     end
 
     private

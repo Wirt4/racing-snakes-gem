@@ -72,7 +72,7 @@ RSpec.describe RacingSnakes::Engine do
       allow(game).to receive(:draw_snakes)
       allow(game).to receive(:draw_board)
       allow(game).to receive(:eat_and_grow)
-      allow(game).to recieve(:respawn_food)
+      allow(game).to receive(:respawn_food)
       engine.instance_variable_set(:@game, game)
     end
 
