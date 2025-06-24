@@ -22,7 +22,8 @@ module RacingSnakes
       end
     end
     def game_tick
-      puts "stub"
+      clear
+      game.move
     end
   end
 end

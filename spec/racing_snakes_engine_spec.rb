@@ -50,7 +50,8 @@ RSpec.describe RacingSnakes::Engine do
         draw_board: nil,
         player_eats: false,
         food_time?: false,
-        is_collision?: false
+        is_collision?: false,
+        draw_snakes: nil
       )     
     end
     
@@ -58,6 +59,7 @@ RSpec.describe RacingSnakes::Engine do
     
     before do
       RacingSnakes.configuration = RacingSnakes::Configuration.new
+      allow_any_instance_of(RacingSnakes::Game).to receive(:draw_snakes)
       engine.instance_variable_set(:@game, game)
     end
     
