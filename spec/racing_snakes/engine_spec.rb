@@ -19,7 +19,7 @@ RSpec.describe RacingSnakes::Engine do
       RacingSnakes.configuration = nil
     end
 
-    it 'engine has a defined Game to manipulate'do
+    it 'engine has a defined Game to manipulate' do
       expect(engine.game).not_to be_nil
     end
 
@@ -37,15 +37,15 @@ RSpec.describe RacingSnakes::Engine do
       expect(engine.game).to eq(mock_game)
     end
 
-    it'calls the draw_snakes method on game' do
-       allow(mock_game).to receive(:draw_snakes)
-       described_class.new(window_adapter: mock_window)
-       expect(mock_game).to have_received(:draw_snakes)
+    it 'calls the draw_snakes method on game' do
+      allow(mock_game).to receive(:draw_snakes)
+      described_class.new(window_adapter: mock_window)
+      expect(mock_game).to have_received(:draw_snakes)
     end
   end
 
-  describe'#game_tick'do
-    subject(:engine) { described_class.new(window_adapter:mock_window) }
+  describe '#game_tick' do
+    subject(:engine) { described_class.new(window_adapter: mock_window) }
 
     let(:game) do
       instance_double(
@@ -53,33 +53,31 @@ RSpec.describe RacingSnakes::Engine do
         move: nil,
         draw_snakes: nil,
         paused?: false
-      )     
+      )
     end
-     
-    let(:mock_window) { double('Ruby2D', set: nil, clear:nil) }
-   
-    
+
+    let(:mock_window) { double('Ruby2D', set: nil, clear: nil) }
+
     before do
       RacingSnakes.configuration = RacingSnakes::Configuration.new
       allow(game).to receive(:draw_snakes)
       engine.instance_variable_set(:@game, game)
     end
-    
-    it 'calls move when game is not paused'do
+
+    it 'calls move when game is not paused' do
       engine.game_tick
       expect(game).to have_received(:move)
     end
 
-    it 'does not call move when game is paused'do
+    it 'does not call move when game is paused' do
       allow(game).to receive(:paused?).and_return(true)
       engine.game_tick
       expect(game).not_to have_received(:move)
     end
 
-    it 'draws snakes each game tick'do
+    it 'draws snakes each game tick' do
       engine.game_tick
       expect(game).to have_received(:draw_snakes)
     end
   end
 end
-
