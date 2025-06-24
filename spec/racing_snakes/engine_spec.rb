@@ -153,5 +153,11 @@ RSpec.describe RacingSnakes::Engine do
       engine.register_keystroke
       expect(mock_window).to have_received(:close)
     end
+    it 'does not close the window if escape is not hit' do 
+      expect(mock_window).to receive(:on).with(:key_down).and_yield(OpenStruct.new(key: RacingSnakes::Keyboard::LEFT))
+
+      engine.register_keystroke
+      expect(mock_window).not_to have_received(:close)
+    end
   end
 end
