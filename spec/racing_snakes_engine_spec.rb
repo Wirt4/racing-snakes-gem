@@ -35,6 +35,10 @@ RSpec.describe RacingSnakes::Engine do
     it "stores the game instance" do
       expect(engine.game).to eq(mock_game)
     end
+
+    it"calls the draw_snakes method on game" do
+      expect(RacingSnakes::Game).to receive(:draw_snakes)
+    end
   end
 end
 
