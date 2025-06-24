@@ -45,27 +45,29 @@ RSpec.describe RacingSnakes::Engine do
     let(:game) do
       instance_double(
         RacingSnakes::Game,
-        is_paused?: false,
+#j=        is_paused?: false,
         move: nil,
-        draw_board: nil,
-        player_eats: false,
-        food_time?: false,
-        is_collision?: false,
+  #      draw_board: nil,
+  #      player_eats: false,
+  #      food_time?: false,
+  #      is_collision?: false,
         draw_snakes: nil
       )     
     end
-    
-    subject(:engine) { described_class.new }
+     
+    let(:mock_window) { double("Ruby2D", set: nil, clear:nil) }
+   
+    subject(:engine) { described_class.new(window_adapter:mock_window) }
     
     before do
       RacingSnakes.configuration = RacingSnakes::Configuration.new
-      allow_any_instance_of(RacingSnakes::Game).to receive(:draw_snakes)
+      allow(game).to receive(:draw_snakes)
       engine.instance_variable_set(:@game, game)
     end
     
     it "calls move when game is not paused"do
       engine.game_tick
-      expect(game).to have_recieved(:move)
+      expect(game).to have_received(:move)
     end
 
   end

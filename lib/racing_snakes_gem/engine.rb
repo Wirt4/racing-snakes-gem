@@ -2,17 +2,19 @@
 module RacingSnakes
   class Engine
     attr_reader :game
+    attr_reader :window
     def initialize(window_adapter: nil)
       # override dependency injection for production
-      window_adapter ||= Ruby2D::Window
       config = RacingSnakes.configuration
 
-      window_adapter.set(background: config.background)
-      window_adapter.set(width: config.width)
-      window_adapter.set(height: config.height)
-      window_adapter.set(fps_cap: config.fps_cap)
+      window_adapter ||= Ruby2D::Window
+      @window = window_adapter
+      @window.set(background: config.background)
+      @window.set(width: config.width)
+      @window.set(height: config.height)
+      @window.set(fps_cap: config.fps_cap)
+      @window.set(fullscreen: false)
 
-      window_adapter.set(fullscreen: false)
       @game = RacingSnakes::Game.new
       @game.draw_snakes
     end
@@ -22,7 +24,7 @@ module RacingSnakes
       end
     end
     def game_tick
-      clear
+      @window.clear
       game.move
     end
   end
