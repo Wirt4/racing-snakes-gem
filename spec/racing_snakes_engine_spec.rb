@@ -41,5 +41,27 @@ RSpec.describe RacingSnakes::Engine do
        expect(mock_game).to have_received(:draw_snakes)
     end
   end
+  describe"#game_tick"do
+    let(:game) do
+      instance_double(
+        RacingSnakes::Game,
+        is_paused?: false,
+        move: nil,
+        draw_board: nil,
+        player_eats: false,
+        food_time?: false,
+        is_collision?: false
+      )     
+    end
+    subject(:engine) { described_class.new }
+    before do
+      engine.instance_variable_set(:@game, game)
+    end
+  it "calls move when game is not paused"do
+    engine.game_tick
+    expect(game).to have_recieved(:move)
+  end
+
+  end
 end
 

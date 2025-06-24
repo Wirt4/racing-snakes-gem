@@ -17,6 +17,11 @@ module RacingSnakes
       @game.draw_snakes
     end
     def start_game_loop
+      update do
+        game_tick
+      end
+    end
+    def game_tick
       puts "stub"
     end
   end
