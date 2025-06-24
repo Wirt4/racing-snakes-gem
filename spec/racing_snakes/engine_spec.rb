@@ -59,7 +59,9 @@ RSpec.describe RacingSnakes::Engine do
         paused?: false,
         draw_board: nil,
         player_eats?: false,
-        eat_and_grow: nil
+        eat_and_grow: nil,
+        food_time?: false,
+        respawn_food: nil
       )
     end
 
@@ -70,6 +72,7 @@ RSpec.describe RacingSnakes::Engine do
       allow(game).to receive(:draw_snakes)
       allow(game).to receive(:draw_board)
       allow(game).to receive(:eat_and_grow)
+      allow(game).to recieve(:respawn_food)
       engine.instance_variable_set(:@game, game)
     end
 
@@ -104,6 +107,11 @@ RSpec.describe RacingSnakes::Engine do
       allow(game).to receive(:player_eats?).and_return(false)
       engine.game_tick
       expect(game).not_to have_received(:eat_and_grow)
+    end
+    it 'respawn food if it is food time' do
+      allow(game).to receive(:food_time?).and_return(true)
+      engine.game_tick
+      expect(game).to have_received(:respawn_food)
     end
   end
 end

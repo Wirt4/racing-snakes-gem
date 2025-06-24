@@ -9,5 +9,7 @@ module RacingSnakes
     def draw_board;end
     def player_eats?;end
     def eat_and_grow; end
+    def food_time?;end
+    def respawn_food; end
   end
 end
