@@ -61,7 +61,9 @@ RSpec.describe RacingSnakes::Engine do
         player_eats?: false,
         eat_and_grow: nil,
         food_time?: false,
-        respawn_food: nil
+        respawn_food: nil,
+        is_collision?: false,
+        stop_game: nil
       )
     end
 
@@ -119,6 +121,17 @@ RSpec.describe RacingSnakes::Engine do
       allow(game).to receive(:food_time?).and_return(false)
       engine.game_tick
       expect(game).not_to have_received(:respawn_food)
+    end
+    it'if collsion, then stop_game is  called' do
+      allow(game).to receive(:is_collision?).and_return(true)
+      engine.game_tick
+      expect(game).to have_received(:stop_game)
+    end
+
+    it'if no collsion, then stop_game is not called' do
+      allow(game).to receive(:is_collision?).and_return(false)
+      engine.game_tick
+      expect(game).not_to have_received(:stop_game)
     end
   end
 end
