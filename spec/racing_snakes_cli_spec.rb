@@ -6,6 +6,7 @@ RSpec.describe RacingSnakes::CLI do
 
   describe '.run' do
     let(:engine_double) {instance_double(RacingSnakes::Engine)}
+
     before do
       allow(RacingSnakes::Engine).to receive(:new).and_return(engine_double)
     end

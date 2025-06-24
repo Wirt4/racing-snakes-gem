@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 module RacingSnakes
-
-# Game engine for racing snakes, runs the primary loop
+  # Game engine for racing snakes, runs the primary loop
   class Engine
     attr_reader :game, :window
     def initialize(window_adapter: nil)

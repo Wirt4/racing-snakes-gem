@@ -43,7 +43,10 @@ RSpec.describe RacingSnakes::Engine do
        expect(mock_game).to have_received(:draw_snakes)
     end
   end
+
   describe'#game_tick'do
+    subject(:engine) { described_class.new(window_adapter:mock_window) }
+
     let(:game) do
       instance_double(
         RacingSnakes::Game,
@@ -55,7 +58,6 @@ RSpec.describe RacingSnakes::Engine do
      
     let(:mock_window) { double('Ruby2D', set: nil, clear:nil) }
    
-    subject(:engine) { described_class.new(window_adapter:mock_window) }
     
     before do
       RacingSnakes.configuration = RacingSnakes::Configuration.new

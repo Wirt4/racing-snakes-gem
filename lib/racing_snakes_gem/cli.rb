@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 module RacingSnakes
-
-# Command Line Interface for running the gem: general entry point to the game
+  # Command Line Interface for running the gem: general entry point to the game
   module CLI
     def self.run
       require 'ruby2d' # runtime loading

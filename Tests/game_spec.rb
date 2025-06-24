@@ -11,12 +11,13 @@ load 'keyboard_buttons.rb'
 
 RSpec.describe Game do
   describe '#initialize' do
-    it'it initializes a new clock object'do
+    it'initializes a new clock object'do
       allow(GameClock).to receive(:new)
-      Game.new
+      described_class.new
       expect(GameClock).to have_received(:new)
     end
-    it'it initializes a new player 1 snake and new player 2 snake'do
+
+    it'initializes a new player 1 snake and new player 2 snake'do
       snake_args = []
 
       allow(Snake).to receive(:new) do | *args|
@@ -26,21 +27,22 @@ RSpec.describe Game do
 
       allow(Board).to receive(:new)
 
-      Game.new
+      described_class.new
 
       expect(snake_args[0][0]).to eq(PlayerIds::PLAYER_ONE)
       expect(snake_args[1][0]).to eq(PlayerIds::PLAYER_TWO)
     end
-    it 'it creates a new board object'do
+
+    it 'creates a new board object'do
       allow(Board).to receive(:new)
-      Game.new
+      described_class.new
       expect(Board).to have_received(:new)
     end
   end
 
   describe '#draw_snakes' do
     it 'calling draw_snakes causes each snake to draw'do
-      game = Game.new
+      game = described_class.new
       allow(game.player1).to receive(:draw)
       allow(game.player2).to receive(:draw)
 
@@ -53,7 +55,7 @@ RSpec.describe Game do
 
   describe'#draw_board'do
     it'drawing the board should call draw_snakes' do
-        game = Game.new
+        game = described_class.new
         allow(game).to receive(:draw_snakes)
         allow(game.board).to receive(:draw)
 
@@ -61,8 +63,9 @@ RSpec.describe Game do
 
         expect(game).to have_received(:draw_snakes)
     end
+
     it'drawing the board should call Board.draw' do
-      game = Game.new
+      game = described_class.new
       allow(game).to receive(:draw_snakes)
       allow(game.board).to receive(:draw)
 
@@ -70,8 +73,9 @@ RSpec.describe Game do
 
       expect(game.board).to have_received(:draw)
     end
-    it 'should call Board.snake_eat_food with player1 and player 2 as arguments'do
-      game = Game.new
+
+    it 'calls Board.snake_eat_food with player1 and player 2 as arguments'do
+      game = described_class.new
       allow(game).to receive(:draw_snakes)
       allow(game.board).to receive(:draw)
       board_args = []
@@ -84,71 +88,74 @@ RSpec.describe Game do
 
       expect(board_args).to eq([[game.player1], [game.player2]])
     end
+
     it 'Neither snake 1 or snake 2 ate anything'do
-      game = Game.new
+      game = described_class.new
       allow(game).to receive(:draw_snakes)
       allow(game.board).to receive(:draw)
       allow(game.board).to receive(:snake_eat_food?).and_return(false, false)
       game.draw_board
 
-      expect(game.player1Eats).to eq(false)
-      expect(game.player2Eats).to eq(false)
+      expect(game.player1Eats).to be(false)
+      expect(game.player2Eats).to be(false)
     end
+
     it 'Snake 1 ate the food'do
-      game = Game.new
+      game = described_class.new
       allow(game).to receive(:draw_snakes)
       allow(game.board).to receive(:draw)
       allow(game.board).to receive(:snake_eat_food?).and_return(true, false)
       game.draw_board
 
-      expect(game.player1Eats).to eq(true)
-      expect(game.player2Eats).to eq(false)
+      expect(game.player1Eats).to be(true)
+      expect(game.player2Eats).to be(false)
     end
+
     it 'Snake 2 ate the food'do
-      game = Game.new
+      game = described_class.new
       allow(game).to receive(:draw_snakes)
       allow(game.board).to receive(:draw)
       allow(game.board).to receive(:snake_eat_food?).and_return(false, true)
       game.draw_board
 
-      expect(game.player1Eats).to eq(false)
-      expect(game.player2Eats).to eq(true)
+      expect(game.player1Eats).to be(false)
+      expect(game.player2Eats).to be(true)
     end
   end
 
   describe '#is_paused'do
     it'neither Board.finished nor Board.menu is true'do
-      game = Game.new
-      allow(game.board).to receive(:finished?){false}
-      allow(game.board).to receive(:menu?){false}
+      game = described_class.new
+      allow(game.board).to receive_messages(finished?: false, menu?: false)
 
-      expect(game.is_paused?).to eq(false)
+      expect(game.is_paused?).to be(false)
     end
+
     it'Board.finished is true and Board.menu is false'do
-      game = Game.new
-      allow(game.board).to receive(:finished?){true}
-      allow(game.board).to receive(:menu?){false}
+      game = described_class.new
+      allow(game.board).to receive_messages(finished?: true, menu?: false)
 
-      expect(game.is_paused?).to eq(true)
+      expect(game.is_paused?).to be(true)
     end
-    it'Board.finished is false and Board.menu is true'do
-    game = Game.new
-    allow(game.board).to receive(:finished?){false}
-    allow(game.board).to receive(:menu?){true}
 
-    expect(game.is_paused?).to eq(true)
+    it'Board.finished is false and Board.menu is true'do
+    game = described_class.new
+    allow(game.board).to receive_messages(finished?: false, menu?: true)
+
+    expect(game.is_paused?).to be(true)
   end
   end
 
   describe '#move'do
-    it'should call Board.is_tie'do
-      game = Game.new
+    it'calls Board.is_tie'do
+      game = described_class.new
       allow(game.board).to receive(:is_tie)
       game.move
       expect(game.board).to have_received(:is_tie).with(game.player1, game.player2)
     end
-    it'should call move for both players'do
-      game = Game.new
+
+    it'calls move for both players'do
+      game = described_class.new
       allow(game.player1).to receive(:move)
       allow(game.player2).to receive(:move)
 
@@ -157,8 +164,9 @@ RSpec.describe Game do
       expect(game.player1).to have_received(:move)
       expect(game.player2).to have_received(:move)
   end
-  it'should increment the clock'do
-      game = Game.new
+
+  it'increments the clock'do
+      game = described_class.new
       allow(game.clock).to receive(:increment)
 
       game.move
@@ -168,27 +176,30 @@ RSpec.describe Game do
 
   describe '#player_eats' do
     it 'neiher player one nor player two eats anything'do
-      game = Game.new
+      game = described_class.new
       game.player1Eats = false
       game.player2Eats = false
-      expect(game.player_eats).to eq(false)
+      expect(game.player_eats).to be(false)
     end
+
     it 'player one eats something' do
-      game = Game.new
+      game = described_class.new
       game.player1Eats = true
       game.player2Eats = false
-      expect(game.player_eats).to eq(true)
+      expect(game.player_eats).to be(true)
     end
+
     it 'player two eats something' do
-      game = Game.new
+      game = described_class.new
       game.player1Eats = false
       game.player2Eats = true
-      expect(game.player_eats).to eq(true)
+      expect(game.player_eats).to be(true)
     end
   end
+
   describe'#eat_and_grow'do
     it'player1Eats is true, player one has "grow" called'do
-      game = Game.new
+      game = described_class.new
       game.player1Eats = true
       allow(game.player1).to receive(:grow)
 
@@ -196,8 +207,9 @@ RSpec.describe Game do
 
       expect(game.player1).to have_received(:grow)
     end
+
     it'player1Eats is true, player one has "grow" called'do
-      game = Game.new
+      game = described_class.new
       game.player1Eats = false
       allow(game.player1).to receive(:grow)
 
@@ -205,8 +217,9 @@ RSpec.describe Game do
 
       expect(game.player1).not_to have_received(:grow)
     end
+
     it'player2Eats is true, player two has "grow" called'do
-      game = Game.new
+      game = described_class.new
       game.player2Eats = true
       allow(game.player2).to receive(:grow)
 
@@ -214,8 +227,9 @@ RSpec.describe Game do
 
       expect(game.player2).to have_received(:grow)
     end
+
     it'player2Eats is false, player two does not "grow" called'do
-      game = Game.new
+      game = described_class.new
       game.player2Eats = false
       allow(game.player2).to receive(:grow)
 
@@ -223,8 +237,9 @@ RSpec.describe Game do
 
       expect(game.player2).not_to have_received(:grow)
     end
+
     it 'respawn food is called' do
-      game = Game.new
+      game = described_class.new
       game.player1.position = [[0,0],[0,-1],[0,-2]]
       game.player2.position = [[1,0],[1,-1],[1,-2]]
       expected = [[0,0],[0,-1],[0,-2],[1,0],[1,-1],[1,-2]]
@@ -234,8 +249,9 @@ RSpec.describe Game do
 
       expect(game.board).to have_received(:respawn_food).with(expected)
     end
+
     it 'respawn food is called, different data' do
-      game = Game.new
+      game = described_class.new
       game.player1.position = [[-1,0],[-1,-1],[-1,-2]]
       game.player2.position = [[1,0],[1,-1],[1,-2]]
       expected = [[-1,0],[-1,-1],[-1,-2],[1,0],[1,-1],[1,-2]]
@@ -245,8 +261,9 @@ RSpec.describe Game do
 
       expect(game.board).to have_received(:respawn_food).with(expected)
     end
+
     it 'Clock.reset is called' do
-      game = Game.new
+      game = described_class.new
       allow(game.clock).to receive(:reset)
 
       game.eat_and_grow
@@ -254,29 +271,33 @@ RSpec.describe Game do
       expect(game.clock).to have_received(:reset)
     end
   end
+
   describe '#is_food time'do
     it 'food time is true' do
-      game = Game.new
+      game = described_class.new
       allow(game.clock).to receive(:is_food_time).and_return(true)
-      expect(game.food_time?).to eq(true)
+      expect(game.food_time?).to be(true)
     end
+
     it 'food time is false' do
-      game = Game.new
+      game = described_class.new
       allow(game.clock).to receive(:is_food_time).and_return(false)
-      expect(game.food_time?).to eq(false)
+      expect(game.food_time?).to be(false)
     end
   end
+
   describe'#respawn_food' do
     it 'clock.reset is called'do
-      game = Game.new
+      game = described_class.new
       allow(game.clock).to receive(:reset)
 
       game.respawn_food
 
       expect(game.clock).to have_received(:reset)
     end
+
     it 'board.respawn food is called'do
-      game = Game.new
+      game = described_class.new
       allow(game.board).to receive(:respawn_food)
       game.player1.position = [[0,0],[0,-1],[0,-2]]
       game.player2.position = [[1,0],[1,-1],[1,-2]]
@@ -287,21 +308,24 @@ RSpec.describe Game do
       expect(game.board).to have_received(:respawn_food).with(expected)
     end
   end
+
   describe'#is_collision?'do
     it'board.collision? is true'do
-      game = Game.new
+      game = described_class.new
       allow(game.board).to receive(:collision?).and_return(true)
 
-      expect(game.is_collision?).to eq(true)
+      expect(game.is_collision?).to be(true)
     end
+
     it'board.collision? is false'do
-      game = Game.new
+      game = described_class.new
       allow(game.board).to receive(:collision?).and_return(false)
 
-      expect(game.is_collision?).to eq(false)
+      expect(game.is_collision?).to be(false)
     end
+
     it'board.collision? is called with player positions'do
-      game = Game.new
+      game = described_class.new
       allow(game.board).to receive(:collision?)
 
       game.is_collision?
@@ -309,25 +333,28 @@ RSpec.describe Game do
       expect(game.board).to have_received(:collision?).with(game.player1.position, game.player2.position)
     end
   end
+
   describe'#stop_game' do
     it'board.finish is called'do
-      game = Game.new
+      game = described_class.new
       allow(game.board).to receive(:finish)
 
       game.stop_game
 
       expect(game.board).to have_received(:finish)
     end
+
     it'board.winner is called'do
-      game = Game.new
+      game = described_class.new
       allow(game.board).to receive(:winner)
 
       game.stop_game
 
       expect(game.board).to have_received(:winner).with(game.player1, game.player2)
     end
+
     it'board.dropShadow is called with player 1'do
-      game = Game.new
+      game = described_class.new
       allow(game.board).to receive(:drop_shadow)
       allow(game.board).to receive(:winner).and_return('player 1')
       game.stop_game
@@ -336,7 +363,7 @@ RSpec.describe Game do
     end
 
     it "player one is not the winner, and player one Z isn't set with the Z index" do
-      game = Game.new
+      game = described_class.new
       allow(game.player1).to receive(:set_z)
       allow(game.board).to receive(:p1_winner?).and_return(false)
 
@@ -345,8 +372,8 @@ RSpec.describe Game do
       expect(game.player1).not_to have_received(:set_z).with(Settings::WINNER_Z_NDX)
     end
 
-    it "player one is  the winner, and player two Z isn't set with the Z index" do
-      game = Game.new
+    it "player one is the winner, and player two Z isn't set with the Z index" do
+      game = described_class.new
       allow(game.player2).to receive(:set_z)
       allow(game.board).to receive(:p1_winner?).and_return(true)
 
@@ -358,7 +385,7 @@ RSpec.describe Game do
 
   describe '#detect_key'do
     it 'player1.detectKey called' do
-      game = Game.new
+      game = described_class.new
       snake_args=[]
       allow(game.player1).to receive(:detect_key) do |*args|
         snake_args << args
@@ -370,8 +397,9 @@ RSpec.describe Game do
 
       expect(snake_args[0][0]).to eq(k)
     end
+
     it 'player1.detectKey called, arrow down' do
-      game = Game.new
+      game = described_class.new
       snake_args = []
       allow(game.player1).to receive(:detect_key) do |*args|
         snake_args << args
@@ -382,8 +410,9 @@ RSpec.describe Game do
 
       expect(snake_args[0][0]).to eq(k)
     end
-    it 'player2.detectKey called,  W' do
-      game = Game.new
+
+    it 'player2.detectKey called, W' do
+      game = described_class.new
       snake_args =[]
       allow(game.player1).to receive(:detect_key) do |*args|
         snake_args << args
@@ -395,8 +424,9 @@ RSpec.describe Game do
 
       expect(snake_args[0][0]).to eq(k)
     end
-    it 'player2.detectKey called,  A' do
-      game = Game.new
+
+    it 'player2.detectKey called, A' do
+      game = described_class.new
       snake_args =[]
       allow(game.player1).to receive(:detect_key) do |*args|
         snake_args << args
@@ -408,8 +438,9 @@ RSpec.describe Game do
 
       expect(snake_args[0][0]).to eq(k)
     end
+
     it 'Key is space, game is finished' do
-      game = Game.new
+      game = described_class.new
       k = Keyboard::SPACE
       allow(game.board).to receive(:finished?).and_return(true)
       allow(game).to receive(:pause)
@@ -418,8 +449,9 @@ RSpec.describe Game do
 
       expect(Board).to have_received(:new)
     end
+
     it 'Key is space, game is not finished' do
-      game = Game.new
+      game = described_class.new
       k = Keyboard::SPACE
       allow(game.board).to receive(:finished?).and_return(false)
 
@@ -431,8 +463,9 @@ RSpec.describe Game do
       expect(Board).not_to have_received(:new)
       expect(Snake).not_to have_received(:new)
     end
+
     it 'Key is left, game is finished' do
-      game = Game.new
+      game = described_class.new
       k = Keyboard::LEFT
       allow(game.board).to receive(:finished?).and_return(true)
       allow(game).to receive(:pause)
@@ -445,8 +478,9 @@ RSpec.describe Game do
       expect(Board).not_to have_received(:new)
       expect(Snake).not_to have_received(:new)
     end
+
     it 'Key is space, Game.pause is called' do
-      game = Game.new
+      game = described_class.new
       k = Keyboard::SPACE
 
       allow(game).to receive(:pause)
@@ -455,8 +489,9 @@ RSpec.describe Game do
 
       expect(game).to have_received(:pause)
     end
+
     it 'Key is not space, Game.pause is not called' do
-      game = Game.new
+      game = described_class.new
       k = Keyboard::A
 
       allow(game).to receive(:pause)
@@ -466,9 +501,10 @@ RSpec.describe Game do
       expect(game).not_to have_received(:pause)
     end
   end
+
   describe '#pause'do
     it 'Board pause is called' do
-      game = Game.new
+      game = described_class.new
       allow(game.board).to receive(:pause)
       game.pause
       expect(game.board).to have_received(:pause)

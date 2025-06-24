@@ -2,6 +2,6 @@
 
 RSpec.describe RacingSnakesGem do
   it 'has a version number' do
-    expect(RacingSnakesGem::VERSION).not_to be nil
+    expect(RacingSnakesGem::VERSION).not_to be_nil
   end
 end

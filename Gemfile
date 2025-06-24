@@ -12,4 +12,4 @@ gem 'ruby2d'
 
 gem 'rubocop', '~> 1.77', group: :development
 
-gem "rubocop-rspec", "~> 3.6"
+gem 'rubocop-rspec', '~> 3.6'
