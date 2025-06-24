@@ -6,5 +6,6 @@ module RacingSnakes
     def move; end
     def draw_snakes; end
     def paused?;end
+    def draw_board;end
   end
 end

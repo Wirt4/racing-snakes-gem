@@ -20,6 +20,7 @@ module RacingSnakes
       window.clear
       game.move unless game.paused?
       game.draw_snakes
+      game.draw_board
     end
 
     private

@@ -62,7 +62,7 @@ RSpec.describe RacingSnakes::Engine do
     before do
       RacingSnakes.configuration = RacingSnakes::Configuration.new
       allow(game).to receive(:draw_snakes)
-      allow(game).to recieve(:draw_board)
+      allow(game).to receive(:draw_board)
       engine.instance_variable_set(:@game, game)
     end
 
