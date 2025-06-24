@@ -114,11 +114,11 @@ RSpec.describe RacingSnakes::Engine do
       engine.game_tick
       expect(game).to have_received(:respawn_food)
     end
-  it 'does notrespawn food if it is not food time' do
+
+    it 'does notrespawn food if it is not food time' do
       allow(game).to receive(:food_time?).and_return(false)
       engine.game_tick
       expect(game).not_to have_received(:respawn_food)
     end
-
   end
 end
