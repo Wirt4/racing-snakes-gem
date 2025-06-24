@@ -1,7 +1,8 @@
 module RacingSnakes
   class Engine
-    def initialize
-      puts"stub"
+    attr_reader :game
+    def initialize(window_adapter: nil)
+      @game = RacingSnakes::Game.new
     end
     def start_game_loop
       puts "stub"
