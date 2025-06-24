@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # spec/support/shared_contexts.rb
 RSpec.shared_context 'window mock' do
   let(:mock_window) { instance_double(Ruby2D::Window, set: nil, clear: nil) }
@@ -19,6 +21,4 @@ RSpec.shared_context 'game mock' do
       stop_game: nil
     )
   end
-  let(:mock_game){game}
 end
-

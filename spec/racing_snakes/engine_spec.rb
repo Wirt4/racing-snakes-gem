@@ -3,16 +3,18 @@
 require 'racing_snakes_gem'
 
 RSpec.describe RacingSnakes::Engine do
+  include_context 'window mock'
+  include_context 'game mock'
   describe '#initialize' do
-    let(:mock_window) { instance_double(Ruby2D::Window, set: nil) }
-    let(:engine) { described_class.new(window_adapter: mock_window) }
-    let(:mock_game) { instance_double(RacingSnakes::Game, draw_snakes: nil) }
 
+    subject(:engine) { described_class.new(window_adapter: mock_window) }
+
+    
     before do
       RacingSnakes.configuration = RacingSnakes::Configuration.new
 
       allow(RacingSnakes::Game).to receive(:new).and_return(mock_game)
-      allow(RacingSnakes::Game).to receive(:draw_snakes)
+      allow(mock_game).to receive(:draw_snakes)
     end
 
     after do
@@ -24,8 +26,7 @@ RSpec.describe RacingSnakes::Engine do
     end
 
     it 'sets up the game window with default configurations' do
-      described_class.new(window_adapter: mock_window)
-
+      engine
       {
         background: 'black',
         width: 640,
@@ -42,97 +43,80 @@ RSpec.describe RacingSnakes::Engine do
     end
 
     it 'calls the draw_snakes method on game' do
-      allow(mock_game).to receive(:draw_snakes)
-      described_class.new(window_adapter: mock_window)
+      engine
       expect(mock_game).to have_received(:draw_snakes)
     end
   end
 
   describe '#game_tick' do
+    include_context 'game mock'
+
     subject(:engine) { described_class.new(window_adapter: mock_window) }
-
-    let(:game) do
-      instance_double(
-        RacingSnakes::Game,
-        move: nil,
-        draw_snakes: nil,
-        paused?: false,
-        draw_board: nil,
-        player_eats?: false,
-        eat_and_grow: nil,
-        food_time?: false,
-        respawn_food: nil,
-        is_collision?: false,
-        stop_game: nil
-      )
-    end
-
-    let(:mock_window) { instance_double(Ruby2D::Window, set: nil, clear:nil) }
-
     before do
       RacingSnakes.configuration = RacingSnakes::Configuration.new
-      allow(game).to receive(:draw_snakes)
-      allow(game).to receive(:draw_board)
-      allow(game).to receive(:eat_and_grow)
-      allow(game).to receive(:respawn_food)
-      engine.instance_variable_set(:@game, game)
-    end
 
+      allow(RacingSnakes::Game).to receive(:new).and_return(mock_game)
+      engine.instance_variable_set(:@game, mock_game)
+      allow(mock_game).to receive(:draw_snakes)
+      allow(mock_game).to receive(:draw_board)
+      allow(mock_game).to receive(:eat_and_grow)
+      allow(mock_game).to receive(:respawn_food)
+    end
     it 'calls move when game is not paused' do
       engine.game_tick
-      expect(game).to have_received(:move)
+      expect(mock_game).to have_received(:move)
     end
 
     it 'does not call move when game is paused' do
-      allow(game).to receive(:paused?).and_return(true)
+      allow(mock_game).to receive(:paused?).and_return(true)
       engine.game_tick
-      expect(game).not_to have_received(:move)
+      expect(mock_game).not_to have_received(:move)
     end
 
     it 'draws snakes each game tick' do
       engine.game_tick
-      expect(game).to have_received(:draw_snakes)
+      expect(mock_game).to have_received(:draw_snakes)
     end
 
     it 'draws board' do
       engine.game_tick
-      expect(game).to have_received(:draw_board)
+      expect(mock_game).to have_received(:draw_board)
     end
 
     it 'if game.player_eats is true, then call eat_and_grow' do
-      allow(game).to receive(:player_eats?).and_return(true)
+      allow(mock_game).to receive(:player_eats?).and_return(true)
       engine.game_tick
-      expect(game).to have_received(:eat_and_grow)
+      expect(mock_game).to have_received(:eat_and_grow)
     end
 
     it 'if game.player_eats if false, then do not call eat_and_grow' do
-      allow(game).to receive(:player_eats?).and_return(false)
+      allow(mock_game).to receive(:player_eats?).and_return(false)
       engine.game_tick
-      expect(game).not_to have_received(:eat_and_grow)
+      expect(mock_game).not_to have_received(:eat_and_grow)
     end
 
     it 'respawn food if it is food time' do
-      allow(game).to receive(:food_time?).and_return(true)
+      allow(mock_game).to receive(:food_time?).and_return(true)
       engine.game_tick
-      expect(game).to have_received(:respawn_food)
+      expect(mock_game).to have_received(:respawn_food)
     end
 
     it 'does notrespawn food if it is not food time' do
-      allow(game).to receive(:food_time?).and_return(false)
+      allow(mock_game).to receive(:food_time?).and_return(false)
       engine.game_tick
-      expect(game).not_to have_received(:respawn_food)
+      expect(mock_game).not_to have_received(:respawn_food)
     end
 
     it 'if collsion, then stop_game is called' do
-      allow(game).to receive(:is_collision?).and_return(true)
+      allow(mock_game).to receive(:is_collision?).and_return(true)
       engine.game_tick
-      expect(game).to have_received(:stop_game)
+      expect(mock_game).to have_received(:stop_game)
     end
 
     it 'if no collsion, then stop_game is not called' do
-      allow(game).to receive(:is_collision?).and_return(false)
+      allow(mock_game).to receive(:is_collision?).and_return(false)
       engine.game_tick
-      expect(game).not_to have_received(:stop_game)
+      expect(mock_game).not_to have_received(:stop_game)
     end
   end
 end
