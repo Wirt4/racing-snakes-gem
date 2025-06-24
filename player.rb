@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Player
     def initialize(is_player_one=true)
         @is_player_one=is_player_one

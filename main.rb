@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'ruby2d'
 load 'board.rb'
 load 'game_clock.rb'

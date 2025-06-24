@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 load 'keyboard_buttons.rb'
 
 class Button

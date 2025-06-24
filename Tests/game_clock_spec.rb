@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 load 'game_clock.rb'
 
 RSpec.describe GameClock do

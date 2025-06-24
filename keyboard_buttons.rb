@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Keyboard
   SPACE ||= 'space'
   ESCAPE ||= 'escape'

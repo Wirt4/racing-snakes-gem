@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 load 'snake.rb'
 load 'player_ids.rb'
 load 'directions.rb'

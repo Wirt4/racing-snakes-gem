@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GameClock
   def initialize(startTime=0)
     @tick = startTime

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rspec'
 load 'game.rb'
 load 'game_clock.rb'

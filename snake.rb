@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 load 'button.rb'
 load 'settings.rb'
 load 'directions.rb'

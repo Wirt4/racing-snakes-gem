@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RacingSnakes
   module CLI
     def self.run

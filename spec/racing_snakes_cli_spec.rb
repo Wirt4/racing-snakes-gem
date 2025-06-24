@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'racing_snakes_gem'
 
 RSpec.describe RacingSnakes::CLI do
