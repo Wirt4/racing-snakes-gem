@@ -352,7 +352,7 @@ RSpec.describe RacingSnakes::Game do
     include_context 'with a board mock'
     before do
       allow(RacingSnakes::Board).to receive(:new).and_return(mock_board)
-      allow(mock_board).to receive_messages(finish: nil, display_message: nil, winner: nil)
+      allow(mock_board).to receive_messages(finish: nil, display_message: nil, winner: nil, p1_winner?: false)
     end
 
     it 'board.finish is called' do
@@ -379,5 +379,15 @@ RSpec.describe RacingSnakes::Game do
 
       expect(mock_board).to have_received(:display_message).with('player 1', anything, anything)
     end
+     it "player one is not the winner, and player one Z isn't set with the Z index" do
+      game
+      allow(game.player1).to receive(:z_index)
+      allow(mock_board).to receive(:p1_winner?).and_return(true)
+
+      game.stop_game
+
+      expect(game.player1).to have_received(:z_index).with(RacingSnakes.configuration.winner_message_z_index)
+    end
+
   end
 end
