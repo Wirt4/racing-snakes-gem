@@ -8,8 +8,9 @@ module RacingSnakes
       @snake1 = snake1
       @snake2 = snake2
     end
+
     def display_message(winner, coordinates, color) end
-    def winner;end
+    def winner; end
     def finish; end
     def respawn_food(occupied_coordinates) end
     def menu?; end

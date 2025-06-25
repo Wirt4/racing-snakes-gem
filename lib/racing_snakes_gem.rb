@@ -24,11 +24,11 @@ module RacingSnakes
 
   class Configuration
     attr_accessor :background, :width, :height, :fps_cap, :fullscreen,
-                :winner_message_x_coordinate, :winner_message_y_coordinate,
-                :square_size, :text_color, :food_color, :winner_message_z_index,
-                :grid_size, :grid_width, :grid_height, :node_size,
-                :player_one_colors, :player_two_colors, :start_y_tail,
-                :start_length, :press_space, :tie_message, :winner_message
+                  :winner_message_x_coordinate, :winner_message_y_coordinate,
+                  :square_size, :text_color, :food_color, :winner_message_z_index,
+                  :grid_size, :grid_width, :grid_height, :node_size,
+                  :player_one_colors, :player_two_colors, :start_y_tail,
+                  :start_length, :press_space, :tie_message, :winner_message
 
     def initialize
       @background = 'black'
@@ -44,11 +44,11 @@ module RacingSnakes
       @winner_message_y_coordinate = 350
       @winner_message_z_index = 5
       @grid_size = @square_size
-      @grid_width = @width/@grid_size
-      @grid_height = @height/@grid_size
+      @grid_width = @width / @grid_size
+      @grid_height = @height / @grid_size
       @node_size = @grid_size
-      @player_one_colors = ['yellow', 'orange', 'red'].freeze
-      @player_two_colors = ['fuchsia', 'blue', 'green'].freeze
+      @player_one_colors = %w[yellow orange red].freeze
+      @player_two_colors = %w[fuchsia blue green].freeze
       @start_y_tail = 3
       @start_length = 3
       @press_space = '(press space)'
