@@ -176,18 +176,18 @@ RSpec.describe RacingSnakes::Game do
     end
   end
 
-  describe '#player_eats?' do
+  describe '#player_has_eaten?' do
     subject(:game) { described_class.new }
 
     it 'neither player has eaten anything' do
       game
       allow(game).to receive_messages(player1_has_eaten: false, player2_has_eaten: false)
-      expect(game.player_eats?).to be(false)
+      expect(game.player_has_eaten?).to be(false)
     end
     it 'player one has eaten' do
  game
       allow(game).to receive_messages(player1_has_eaten: true, player2_has_eaten: false)
-      expect(game.player_eats?).to be(true)
+      expect(game.player_has_eaten?).to be(true)
 
     end
   end

@@ -9,7 +9,7 @@ RSpec.shared_context 'with a game mock' do
       paused?: false,
       keydown: nil,
       draw_board: nil,
-      player_eats?: false,
+      player_has_eaten?: false,
       eat_and_grow: nil,
       food_time?: false,
       respawn_food: nil,

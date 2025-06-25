@@ -79,7 +79,7 @@ RSpec.describe RacingSnakes::Engine do
     it 'draws snakes each game tick' do
       RSpec::Mocks.space.proxy_for(mock_game).reset
       allow(mock_game).to receive_messages(draw_snakes: nil, draw_board: nil, eat_and_grow: nil, respawn_food: nil,
-                                           paused?: false, move: nil, player_eats?: false, food_time?: false,
+                                           paused?: false, move: nil, player_has_eaten?: false, food_time?: false,
                                            stop_game: nil, collision?: false)
 
       engine.game_tick
@@ -92,13 +92,13 @@ RSpec.describe RacingSnakes::Engine do
     end
 
     it 'if game.player_eats is true, then call eat_and_grow' do
-      allow(mock_game).to receive(:player_eats?).and_return(true)
+      allow(mock_game).to receive(:player_has_eaten?).and_return(true)
       engine.game_tick
       expect(mock_game).to have_received(:eat_and_grow)
     end
 
     it 'if game.player_eats if false, then do not call eat_and_grow' do
-      allow(mock_game).to receive(:player_eats?).and_return(false)
+      allow(mock_game).to receive(:player_has_eaten?).and_return(false)
       engine.game_tick
       expect(mock_game).not_to have_received(:eat_and_grow)
     end

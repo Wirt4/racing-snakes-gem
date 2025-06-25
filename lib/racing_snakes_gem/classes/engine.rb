@@ -22,7 +22,7 @@ module RacingSnakes
       game.move unless game.paused?
       game.draw_snakes
       game.draw_board
-      game.eat_and_grow if game.player_eats?
+      game.eat_and_grow if game.player_has_eaten?
       game.respawn_food if game.food_time?
       game.stop_game if game.collision?
     end

@@ -37,8 +37,7 @@ module RacingSnakes
       @player2_has_eaten = @board.has_eaten_food?(@player2)
     end
 
-    def player_eats?
-
+    def player_has_eaten?
     return player1_has_eaten
     end
 
