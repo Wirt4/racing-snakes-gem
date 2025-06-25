@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 require_relative 'racing_snakes_gem/version'
-require_relative 'racing_snakes_gem/cli'
-require_relative 'racing_snakes_gem/engine'
-require_relative 'racing_snakes_gem/game'
-require_relative 'racing_snakes_gem/clock'
-require_relative 'racing_snakes_gem/keyboard'
-require_relative 'racing_snakes_gem/snake'
-require_relative 'racing_snakes_gem/player_ids'
-require_relative 'racing_snakes_gem/board'
+require_relative 'racing_snakes_gem/classes/cli'
+require_relative 'racing_snakes_gem/classes/engine'
+require_relative 'racing_snakes_gem/classes/game'
+require_relative 'racing_snakes_gem/classes/clock'
+require_relative 'racing_snakes_gem/modules/keyboard'
+require_relative 'racing_snakes_gem/classes/snake'
+require_relative 'racing_snakes_gem/modules/player_ids'
+require_relative 'racing_snakes_gem/classes/board'
 # Gem for the racing snakes game
 module RacingSnakes
   class Error < StandardError; end

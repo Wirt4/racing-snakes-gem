@@ -15,9 +15,10 @@ RSpec.describe RacingSnakes::Game do
     it 'initalizes a new clock object' do
       expect(game.clock).to equal(mock_clock)
     end
-    it 'initializes two snakes'do 
+
+    it 'initializes two snakes' do
       snake_args = []
-      allow(RacingSnakes::Snake).to receive(:new) do | *args|
+      allow(RacingSnakes::Snake).to receive(:new) do |*args|
         snake_args << args
         double(RacingSnakes::Snake)
       end
@@ -26,7 +27,6 @@ RSpec.describe RacingSnakes::Game do
 
       expect(snake_args[0][0]).to eq(RacingSnakes::PlayerIds::PLAYER_ONE)
       expect(snake_args[1][0]).to eq(RacingSnakes::PlayerIds::PLAYER_TWO)
-
     end
   end
 end
