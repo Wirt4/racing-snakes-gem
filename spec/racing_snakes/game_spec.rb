@@ -389,11 +389,13 @@ RSpec.describe RacingSnakes::Game do
       expect(mock_board).to have_received(:display_message).with('player 2', anything, anything)
     end
   end
+
   describe '#keydown' do
- subject(:game) { described_class.new }
-it 'player1.detect_key called' do
+    subject(:game) { described_class.new }
+
+    it 'player1.detect_key called' do
       game
-      snake_args=[]
+      snake_args = []
       allow(game.player1).to receive(:detect_key) do |*args|
         snake_args << args
       end

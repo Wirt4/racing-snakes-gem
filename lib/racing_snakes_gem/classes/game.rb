@@ -21,7 +21,6 @@ module RacingSnakes
 
     def keydown(keyname)
       @player1.detect_key(keyname)
-
     end
 
     def draw_snakes

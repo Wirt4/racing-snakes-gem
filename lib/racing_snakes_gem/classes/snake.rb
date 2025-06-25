@@ -2,7 +2,7 @@
 
 module RacingSnakes
   class Snake
-    attr_accessor :position, :z_index
+    attr_accessor :position
 
     def initialize(_snake_id)
       @position = []
@@ -11,9 +11,5 @@ module RacingSnakes
 
     def draw; end
     def move; end
-
-    def z_index(z_index)
-      @z_index = z_index
-    end
   end
 end
