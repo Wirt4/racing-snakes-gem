@@ -3,5 +3,6 @@
 module RacingSnakes
   class Clock
     def tick; end
+    def reset;end
   end
 end

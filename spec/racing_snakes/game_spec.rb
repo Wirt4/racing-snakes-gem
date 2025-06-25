@@ -253,6 +253,12 @@ RSpec.describe RacingSnakes::Game do
 
   describe '#respawn_food' do
     subject(:game) { described_class.new }
+ include_context 'with a clock mock'
+
+    before do
+      allow(RacingSnakes::Clock).to receive(:new).and_return(mock_clock)
+      allow(mock_clock).to receive(:reset)
+    end
 
     it 'position 1' do
       game
@@ -277,6 +283,11 @@ RSpec.describe RacingSnakes::Game do
       game.respawn_food
 
       expect(game.board).to have_received(:respawn_food).with(expected)
+    end
+    it 'resets the clock' do
+      game
+      game.respawn_food
+      expect(mock_clock).to have_received(:reset)
     end
   end
 end
