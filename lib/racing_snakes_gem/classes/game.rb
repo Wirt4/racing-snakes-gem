@@ -21,7 +21,9 @@ module RacingSnakes
       @player2.draw
     end
 
-    def paused?; end
+    def paused?
+      return false
+    end
 
     def draw_board
       draw_snakes

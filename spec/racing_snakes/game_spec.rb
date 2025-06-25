@@ -108,4 +108,15 @@ RSpec.describe RacingSnakes::Game do
       expect(game.player2_has_eaten).to be(false)
     end
   end
+  describe'#paused?'do
+   subject(:game){described_class.new}
+   include_context 'with a board mock'
+   it'board is in neither in menu mode nor paused'do:w
+  
+     game
+     allow(game.board).to receive_messages(finished?: false, menu?: false)
+     expect(game.paused?).to be(false)
+     
+   end
+  end
 end
