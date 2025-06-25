@@ -3,6 +3,6 @@
 module RacingSnakes
   class Snake
     def initialize(snake_id); end
-    def draw;end
+    def draw; end
   end
 end
