@@ -184,5 +184,11 @@ RSpec.describe RacingSnakes::Game do
       allow(game).to receive_messages(player1_has_eaten: false, player2_has_eaten: false)
       expect(game.player_eats?).to be(false)
     end
+    it 'player one has eaten' do
+ game
+      allow(game).to receive_messages(player1_has_eaten: true, player2_has_eaten: false)
+      expect(game.player_eats?).to be(true)
+
+    end
   end
 end
