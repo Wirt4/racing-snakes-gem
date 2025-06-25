@@ -80,7 +80,7 @@ RSpec.describe RacingSnakes::Engine do
       RSpec::Mocks.space.proxy_for(mock_game).reset
       allow(mock_game).to receive_messages(draw_snakes: nil, draw_board: nil, eat_and_grow: nil, respawn_food: nil,
                                            paused?: false, move: nil, player_eats?: false, food_time?: false,
-                                           stop_game: nil, is_collision?: false)
+                                           stop_game: nil, collision?: false)
 
       engine.game_tick
       expect(mock_game).to have_received(:draw_snakes)
@@ -116,13 +116,13 @@ RSpec.describe RacingSnakes::Engine do
     end
 
     it 'if collsion, then stop_game is called' do
-      allow(mock_game).to receive(:is_collision?).and_return(true)
+      allow(mock_game).to receive(:collision?).and_return(true)
       engine.game_tick
       expect(mock_game).to have_received(:stop_game)
     end
 
     it 'if no collsion, then stop_game is not called' do
-      allow(mock_game).to receive(:is_collision?).and_return(false)
+      allow(mock_game).to receive(:collision?).and_return(false)
       engine.game_tick
       expect(mock_game).not_to have_received(:stop_game)
     end

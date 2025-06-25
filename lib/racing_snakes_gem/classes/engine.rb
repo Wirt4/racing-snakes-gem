@@ -24,7 +24,7 @@ module RacingSnakes
       game.draw_board
       game.eat_and_grow if game.player_eats?
       game.respawn_food if game.food_time?
-      game.stop_game if game.is_collision?
+      game.stop_game if game.collision?
     end
 
     def register_keystroke

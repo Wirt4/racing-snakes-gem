@@ -314,21 +314,21 @@ RSpec.describe Game do
       game = described_class.new
       allow(game.board).to receive(:collision?).and_return(true)
 
-      expect(game.is_collision?).to be(true)
+      expect(game.collision?).to be(true)
     end
 
     it'board.collision? is false'do
       game = described_class.new
       allow(game.board).to receive(:collision?).and_return(false)
 
-      expect(game.is_collision?).to be(false)
+      expect(game.collision?).to be(false)
     end
 
     it'board.collision? is called with player positions'do
       game = described_class.new
       allow(game.board).to receive(:collision?)
 
-      game.is_collision?
+      game.ccollision?
 
       expect(game.board).to have_received(:collision?).with(game.player1.position, game.player2.position)
     end

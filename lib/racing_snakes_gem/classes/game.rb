@@ -36,7 +36,7 @@ module RacingSnakes
     def eat_and_grow; end
     def food_time?; end
     def respawn_food; end
-    def is_collision?; end
+    def collision?; end
     def stop_game; end
   end
 end

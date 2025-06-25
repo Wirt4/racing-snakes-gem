@@ -13,7 +13,7 @@ RSpec.shared_context 'with a game mock' do
       eat_and_grow: nil,
       food_time?: false,
       respawn_food: nil,
-      is_collision?: false,
+      collision?: false,
       stop_game: nil
     )
   end
