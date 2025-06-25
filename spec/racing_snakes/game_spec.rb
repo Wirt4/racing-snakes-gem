@@ -416,5 +416,15 @@ RSpec.describe RacingSnakes::Game do
       game.keydown(RacingSnakes::Keyboard::W)
       expect(mock_board).not_to have_received(:pause)
     end
+
+    it 'board is recreated if its state is finished and keystroke is space' do
+      game
+      allow(mock_board).to receive(:finished?).and_return(true)
+
+
+      game.keydown(RacingSnakes::Keyboard::SPACE)
+
+      expect(RacingSnakes::Board).to have_recieved(:new)
+    end
   end
 end
