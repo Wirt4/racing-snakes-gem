@@ -52,7 +52,7 @@ RSpec.describe RacingSnakes::Game do
     end
   end
   describe '#draw_board'do 
-    subject(:game) { described_class.new }
+   subject(:game) { described_class.new }
 
     it 'drawing the board should draw the snakes'do 
       game
