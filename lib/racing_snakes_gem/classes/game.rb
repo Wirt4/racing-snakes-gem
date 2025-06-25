@@ -14,7 +14,6 @@ module RacingSnakes
       @player1 = RacingSnakes::Snake.new(RacingSnakes::PlayerIds::PLAYER_ONE)
       @player2 = RacingSnakes::Snake.new(RacingSnakes::PlayerIds::PLAYER_TWO)
       @board = RacingSnakes::Board.new(@player1, @player2)
-
     end
 
     def move
@@ -31,6 +30,7 @@ module RacingSnakes
 
       @board.pause
       return unless @board.finished?
+
       set_players_and_board
     end
 
