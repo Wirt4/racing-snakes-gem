@@ -1,14 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable RSpec/ContextWording
-RSpec.shared_context 'window mock' do
-  let(:mock_window) { instance_double(Ruby2D::Window, set: nil, clear: nil) }
-end
-
-RSpec.shared_context 'clock mock' do
-  let(:mock_clock) { instance_double(RacingSnakes::Clock) }
-end
-
 RSpec.shared_context 'game mock' do
   let(:mock_game) do
     instance_double(
