@@ -7,8 +7,8 @@ module RacingSnakes
 
     def initialize
       @clock = RacingSnakes::Clock.new
-      @snake_1 = RacingSnakes::Snake.new(1)
-      @snake_2 = RacingSnakes::Snake.new(2)
+      @snake_1 = RacingSnakes::Snake.new(RacingSnakes::PlayerIds::PLAYER_ONE)
+      @snake_2 = RacingSnakes::Snake.new(RacingSnakes::PlayerIds::PLAYER_TWO)
     end
 
     def move; end
