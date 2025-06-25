@@ -77,7 +77,7 @@ RSpec.describe RacingSnakes::Game do
          allow(game).to receive(:draw_snakes)
       allow(game.board).to receive(:draw)
  board_args = []
-      allow(game.board).to receive(:snake_eat_food?) do | *args|
+      allow(game.board).to receive(:has_eaten_food?) do | *args|
         board_args << args
         double(game.board)
       end
