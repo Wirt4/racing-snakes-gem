@@ -250,9 +250,11 @@ RSpec.describe RacingSnakes::Game do
       expect(game).to have_received(:respawn_food)
     end
   end
-  describe '#respawn_food'do 
-     subject(:game) { described_class.new }
-     it 'position 1' do 
+
+  describe '#respawn_food' do
+    subject(:game) { described_class.new }
+
+    it 'position 1' do
       game
       allow(game.board).to receive(:respawn_food)
 
@@ -263,10 +265,10 @@ RSpec.describe RacingSnakes::Game do
       game.respawn_food
 
       expect(game.board).to have_received(:respawn_food).with(expected)
+    end
 
-     end
-     it 'position 2' do 
-       game
+    it 'position 2' do
+      game
       allow(game.board).to receive(:respawn_food)
       game.player1.position = [[0, 0], [0, -1], [0, -2]]
       game.player2.position = [[1, 0], [1, -1], [1, -2]]
@@ -275,9 +277,6 @@ RSpec.describe RacingSnakes::Game do
       game.respawn_food
 
       expect(game.board).to have_received(:respawn_food).with(expected)
-
-     end
-
-
+    end
   end
 end
