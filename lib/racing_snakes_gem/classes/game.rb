@@ -23,7 +23,7 @@ module RacingSnakes
       @player1.detect_key(keyname)
       @player2.detect_key(keyname)
       @board.pause if keyname == RacingSnakes::Keyboard::SPACE
-      @board = RacingSnakes::Board.new(@player1, @player2)
+      @board = RacingSnakes::Board.new(@player1, @player2) if keyname == RacingSnakes::Keyboard::SPACE
     end
 
     def draw_snakes
