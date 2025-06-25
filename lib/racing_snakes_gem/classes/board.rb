@@ -10,7 +10,7 @@ module RacingSnakes
     end
 
     def display_message(winner, coordinates, color) end
-    def winner; end
+    def winner(snake1, snake2); end
     def finish; end
     def respawn_food(occupied_coordinates) end
     def menu?; end
