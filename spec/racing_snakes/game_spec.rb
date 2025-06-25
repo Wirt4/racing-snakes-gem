@@ -51,15 +51,16 @@ RSpec.describe RacingSnakes::Game do
       expect(game.player2).to have_received(:draw)
     end
   end
-  describe '#draw_board'do 
-   subject(:game) { described_class.new }
 
-    it 'drawing the board should draw the snakes'do 
+  describe '#draw_board' do
+    subject(:game) { described_class.new }
+
+    it 'drawing the board should draw the snakes' do
       game
       allow(game).to receive(:draw_snakes)
 
       game.draw_board
-      
+
       expect(game).to have_received(:draw_snakes)
     end
   end

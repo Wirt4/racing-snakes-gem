@@ -22,9 +22,11 @@ module RacingSnakes
     end
 
     def paused?; end
+
     def draw_board
-    draw_snakes
+      draw_snakes
     end
+
     def player_eats?; end
     def eat_and_grow; end
     def food_time?; end
