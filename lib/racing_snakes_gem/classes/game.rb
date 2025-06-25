@@ -37,7 +37,9 @@ module RacingSnakes
       @player2_has_eaten = @board.has_eaten_food?(@player2)
     end
 
-    def player_eats?; end
+    def player_eats?
+false
+    end
     def eat_and_grow; end
     def food_time?; end
     def respawn_food; end
