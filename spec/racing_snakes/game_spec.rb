@@ -141,9 +141,12 @@ RSpec.describe RacingSnakes::Game do
     subject(:game) { described_class.new }
 
     include_context 'with a board mock'
+    include_context 'with a clock mock'
 
     before do
       allow(RacingSnakes::Board).to receive(:new).and_return(mock_board)
+      allow(RacingSnakes::Clock).to receive(:new).and_return(mock_clock)
+      allow(mock_clock).to receive(:increment)
     end
 
     it 'checks for a tie condition' do
@@ -164,6 +167,12 @@ RSpec.describe RacingSnakes::Game do
 
       expect(game.player1).to have_received(:move)
       expect(game.player2).to have_received(:move)
+    end
+
+    it 'increments the clock' do
+      game
+      game.move
+      expect(mock_clock).to have_received(:increment)
     end
   end
 end

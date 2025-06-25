@@ -2,5 +2,6 @@
 
 module RacingSnakes
   class Clock
+    def increment;end
   end
 end
