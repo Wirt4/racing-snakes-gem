@@ -243,17 +243,16 @@ RSpec.describe RacingSnakes::Game do
 
     it 'respawns food on game board' do
       game
-      allow(game.board).to receive(:respawn_food)
-      game.player1.position = [[0, 0], [0, -1], [0, -2]]
-      game.player2.position = [[1, 0], [1, -1], [1, -2]]
-      expected = [[0, 0], [0, -1], [0, -2], [1, 0], [1, -1], [1, -2]]
+      allow(game).to receive(:respawn_food)
 
       game.eat_and_grow
 
-      expect(game.board).to have_received(:respawn_food).with(expected)
+      expect(game).to have_received(:respawn_food)
     end
-
-    it 'respawns food on game board: different positions' do
+  end
+  describe '#respawn_food'do 
+     subject(:game) { described_class.new }
+     it 'position 1' do 
       game
       allow(game.board).to receive(:respawn_food)
 
@@ -261,9 +260,24 @@ RSpec.describe RacingSnakes::Game do
       game.player2.position = [[1, 0], [1, -1], [1, -2]]
       expected = [[-1, 0], [-1, -1], [-1, -2], [1, 0], [1, -1], [1, -2]]
 
-      game.eat_and_grow
+      game.respawn_food
 
       expect(game.board).to have_received(:respawn_food).with(expected)
-    end
+
+     end
+     it 'position 2' do 
+       game
+      allow(game.board).to receive(:respawn_food)
+      game.player1.position = [[0, 0], [0, -1], [0, -2]]
+      game.player2.position = [[1, 0], [1, -1], [1, -2]]
+      expected = [[0, 0], [0, -1], [0, -2], [1, 0], [1, -1], [1, -2]]
+
+      game.respawn_food
+
+      expect(game.board).to have_received(:respawn_food).with(expected)
+
+     end
+
+
   end
 end
