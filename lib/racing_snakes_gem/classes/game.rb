@@ -7,9 +7,14 @@ module RacingSnakes
 
     def initialize
       @clock = RacingSnakes::Clock.new
+      set_players_and_board
+    end
+
+    def set_players_and_board
       @player1 = RacingSnakes::Snake.new(RacingSnakes::PlayerIds::PLAYER_ONE)
       @player2 = RacingSnakes::Snake.new(RacingSnakes::PlayerIds::PLAYER_TWO)
       @board = RacingSnakes::Board.new(@player1, @player2)
+
     end
 
     def move
@@ -26,8 +31,7 @@ module RacingSnakes
 
       @board.pause
       return unless @board.finished?
-
-      @board = RacingSnakes::Board.new( RacingSnakes::Snake.new(RacingSnakes::PlayerIds::PLAYER_ONE),  RacingSnakes::Snake.new(RacingSnakes::PlayerIds::PLAYER_TWO))
+      set_players_and_board
     end
 
     def draw_snakes
