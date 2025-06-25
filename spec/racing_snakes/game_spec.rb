@@ -71,5 +71,20 @@ RSpec.describe RacingSnakes::Game do
       game.draw_board
       expect(game.board).to have_received(:draw)
     end
+
+    it 'drawing the board checks if the snakes have eaten food' do
+      game
+         allow(game).to receive(:draw_snakes)
+      allow(game.board).to receive(:draw)
+ board_args = []
+      allow(game.board).to receive(:snake_eat_food?) do | *args|
+        board_args << args
+        double(game.board)
+      end
+      game.draw_board
+
+      expect(board_args).to eq([[game.player1], [game.player2]])
+
+    end
   end
 end
