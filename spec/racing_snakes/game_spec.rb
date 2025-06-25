@@ -352,8 +352,7 @@ RSpec.describe RacingSnakes::Game do
     include_context 'with a board mock'
     before do
       allow(RacingSnakes::Board).to receive(:new).and_return(mock_board)
-      allow(mock_board).to receive(:finish)
-      allow(mock_board).to receive(:display_message)
+      allow(mock_board).to receive_messages(finish:nil, display_message:nil, winner: nil)
     end
 
     it 'board.finish is called' do
@@ -362,6 +361,13 @@ RSpec.describe RacingSnakes::Game do
       game.stop_game
 
       expect(mock_board).to have_received(:finish)
+    end
+ it'board.winner is called'do
+      game
+
+      game.stop_game
+
+      expect(mock_board).to have_received(:winner).with(game.player1, game.player2)
     end
 
     it 'player1 is the winner' do
