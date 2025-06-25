@@ -203,12 +203,22 @@ RSpec.describe RacingSnakes::Game do
 
     it 'player1 has eaten' do
       game
-      allow(game).to receive(:player1_has_eaten).and_return(false)
+      allow(game).to receive(:player1_has_eaten).and_return(true)
       allow(game.player1).to receive(:grow)
 
       game.eat_and_grow
 
       expect(game.player1).to have_received(:grow)
     end
+    it 'player1 has not eaten' do
+      game
+      allow(game).to receive(:player1_has_eaten).and_return(false)
+      allow(game.player1).to receive(:grow)
+
+      game.eat_and_grow
+
+      expect(game.player1).not_to have_received(:grow)
+    end
+
   end
 end
