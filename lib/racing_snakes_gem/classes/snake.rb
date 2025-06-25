@@ -11,6 +11,7 @@ module RacingSnakes
 
     def draw; end
     def move; end
+
     def z_index(z_index)
       @z_index = z_index
     end

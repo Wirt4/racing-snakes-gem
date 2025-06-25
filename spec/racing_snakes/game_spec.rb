@@ -379,14 +379,14 @@ RSpec.describe RacingSnakes::Game do
 
       expect(mock_board).to have_received(:display_message).with('player 1', anything, anything)
     end
-     it "player2 is the winner" do
+
+    it 'player2 is the winner' do
       game
       allow(mock_board).to receive(:winner).with(anything, anything).and_return('player 2')
 
       game.stop_game
-      
+
       expect(mock_board).to have_received(:display_message).with('player 2', anything, anything)
     end
-
   end
 end
