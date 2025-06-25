@@ -6,6 +6,9 @@ require_relative 'racing_snakes_gem/engine'
 require_relative 'racing_snakes_gem/game'
 require_relative 'racing_snakes_gem/clock'
 require_relative 'racing_snakes_gem/keyboard'
+require_relative 'racing_snakes_gem/snake'
+require_relative 'racing_snakes_gem/player_ids'
+require_relative 'racing_snakes_gem/board'
 # Gem for the racing snakes game
 module RacingSnakes
   class Error < StandardError; end
