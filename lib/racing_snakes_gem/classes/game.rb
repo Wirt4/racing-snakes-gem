@@ -42,7 +42,7 @@ module RacingSnakes
     end
 
     def eat_and_grow
-      player1.grow
+      player1.grow if player1_has_eaten
     end
 
     def food_time?; end
