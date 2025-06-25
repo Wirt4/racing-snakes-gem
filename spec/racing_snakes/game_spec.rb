@@ -200,6 +200,7 @@ RSpec.describe RacingSnakes::Game do
 
   describe '#eat_and_grow' do
     subject(:game) { described_class.new }
+
     include_context 'with a clock mock'
     include_context 'with a board mock'
     before do
@@ -258,8 +259,8 @@ RSpec.describe RacingSnakes::Game do
       game.eat_and_grow
 
       expect(mock_board).to have_received(:respawn_food).with(expected)
-
     end
+
     it 'respawns on board: position 2' do
       game
       game.player1.position = [[0, 0], [0, -1], [0, -2]]
@@ -270,12 +271,14 @@ RSpec.describe RacingSnakes::Game do
 
       expect(mock_board).to have_received(:respawn_food).with(expected)
     end
+
     it 'resets the clock' do
       game
       game.eat_and_grow
       expect(mock_clock).to have_received(:reset)
     end
   end
+
   describe '#food time?' do
     subject(:game) { described_class.new }
 
