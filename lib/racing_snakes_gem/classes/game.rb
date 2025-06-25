@@ -38,7 +38,7 @@ module RacingSnakes
     end
 
     def player_has_eaten?
-    return player1_has_eaten
+      player1_has_eaten
     end
 
     def eat_and_grow; end
