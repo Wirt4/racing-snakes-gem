@@ -249,7 +249,7 @@ RSpec.describe RacingSnakes::Game do
       expect(game.player2).not_to have_received(:grow)
     end
 
-    it 'respawns food on game board' do
+    it 'respawns food on game board: location1' do
       game
       game.player1.position = [[-1, 0], [-1, -1], [-1, -2]]
       game.player2.position = [[1, 0], [1, -1], [1, -2]]
@@ -260,50 +260,22 @@ RSpec.describe RacingSnakes::Game do
       expect(mock_board).to have_received(:respawn_food).with(expected)
 
     end
-  end
-
-  describe '#respawn_food' do
-    subject(:game) { described_class.new }
-
-    include_context 'with a clock mock'
-
-    before do
-      allow(RacingSnakes::Clock).to receive(:new).and_return(mock_clock)
-      allow(mock_clock).to receive(:reset)
-    end
-
-    it 'position 1' do
+    it 'respawns on board: position 2' do
       game
-      allow(game.board).to receive(:respawn_food)
-
-      game.player1.position = [[-1, 0], [-1, -1], [-1, -2]]
-      game.player2.position = [[1, 0], [1, -1], [1, -2]]
-      expected = [[-1, 0], [-1, -1], [-1, -2], [1, 0], [1, -1], [1, -2]]
-
-      game.respawn_food
-
-      expect(game.board).to have_received(:respawn_food).with(expected)
-    end
-
-    it 'position 2' do
-      game
-      allow(game.board).to receive(:respawn_food)
       game.player1.position = [[0, 0], [0, -1], [0, -2]]
       game.player2.position = [[1, 0], [1, -1], [1, -2]]
       expected = [[0, 0], [0, -1], [0, -2], [1, 0], [1, -1], [1, -2]]
 
-      game.respawn_food
+      game.eat_and_grow
 
-      expect(game.board).to have_received(:respawn_food).with(expected)
+      expect(mock_board).to have_received(:respawn_food).with(expected)
     end
-
     it 'resets the clock' do
       game
-      game.respawn_food
+      game.eat_and_grow
       expect(mock_clock).to have_received(:reset)
     end
   end
-
   describe '#food time?' do
     subject(:game) { described_class.new }
 
