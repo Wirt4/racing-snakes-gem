@@ -48,7 +48,9 @@ module RacingSnakes
     end
 
     def food_time?; end
-    def respawn_food; end
+    def respawn_food
+      board.respawn_food([-1])
+    end
     def collision?; end
     def stop_game; end
   end
