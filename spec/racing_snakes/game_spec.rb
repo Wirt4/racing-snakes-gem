@@ -125,11 +125,11 @@ RSpec.describe RacingSnakes::Game do
       allow(game.board).to receive_messages(menu?: true, finished?: false)
       expect(game.paused?).to be(true)
     end
+
     it 'board is finished' do
       game
       allow(game.board).to receive_messages(menu?: false, finished?: true)
       expect(game.paused?).to be(true)
     end
-
   end
 end
