@@ -14,6 +14,8 @@ module RacingSnakes
 
     def move
       @board.tie?(@player1, @player2)
+      @player1.move
+      @player2.move
     end
 
     def keydown(keyname); end
