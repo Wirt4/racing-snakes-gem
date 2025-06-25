@@ -6,7 +6,9 @@ module RacingSnakes
     def initialize(time = 0)
       @time = time
     end
-    def tick; end
+    def tick
+      @time = @time + 1
+    end
     def reset; end
     def food_time?; end
   end

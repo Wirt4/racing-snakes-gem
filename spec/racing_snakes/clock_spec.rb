@@ -10,6 +10,8 @@ RSpec.describe RacingSnakes::Clock do
     end
   end
   describe '#tick'do
+        subject(:clock) { described_class.new() }
+
     it 'increment from 0 to 1' do
       clock.tick
       expect(clock.time).to eq(1)
