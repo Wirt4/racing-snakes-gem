@@ -292,17 +292,21 @@ RSpec.describe RacingSnakes::Game do
       expect(mock_clock).to have_received(:reset)
     end
   end
-describe '#food time?'do
+
+  describe '#food time?' do
     subject(:game) { described_class.new }
+
     include_context 'with a clock mock'
     before do
       allow(RacingSnakes::Clock).to receive(:new).and_return(mock_clock)
     end
+
     it 'food time is true' do
       allow(mock_clock).to receive(:food_time?).and_return(true)
       game
       expect(game.food_time?).to be(true)
     end
+
     it 'food time is false' do
       allow(mock_clock).to receive(:food_time?).and_return(false)
       game
