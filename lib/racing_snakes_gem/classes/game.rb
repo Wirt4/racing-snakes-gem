@@ -14,13 +14,13 @@ module RacingSnakes
     def move; end
     def keydown(keyname); end
     def draw_snakes; end
-    def paused?;end
-    def draw_board;end
-    def player_eats?;end
+    def paused?; end
+    def draw_board; end
+    def player_eats?; end
     def eat_and_grow; end
-    def food_time?;end
+    def food_time?; end
     def respawn_food; end
-    def is_collision?;end
-    def stop_game;end
+    def is_collision?; end
+    def stop_game; end
   end
 end

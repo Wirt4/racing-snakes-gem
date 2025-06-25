@@ -10,4 +10,3 @@ module RacingSnakes
     end
   end
 end
-
