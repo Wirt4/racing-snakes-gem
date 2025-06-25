@@ -3,8 +3,8 @@
 module RacingSnakes
   class Clock
     attr_reader :time
-    def initialize
-      @time = 0
+    def initialize(time = 0)
+      @time = time
     end
     def tick; end
     def reset; end
