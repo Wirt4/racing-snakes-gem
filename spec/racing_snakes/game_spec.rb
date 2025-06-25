@@ -114,8 +114,9 @@ RSpec.describe RacingSnakes::Game do
 
     include_context 'with a board mock'
     before do
-    allow(RacingSnakes::Board).to receive(:new).and_return(mock_board)
+      allow(RacingSnakes::Board).to receive(:new).and_return(mock_board)
     end
+
     it 'board is in neither in menu mode nor finished' do
       game
       allow(game.board).to receive_messages(finished?: false,
@@ -137,11 +138,14 @@ RSpec.describe RacingSnakes::Game do
   end
 
   describe '#move' do
-    include_context 'with a board mock'
     subject(:game) { described_class.new }
-before do
+
+    include_context 'with a board mock'
+
+    before do
       allow(RacingSnakes::Board).to receive(:new).and_return(mock_board)
-end
+    end
+
     it 'checks for a tie condition' do
       game
       allow(game.board).to receive(:tie?)
