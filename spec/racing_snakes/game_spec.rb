@@ -353,6 +353,7 @@ RSpec.describe RacingSnakes::Game do
     before do
       allow(RacingSnakes::Board).to receive(:new).and_return(mock_board)
       allow(mock_board).to receive(:finish)
+      allow(mock_board).to receive(:display_message)
     end
 
     it 'board.finish is called' do
@@ -362,5 +363,15 @@ RSpec.describe RacingSnakes::Game do
 
       expect(mock_board).to have_received(:finish)
     end
+    it'player1 is the winner'do
+      game
+      allow(mock_board).to receive(:winner).and_return('player 1')
+
+      game.stop_game
+
+      expect(mock_board).to have_received(:display_message).with(mock_board.winner, anything,  anything)
+    end
+
+
   end
 end
