@@ -1,0 +1,8 @@
+RSpec.describe RacingSnakes::Clock do
+  describe '#initialize' do
+    subject(:clock) { described_class.new() }
+    it 'clock defaults with time at 0' do
+      expect(clock.time).to eq(0)
+    end
+  end
+end
