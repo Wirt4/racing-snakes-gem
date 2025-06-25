@@ -12,7 +12,9 @@ module RacingSnakes
       @time += 1
     end
 
-    def reset; end
+    def reset
+      @time = 0
+    end
     def food_time?; end
   end
 end
