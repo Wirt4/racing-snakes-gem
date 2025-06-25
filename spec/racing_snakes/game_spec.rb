@@ -379,14 +379,13 @@ RSpec.describe RacingSnakes::Game do
 
       expect(mock_board).to have_received(:display_message).with('player 1', anything, anything)
     end
-     it "player one is not the winner, and player one Z isn't set with the Z index" do
+     it "player2 is the winner" do
       game
-      allow(game.player1).to receive(:z_index)
-      allow(mock_board).to receive(:p1_winner?).and_return(true)
+      allow(mock_board).to receive(:winner).with(anything, anything).and_return('player 2')
 
       game.stop_game
-
-      expect(game.player1).to have_received(:z_index).with(RacingSnakes.configuration.winner_message_z_index)
+      
+      expect(mock_board).to have_received(:display_message).with('player 2', anything, anything)
     end
 
   end
