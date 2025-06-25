@@ -35,4 +35,20 @@ RSpec.describe RacingSnakes::Game do
       expect(game.board).to eq(mock_board)
     end
   end
+  describe '#draw_snakse' do
+    subject(:game){described_class.new}
+    include_context 'snake mock'
+    it 'calls draw on both snakes' do 
+      game
+      allow(game.player1).to receive(:draw)
+      allow(game.player2).to receive(:draw)
+
+      game.draw_snakes
+
+      expect(game.player1).to have_received(:draw)
+      expect(game.player2).to have_received(:draw)
+ 
+    end
+  end
+  
 end
