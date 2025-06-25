@@ -19,7 +19,10 @@ module RacingSnakes
       @clock.tick
     end
 
-    def keydown(keyname); end
+    def keydown(keyname)
+      @player1.detect_key(keyname)
+
+    end
 
     def draw_snakes
       @player1.draw

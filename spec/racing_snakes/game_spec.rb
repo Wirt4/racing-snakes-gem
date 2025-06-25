@@ -389,4 +389,20 @@ RSpec.describe RacingSnakes::Game do
       expect(mock_board).to have_received(:display_message).with('player 2', anything, anything)
     end
   end
+  describe '#keydown' do
+ subject(:game) { described_class.new }
+it 'player1.detect_key called' do
+      game
+      snake_args=[]
+      allow(game.player1).to receive(:detect_key) do |*args|
+        snake_args << args
+      end
+
+      k = RacingSnakes::Keyboard::SPACE
+
+      game.keydown(k)
+
+      expect(snake_args[0][0]).to eq(k)
+    end
+  end
 end
