@@ -5,9 +5,9 @@ RSpec.describe RacingSnakes::Game do
   describe '#initialize' do
     subject(:game) { described_class.new }
 
-    include_context 'clock mock'
-    include_context 'snake mock'
-    include_context 'board mock'
+    include_context 'with a clock mock'
+    include_context 'with a snake mock'
+    include_context 'with a board mock'
     before do
       allow(RacingSnakes::Clock).to receive(:new).and_return(mock_clock)
       allow(RacingSnakes::Board).to receive(:new).and_return(mock_board)
@@ -35,10 +35,12 @@ RSpec.describe RacingSnakes::Game do
       expect(game.board).to eq(mock_board)
     end
   end
+
   describe '#draw_snakse' do
-    subject(:game){described_class.new}
-    include_context 'snake mock'
-    it 'calls draw on both snakes' do 
+    subject(:game) { described_class.new }
+
+    include_context 'with a snake mock'
+    it 'calls draw on both snakes' do
       game
       allow(game.player1).to receive(:draw)
       allow(game.player2).to receive(:draw)
@@ -47,8 +49,6 @@ RSpec.describe RacingSnakes::Game do
 
       expect(game.player1).to have_received(:draw)
       expect(game.player2).to have_received(:draw)
- 
     end
   end
-  
 end

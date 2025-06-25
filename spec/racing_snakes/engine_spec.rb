@@ -3,8 +3,8 @@
 require 'racing_snakes_gem'
 require 'ostruct'
 RSpec.describe RacingSnakes::Engine do
-  include_context 'window mock'
-  include_context 'game mock'
+  include_context 'with a window mock'
+  include_context 'with a game mock'
   describe '#initialize' do
     subject(:engine) { described_class.new(window_adapter: mock_window) }
 
@@ -49,7 +49,7 @@ RSpec.describe RacingSnakes::Engine do
   describe '#game_tick' do
     subject(:engine) { described_class.new(window_adapter: mock_window) }
 
-    include_context 'game mock'
+    include_context 'with a game mock'
 
     before do
       RacingSnakes.configuration = RacingSnakes::Configuration.new
@@ -131,7 +131,7 @@ RSpec.describe RacingSnakes::Engine do
   describe '#register_keystroke' do
     subject(:engine) { described_class.new(window_adapter: mock_window) }
 
-    include_context 'window mock'
+    include_context 'with a window mock'
 
     before do
       RacingSnakes.configuration = RacingSnakes::Configuration.new

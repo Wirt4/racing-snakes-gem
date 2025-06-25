@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.shared_context 'game mock' do
+RSpec.shared_context 'with a game mock' do
   let(:mock_game) do
     instance_double(
       RacingSnakes::Game,
