@@ -8,7 +8,7 @@ module RacingSnakes
       @snake1 = snake1
       @snake2 = snake2
     end
-
+    def pause; end
     def p1_winner?; end
     def display_message(winner, coordinates, color) end
     def winner(snake1, snake2); end
