@@ -38,8 +38,9 @@ module RacingSnakes
     end
 
     def player_eats?
-false
+      false
     end
+
     def eat_and_grow; end
     def food_time?; end
     def respawn_food; end
