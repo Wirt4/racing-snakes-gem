@@ -8,6 +8,7 @@ module RacingSnakes
       @position = []
       @z_index = 0
     end
+
     def detect_key(keyname); end
     def draw; end
     def move; end

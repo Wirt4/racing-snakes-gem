@@ -392,11 +392,13 @@ RSpec.describe RacingSnakes::Game do
 
   describe '#keydown' do
     subject(:game) { described_class.new }
+
     include_context 'with a board mock'
     before do
-        allow(RacingSnakes::Board).to receive(:new).and_return(mock_board)
-        allow(mock_board).to receive(:pause)
+      allow(RacingSnakes::Board).to receive(:new).and_return(mock_board)
+      allow(mock_board).to receive(:pause)
     end
+
     it 'player1.detect_key called' do
       game
       allow(game.player1).to receive(:detect_key)
@@ -405,8 +407,8 @@ RSpec.describe RacingSnakes::Game do
 
       game.keydown(k)
       expect(game.player1).to have_received(:detect_key).with(k)
-
     end
+
     it 'player2.detect_key called' do
       game
       allow(game.player2).to receive(:detect_key)
@@ -416,11 +418,11 @@ RSpec.describe RacingSnakes::Game do
 
       expect(game.player2).to have_received(:detect_key).with(k)
     end
-    it 'if key is space, then pause the board'do
+
+    it 'if key is space, then pause the board' do
       game
       game.keydown(RacingSnakes::Keyboard::SPACE)
       expect(mock_board).to have_received(:pause)
     end
-
   end
 end
