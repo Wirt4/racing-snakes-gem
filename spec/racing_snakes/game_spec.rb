@@ -85,7 +85,8 @@ RSpec.describe RacingSnakes::Game do
 
       expect(board_args).to eq([[game.player1], [game.player2]])
     end
-    it 'given that neither of the players have eaten, when game.draw_board is called, then both has_eaten variables will be false'do 
+
+    it 'given that neither of the players have eaten, when game.draw_board is called, then both has_eaten variables will be false' do
       game
       allow(game).to receive(:draw_snakes)
       allow(game.board).to receive(:draw)
@@ -94,7 +95,6 @@ RSpec.describe RacingSnakes::Game do
 
       expect(game.player1_has_eaten).to be(false)
       expect(game.player2_has_eaten).to be(false)
-
     end
   end
 end
