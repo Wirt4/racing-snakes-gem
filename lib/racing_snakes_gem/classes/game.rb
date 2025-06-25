@@ -51,6 +51,7 @@ module RacingSnakes
 
     def respawn_food
       board.respawn_food(player1.position + player2.position)
+      clock.reset
     end
 
     def collision?; end
