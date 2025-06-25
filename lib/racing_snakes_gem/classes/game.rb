@@ -61,8 +61,10 @@ module RacingSnakes
     end
 
     def stop_game
+      config = RacingSnakes.configuration
       @board.finish
-      @board.display_message('player 1', 'bar','fuzz')
+      display_coordinates = Coordinates.new(config.winner_message_x_coordinate , config.winner_message_y_coordinate )
+      @board.display_message('player 1', display_coordinates,config.text_color)
     end
   end
 end

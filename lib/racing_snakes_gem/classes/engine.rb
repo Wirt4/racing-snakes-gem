@@ -45,7 +45,7 @@ module RacingSnakes
       @window.set(width: config.width)
       @window.set(height: config.height)
       @window.set(fps_cap: config.fps_cap)
-      @window.set(fullscreen: false)
+      @window.set(fullscreen: config.fullscreen)
     end
   end
 end

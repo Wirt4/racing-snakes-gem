@@ -27,10 +27,10 @@ RSpec.describe RacingSnakes::Engine do
       engine
       {
         background: 'black',
-        width: 640,
-        height: 480,
-        fps_cap: 60,
-        fullscreen: false
+        width: 1920,
+        height: 1080,
+        fps_cap: 20,
+        fullscreen: true
       }.each do |key, value|
         expect(mock_window).to have_received(:set).with(key => value)
       end
