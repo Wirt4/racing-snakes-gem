@@ -313,31 +313,31 @@ RSpec.describe RacingSnakes::Game do
       expect(game.food_time?).to be(false)
     end
   end
-  describe'#collision?'do
+
+  describe '#collision?' do
+    subject(:game) { described_class.new }
+
     include_context 'with a board mock'
     before do
       allow(RacingSnakes::Board).to receive(:new).and_return(mock_board)
       allow(mock_board).to receive(:collision?)
     end
 
-
-    subject(:game) { described_class.new }
-
-    it'board.collision? is true'do
+    it 'board.collision? is true' do
       game
 
       allow(mock_board).to receive(:collision?).and_return(true)
       expect(game.collision?).to be(true)
     end
 
-    it'board.collision? is false'do
+    it 'board.collision? is false' do
       game
 
       allow(mock_board).to receive(:collision?).and_return(false)
       expect(game.collision?).to be(false)
     end
 
-    it'board.collision? is called with player positions'do
+    it 'board.collision? is called with player positions' do
       game
 
       game.collision?
@@ -345,5 +345,4 @@ RSpec.describe RacingSnakes::Game do
       expect(mock_board).to have_received(:collision?).with(game.player1.position, game.player2.position)
     end
   end
-
 end
