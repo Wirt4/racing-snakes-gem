@@ -8,5 +8,6 @@ module RacingSnakes
       @snake1 = snake1
       @snake2 = snake2
     end
+    def draw;end
   end
 end

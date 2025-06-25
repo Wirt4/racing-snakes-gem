@@ -11,6 +11,7 @@ RSpec.describe RacingSnakes::Game do
     before do
       allow(RacingSnakes::Clock).to receive(:new).and_return(mock_clock)
       allow(RacingSnakes::Board).to receive(:new).and_return(mock_board)
+      allow(RacingSnakes::Snake).to receive(:new).and_return(mock_snake)
     end
 
     it 'initalizes a new clock object' do
@@ -62,6 +63,13 @@ RSpec.describe RacingSnakes::Game do
       game.draw_board
 
       expect(game).to have_received(:draw_snakes)
+    end
+
+    it 'drawing the board should call board.draw' do
+      game
+      allow(game.board).to receive(:draw)
+      game.draw_board
+      expect(game.board).to have_received(:draw)
     end
   end
 end

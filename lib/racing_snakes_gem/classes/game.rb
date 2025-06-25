@@ -25,6 +25,7 @@ module RacingSnakes
 
     def draw_board
       draw_snakes
+      @board.draw
     end
 
     def player_eats?; end
