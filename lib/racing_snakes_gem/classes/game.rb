@@ -41,7 +41,9 @@ module RacingSnakes
       player1_has_eaten || player2_has_eaten
     end
 
-    def eat_and_grow; end
+    def eat_and_grow
+      player1.grow
+    end
     def food_time?; end
     def respawn_food; end
     def collision?; end
