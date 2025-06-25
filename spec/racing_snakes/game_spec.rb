@@ -256,16 +256,14 @@ RSpec.describe RacingSnakes::Game do
     it 'respawns food on game board: different positions' do
       game
       allow(game.board).to receive(:respawn_food)
-  
-game.player1.position = [[-1,0],[-1,-1],[-1,-2]]
-      game.player2.position = [[1,0],[1,-1],[1,-2]]
-      expected = [[-1,0],[-1,-1],[-1,-2],[1,0],[1,-1],[1,-2]]
 
+      game.player1.position = [[-1, 0], [-1, -1], [-1, -2]]
+      game.player2.position = [[1, 0], [1, -1], [1, -2]]
+      expected = [[-1, 0], [-1, -1], [-1, -2], [1, 0], [1, -1], [1, -2]]
 
       game.eat_and_grow
 
       expect(game.board).to have_received(:respawn_food).with(expected)
     end
-
   end
 end
