@@ -29,10 +29,10 @@ RSpec.describe RacingSnakes::Game do
       expect(snake_args[0][0]).to eq(RacingSnakes::PlayerIds::PLAYER_ONE)
       expect(snake_args[1][0]).to eq(RacingSnakes::PlayerIds::PLAYER_TWO)
     end
+
     it 'intializes a board' do
       game
       expect(game.board).to eq(mock_board)
-
     end
   end
 end
