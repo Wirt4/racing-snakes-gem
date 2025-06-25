@@ -15,6 +15,7 @@ module RacingSnakes
     def reset
       @time = 0
     end
+
     def food_time?; end
   end
 end

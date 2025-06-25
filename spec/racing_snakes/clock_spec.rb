@@ -29,12 +29,12 @@ RSpec.describe RacingSnakes::Clock do
       expect(loaded_clock.time).to eq(8)
     end
   end
+
   describe '#reset' do
-    it 'clock after reset has tick == 0'do
+    it 'clock after reset has tick == 0' do
       clock = described_class.new(10)
       clock.reset
       expect(clock.time).to eq(0)
     end
-
   end
 end
