@@ -4,9 +4,11 @@ module RacingSnakes
   # Game object for racing snakes, holds and maintains state
   class Game
     attr_reader :clock
+
     def initialize
       @clock = RacingSnakes::Clock.new
     end
+
     def move; end
     def keydown(keyname); end
     def draw_snakes; end

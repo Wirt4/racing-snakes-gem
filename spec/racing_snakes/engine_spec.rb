@@ -2,7 +2,6 @@
 
 require 'racing_snakes_gem'
 require 'ostruct'
-require 'racing_snakes_gem/keyboard'
 RSpec.describe RacingSnakes::Engine do
   include_context 'window mock'
   include_context 'game mock'
@@ -80,7 +79,8 @@ RSpec.describe RacingSnakes::Engine do
     it 'draws snakes each game tick' do
       RSpec::Mocks.space.proxy_for(mock_game).reset
       allow(mock_game).to receive_messages(draw_snakes: nil, draw_board: nil, eat_and_grow: nil, respawn_food: nil,
-                                           paused?: false, move: nil, player_eats?: false, food_time?: false, stop_game: nil, is_collision?: false)
+                                           paused?: false, move: nil, player_eats?: false, food_time?: false,
+                                           stop_game: nil, is_collision?: false)
 
       engine.game_tick
       expect(mock_game).to have_received(:draw_snakes)
