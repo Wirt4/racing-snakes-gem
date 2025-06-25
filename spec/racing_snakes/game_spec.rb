@@ -395,16 +395,23 @@ RSpec.describe RacingSnakes::Game do
 
     it 'player1.detect_key called' do
       game
-      snake_args = []
-      allow(game.player1).to receive(:detect_key) do |*args|
-        snake_args << args
-      end
+      allow(game.player1).to receive(:detect_key)
 
-      k = RacingSnakes::Keyboard::SPACE
+      k = RacingSnakes::Keyboard::UP
+
+      game.keydown(k)
+      expect(game.player1).to have_received(:detect_key).with(k)
+
+    end
+    it 'player2.detect_key called' do
+      game
+      allow(game.player2).to receive(:detect_key)
+      k = RacingSnakes::Keyboard::W
 
       game.keydown(k)
 
-      expect(snake_args[0][0]).to eq(k)
+      expect(game.player2).to have_received(:detect_key).with(k)
     end
+
   end
 end
