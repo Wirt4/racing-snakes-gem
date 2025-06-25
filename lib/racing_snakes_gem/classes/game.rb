@@ -12,9 +12,14 @@ module RacingSnakes
       @board = RacingSnakes::Board.new(@player1, @player2)
     end
 
-    def move; end
+    def move
+   end
     def keydown(keyname); end
-    def draw_snakes; end
+    def draw_snakes
+      @player1.draw
+      @player2.draw
+ 
+    end
     def paused?; end
     def draw_board; end
     def player_eats?; end
