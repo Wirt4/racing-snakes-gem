@@ -22,7 +22,7 @@ module RacingSnakes
     end
 
     def paused?
-      return @board.menu?
+      @board.menu?
     end
 
     def draw_board

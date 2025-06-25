@@ -119,10 +119,11 @@ RSpec.describe RacingSnakes::Game do
                                             menu?: false)
       expect(game.paused?).to be(false)
     end
-    it'board is in menu mode' do 
-    game 
-    allow(game.board).to receive_messages(menu?: true, finished?: false)
-    expect(game.paused?).to be(true)
+
+    it 'board is in menu mode' do
+      game
+      allow(game.board).to receive_messages(menu?: true, finished?: false)
+      expect(game.paused?).to be(true)
     end
   end
 end
