@@ -424,6 +424,14 @@ RSpec.describe RacingSnakes::Game do
 
       expect(RacingSnakes::Board).to have_received(:new).twice # once on creation, once on func call
     end
+it 'board is recreated if its state is finished and keystroke is space' do
+      allow(mock_board).to receive(:finished?).and_return(true)
+
+      game.keydown(RacingSnakes::Keyboard::SPACE)
+
+      expect(RacingSnakes::Snake).to have_received(:new).exactly(4).times # twice on creation, twice on func call
+    end
+
 
     it 'board is not recreated if its state is finished and keystroke is not space' do
       allow(mock_board).to receive(:finished?).and_return(true)
