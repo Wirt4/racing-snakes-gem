@@ -241,7 +241,7 @@ RSpec.describe RacingSnakes::Game do
       expect(game.player2).not_to have_received(:grow)
     end
 
-    it 'respawns food' do 
+    it 'respawns food' do
       game
       allow(game).to receive(:respawn_food)
 
@@ -251,4 +251,3 @@ RSpec.describe RacingSnakes::Game do
     end
   end
 end
-
