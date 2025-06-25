@@ -60,6 +60,8 @@ module RacingSnakes
       @board.collision?(@player1.position, @player2.position)
     end
 
-    def stop_game; end
+    def stop_game
+      @board.finish
+    end
   end
 end
