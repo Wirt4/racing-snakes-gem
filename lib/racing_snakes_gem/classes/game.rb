@@ -22,7 +22,7 @@ module RacingSnakes
     end
 
     def paused?
-      return false
+      false
     end
 
     def draw_board
