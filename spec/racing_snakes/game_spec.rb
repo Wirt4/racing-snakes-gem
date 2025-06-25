@@ -345,6 +345,7 @@ RSpec.describe RacingSnakes::Game do
       expect(mock_board).to have_received(:collision?).with(game.player1.position, game.player2.position)
     end
   end
+
   describe '#stop_game' do
     subject(:game) { described_class.new }
 
@@ -354,7 +355,7 @@ RSpec.describe RacingSnakes::Game do
       allow(mock_board).to receive(:finish)
     end
 
-  it'board.finish is called'do
+    it 'board.finish is called' do
       game
 
       game.stop_game
