@@ -317,7 +317,7 @@ RSpec.describe RacingSnakes::Game do
     include_context 'with a board mock'
     before do
       allow(RacingSnakes::Board).to receive(:new).and_return(mock_board)
-      allow(mock_board).to receive(:collision?).and_return(true, false)
+      allow(mock_board).to receive(:collision?)
     end
 
 
@@ -326,12 +326,14 @@ RSpec.describe RacingSnakes::Game do
     it'board.collision? is true'do
       game
 
+      allow(mock_board).to receive(:collision?).and_return(true)
       expect(game.collision?).to be(true)
     end
 
     it'board.collision? is false'do
       game
 
+      allow(mock_board).to receive(:collision?).and_return(false)
       expect(game.collision?).to be(false)
     end
 

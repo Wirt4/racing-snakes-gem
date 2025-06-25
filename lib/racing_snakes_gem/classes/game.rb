@@ -56,7 +56,10 @@ module RacingSnakes
       clock.reset
     end
 
-    def collision?; end
+    def collision?
+      return     @board.collision?(@player1.position, @player2.position)
+
+    end
     def stop_game; end
   end
 end
