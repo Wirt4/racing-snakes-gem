@@ -7,9 +7,10 @@ RSpec.describe RacingSnakes::Game do
 
     include_context 'clock mock'
     include_context 'snake mock'
+    include_context 'board mock'
     before do
       allow(RacingSnakes::Clock).to receive(:new).and_return(mock_clock)
-      allow(RacingSnakes::Board).to receive(:new)
+      allow(RacingSnakes::Board).to receive(:new).and_return(mock_board)
     end
 
     it 'initalizes a new clock object' do
@@ -30,7 +31,8 @@ RSpec.describe RacingSnakes::Game do
     end
     it 'intializes a board' do
       game
-      expect(RacingSnakes::Board).to have_recieved(:new)
+      expect(game.board).to eq(mock_board)
+
     end
   end
 end

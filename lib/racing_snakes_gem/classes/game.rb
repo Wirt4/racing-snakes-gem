@@ -3,12 +3,13 @@
 module RacingSnakes
   # Game object for racing snakes, holds and maintains state
   class Game
-    attr_reader :clock
+    attr_reader :clock, :snake_1, :snake_2, :board
 
     def initialize
       @clock = RacingSnakes::Clock.new
       @snake_1 = RacingSnakes::Snake.new(RacingSnakes::PlayerIds::PLAYER_ONE)
       @snake_2 = RacingSnakes::Snake.new(RacingSnakes::PlayerIds::PLAYER_TWO)
+      @board = RacingSnakes::Board.new(@snake_1, @snake_2)
     end
 
     def move; end
