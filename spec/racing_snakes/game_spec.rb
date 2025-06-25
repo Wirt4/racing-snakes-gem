@@ -132,8 +132,10 @@ RSpec.describe RacingSnakes::Game do
       expect(game.paused?).to be(true)
     end
   end
+
   describe '#move' do
     subject(:game) { described_class.new }
+
     it 'checks for a tie condition' do
       game
       allow(game.board).to receive(:tie?)
@@ -141,7 +143,6 @@ RSpec.describe RacingSnakes::Game do
       game.move
 
       expect(game.board).to have_received(:tie?).with(game.player1, game.player2)
-
     end
   end
 end
