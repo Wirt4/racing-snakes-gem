@@ -62,6 +62,7 @@ module RacingSnakes
 
     def stop_game
       @board.finish
+      @board.display_message('player 1', 'bar','fuzz')
     end
   end
 end
