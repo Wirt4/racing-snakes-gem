@@ -16,7 +16,7 @@ module RacingSnakes
       @board.tie?(@player1, @player2)
       @player1.move
       @player2.move
-      @clock.increment
+      @clock.tick
     end
 
     def keydown(keyname); end

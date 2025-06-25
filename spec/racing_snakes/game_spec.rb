@@ -146,7 +146,7 @@ RSpec.describe RacingSnakes::Game do
     before do
       allow(RacingSnakes::Board).to receive(:new).and_return(mock_board)
       allow(RacingSnakes::Clock).to receive(:new).and_return(mock_clock)
-      allow(mock_clock).to receive(:increment)
+      allow(mock_clock).to receive(:tick)
     end
 
     it 'checks for a tie condition' do
@@ -172,7 +172,7 @@ RSpec.describe RacingSnakes::Game do
     it 'increments the clock' do
       game
       game.move
-      expect(mock_clock).to have_received(:increment)
+      expect(mock_clock).to have_received(:tick)
     end
   end
 end
