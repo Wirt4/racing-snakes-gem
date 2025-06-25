@@ -15,5 +15,6 @@ module RacingSnakes
     def tie?(snake1, snake2); end
     def has_eaten_food?(snake); end
     def draw; end
+    def collision?(position1, position2); end
   end
 end
