@@ -424,5 +424,10 @@ RSpec.describe RacingSnakes::Game do
       game.keydown(RacingSnakes::Keyboard::SPACE)
       expect(mock_board).to have_received(:pause)
     end
+    it 'do not pause board if  key is not space' do
+      game
+      game.keydown(RacingSnakes::Keyboard::W)
+      expect(mock_board).not_to have_received(:pause)
+    end
   end
 end
