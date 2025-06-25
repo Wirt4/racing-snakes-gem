@@ -22,12 +22,12 @@ module RacingSnakes
     def keydown(keyname)
       @player1.detect_key(keyname)
       @player2.detect_key(keyname)
-      if keyname == RacingSnakes::Keyboard::SPACE
-        @board.pause
-        if @board.finished?
-          @board = RacingSnakes::Board.new(@player1, @player2)
-        end
-      end
+      return unless keyname == RacingSnakes::Keyboard::SPACE
+
+      @board.pause
+      return unless @board.finished?
+
+      @board = RacingSnakes::Board.new(@player1, @player2)
     end
 
     def draw_snakes
