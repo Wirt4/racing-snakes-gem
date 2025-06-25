@@ -200,6 +200,14 @@ RSpec.describe RacingSnakes::Game do
 
   describe '#eat_and_grow' do
     subject(:game) { described_class.new }
+    include_context 'with a clock mock'
+    include_context 'with a board mock'
+    before do
+      allow(RacingSnakes::Clock).to receive(:new).and_return(mock_clock)
+      allow(RacingSnakes::Board).to receive(:new).and_return(mock_board)
+      allow(mock_board).to receive(:respawn_food)
+      allow(mock_clock).to receive(:reset)
+    end
 
     it 'player1 has eaten' do
       game
@@ -243,11 +251,14 @@ RSpec.describe RacingSnakes::Game do
 
     it 'respawns food on game board' do
       game
-      allow(game).to receive(:respawn_food)
+      game.player1.position = [[-1, 0], [-1, -1], [-1, -2]]
+      game.player2.position = [[1, 0], [1, -1], [1, -2]]
+      expected = [[-1, 0], [-1, -1], [-1, -2], [1, 0], [1, -1], [1, -2]]
 
       game.eat_and_grow
 
-      expect(game).to have_received(:respawn_food)
+      expect(mock_board).to have_received(:respawn_food).with(expected)
+
     end
   end
 
@@ -424,7 +435,8 @@ RSpec.describe RacingSnakes::Game do
       game.keydown(RacingSnakes::Keyboard::SPACE)
       expect(mock_board).to have_received(:pause)
     end
-    it 'do not pause board if  key is not space' do
+
+    it 'do not pause board if key is not space' do
       game
       game.keydown(RacingSnakes::Keyboard::W)
       expect(mock_board).not_to have_received(:pause)
