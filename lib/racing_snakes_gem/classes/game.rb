@@ -12,7 +12,9 @@ module RacingSnakes
       @board = RacingSnakes::Board.new(@player1, @player2)
     end
 
-    def move; end
+    def move
+      @board.tie?(@player1, @player2)
+    end
 
     def keydown(keyname); end
 
