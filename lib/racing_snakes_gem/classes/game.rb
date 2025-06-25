@@ -47,7 +47,9 @@ module RacingSnakes
       respawn_food
     end
 
-    def food_time?; end
+    def food_time?
+      clock.food_time?
+    end
 
     def respawn_food
       board.respawn_food(player1.position + player2.position)
