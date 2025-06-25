@@ -175,4 +175,14 @@ RSpec.describe RacingSnakes::Game do
       expect(mock_clock).to have_received(:tick)
     end
   end
+
+  describe '#player_eats?' do
+    subject(:game) { described_class.new }
+    it 'neither player has eaten anything' do
+      game
+      allow(game).to receive(:player1_has_eaten).and_return(false)
+      allow(game).to receive(:player2_has_eaten).and_return(false)
+      expect(game.player_eats?).to be(false)
+      end
+  end
 end
