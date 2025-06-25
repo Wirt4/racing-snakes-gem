@@ -197,10 +197,11 @@ RSpec.describe RacingSnakes::Game do
       expect(game.player_has_eaten?).to be(true)
     end
   end
+
   describe '#eat_and_grow' do
     subject(:game) { described_class.new }
 
-    it 'player1 has eaten'do
+    it 'player1 has eaten' do
       game
       allow(game).to receive(:player1_has_eaten).and_return(false)
       allow(game.player1).to receive(:grow)
