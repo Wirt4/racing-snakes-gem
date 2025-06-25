@@ -113,11 +113,16 @@ RSpec.describe RacingSnakes::Game do
     subject(:game) { described_class.new }
 
     include_context 'with a board mock'
-    it 'board is in neither in menu mode nor paused' do
+    it 'board is in neither in menu mode nor finished' do
       game
       allow(game.board).to receive_messages(finished?: false,
                                             menu?: false)
       expect(game.paused?).to be(false)
+    end
+    it'board is in menu mode' do 
+    game 
+    allow(game.board).to receive_messages(menu?: true, finished?: false)
+    expect(game.paused?).to be(true)
     end
   end
 end
