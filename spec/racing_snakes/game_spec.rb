@@ -74,16 +74,26 @@ RSpec.describe RacingSnakes::Game do
 
     it 'drawing the board checks if the snakes have eaten food' do
       game
-         allow(game).to receive(:draw_snakes)
+      allow(game).to receive(:draw_snakes)
       allow(game.board).to receive(:draw)
- board_args = []
-      allow(game.board).to receive(:has_eaten_food?) do | *args|
+      board_args = []
+      allow(game.board).to receive(:has_eaten_food?) do |*args|
         board_args << args
         double(game.board)
       end
       game.draw_board
 
       expect(board_args).to eq([[game.player1], [game.player2]])
+    end
+    it 'given that neither of the players have eaten, when game.draw_board is called, then both has_eaten variables will be false'do 
+      game
+      allow(game).to receive(:draw_snakes)
+      allow(game.board).to receive(:draw)
+      allow(game.board).to receive(:has_eaten_food?).and_return(false, false)
+      game.draw_board
+
+      expect(game.player1_has_eaten).to be(false)
+      expect(game.player2_has_eaten).to be(false)
 
     end
   end
