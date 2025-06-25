@@ -43,6 +43,7 @@ module RacingSnakes
 
     def eat_and_grow
       player1.grow if player1_has_eaten
+      player2.grow if player2_has_eaten
     end
 
     def food_time?; end
