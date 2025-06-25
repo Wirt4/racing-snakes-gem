@@ -395,7 +395,7 @@ RSpec.describe RacingSnakes::Game do
     include_context 'with a board mock'
     before do
         allow(RacingSnakes::Board).to receive(:new).and_return(mock_board)
-        allow(mock_board).to receive(pause: nil)
+        allow(mock_board).to receive(:pause)
     end
     it 'player1.detect_key called' do
       game
