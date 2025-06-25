@@ -2,6 +2,6 @@
 
 module RacingSnakes
   class Clock
-    def tick;end
+    def tick; end
   end
 end
