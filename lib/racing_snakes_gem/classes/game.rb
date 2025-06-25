@@ -27,7 +27,7 @@ module RacingSnakes
       @board.pause
       return unless @board.finished?
 
-      @board = RacingSnakes::Board.new(@player1, @player2)
+      @board = RacingSnakes::Board.new( RacingSnakes::Snake.new(RacingSnakes::PlayerIds::PLAYER_ONE),  RacingSnakes::Snake.new(RacingSnakes::PlayerIds::PLAYER_TWO))
     end
 
     def draw_snakes
