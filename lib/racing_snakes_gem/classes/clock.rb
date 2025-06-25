@@ -7,7 +7,7 @@ module RacingSnakes
       @time = time
     end
     def tick
-      @time = @time + 1
+      @time+=1 
     end
     def reset; end
     def food_time?; end
