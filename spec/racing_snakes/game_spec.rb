@@ -27,8 +27,8 @@ RSpec.describe RacingSnakes::Game do
 
       game
 
-      expect(snake_args[0][0]).to eq(RacingSnakes::PlayerIds::PLAYER_ONE)
-      expect(snake_args[1][0]).to eq(RacingSnakes::PlayerIds::PLAYER_TWO)
+      expect(snake_args[0][0]).to eq(RacingSnakes::PlayerOneButton.new)
+      expect(snake_args[1][0]).to eq(RacingSnakes::PlayerTwoButton.new)
     end
 
     it 'intializes a board' do

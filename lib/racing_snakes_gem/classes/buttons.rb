@@ -1,6 +1,10 @@
 module RacingSnakes
 class Button
   attr_reader :up, :down, :left, :right
+  def ==(other)
+      return false unless other.is_a?(Button)
+      up == other.up && down == other.down && left == other.left && right == other.right
+    end
 end
 
 class PlayerOneButton < Button
