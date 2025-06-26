@@ -10,6 +10,7 @@ require_relative 'racing_snakes_gem/classes/snake'
 require_relative 'racing_snakes_gem/modules/player_ids'
 require_relative 'racing_snakes_gem/classes/board'
 require_relative 'racing_snakes_gem/classes/coordinates'
+require_relative 'racing_snakes_gem/modules/directions'
 # Gem for the racing snakes game
 module RacingSnakes
   class Error < StandardError; end
