@@ -37,4 +37,17 @@ RSpec.describe RacingSnakes::Clock do
       expect(clock.time).to eq(0)
     end
   end
-end
+  describe '#food_tim?e' do
+    let(:fixed_randomizer) { -> { 400 } }
+
+    it 'returns true when time > cutoff' do
+      clock = described_class.new(401, fixed_randomizer)
+      expect(clock.food_time?).to be(true)
+    end
+
+    it 'returns false when time <= cutoff' do
+      clock = described_class.new(400, fixed_randomizer)
+      expect(clock.food_time?).to be(false)
+    end
+  end
+  end
