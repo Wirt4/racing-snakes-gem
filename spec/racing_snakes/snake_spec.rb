@@ -16,7 +16,7 @@ RSpec.describe RacingSnakes::Snake do
     end
 
     it 'inialized with growing set to false' do
-      expect(snake.growing).to eq(false)
+      expect(snake.growing).to be(false)
     end
   end
 end
