@@ -4,8 +4,10 @@ module RacingSnakes
   class Clock
     attr_reader :time
 
-    def initialize(time=0)
+    def initialize(time=0, randomizer = -> { rand(300..400) })
+      @randomizer = randomizer
       @time = time
+      @cutoff = randomizer.call
     end
 
     def tick
@@ -16,6 +18,12 @@ module RacingSnakes
       @time = 0
     end
 
-    def food_time?; end
+    def food_time?
+      if @time <= @cutoff
+        return false
+      end
+      @cutoff = @randomizer.call
+      return true
+    end
   end
 end
