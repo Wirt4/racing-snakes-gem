@@ -11,8 +11,10 @@ module RacingSnakes
     end
 
     def set_players_and_board
-      @player1 = RacingSnakes::Snake.new(RacingSnakes::PlayerOneButton.new, RacingSnakes.configuration.player_one_colors)
-      @player2 = RacingSnakes::Snake.new(RacingSnakes::PlayerTwoButton.new, RacingSnakes.configuration.player_two_colors)
+      @player1 = RacingSnakes::Snake.new(RacingSnakes::PlayerOneButton.new,
+                                         RacingSnakes.configuration.player_one_colors)
+      @player2 = RacingSnakes::Snake.new(RacingSnakes::PlayerTwoButton.new,
+                                         RacingSnakes.configuration.player_two_colors)
       @board = RacingSnakes::Board.new(@player1, @player2)
     end
 
