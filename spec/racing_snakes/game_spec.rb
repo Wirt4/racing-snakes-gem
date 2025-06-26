@@ -206,15 +206,18 @@ RSpec.describe RacingSnakes::Game do
     before do
       allow(RacingSnakes::Clock).to receive(:new).and_return(mock_clock)
       allow(RacingSnakes::Board).to receive(:new).and_return(mock_board)
-      allow(mock_board).to receive(:respawn_food)
+      allow(mock_board).to receive_messages(respawn_food:nil, draw:nil)
       allow(mock_clock).to receive(:reset)
     end
 
     it 'player1 has eaten' do
       game
-      allow(game).to receive(:player1_has_eaten).and_return(true)
+      allow(mock_board).to receive(:has_eaten_food?).with(game.player1).and_return(true)
+      allow(mock_board).to receive(:has_eaten_food?).with(game.player2).and_return(false)
+
       allow(game.player1).to receive(:grow)
 
+      game.draw_board
       game.eat_and_grow
 
       expect(game.player1).to have_received(:grow)
@@ -222,9 +225,11 @@ RSpec.describe RacingSnakes::Game do
 
     it 'player1 has not eaten' do
       game
-      allow(game).to receive(:player1_has_eaten).and_return(false)
+      allow(mock_board).to receive(:has_eaten_food?).with(game.player1).and_return(false)
+      allow(mock_board).to receive(:has_eaten_food?).with(game.player2).and_return(false)
       allow(game.player1).to receive(:grow)
 
+      game.draw_board
       game.eat_and_grow
 
       expect(game.player1).not_to have_received(:grow)
@@ -232,9 +237,13 @@ RSpec.describe RacingSnakes::Game do
 
     it 'player2 has eaten' do
       game
-      allow(game).to receive(:player2_has_eaten).and_return(true)
+      allow(mock_board).to receive(:has_eaten_food?).with(game.player1).and_return(false)
+      allow(mock_board).to receive(:has_eaten_food?).with(game.player2).and_return(true)
       allow(game.player2).to receive(:grow)
 
+      allow(game.player2).to receive(:grow)
+
+      game.draw_board
       game.eat_and_grow
 
       expect(game.player2).to have_received(:grow)
@@ -242,9 +251,11 @@ RSpec.describe RacingSnakes::Game do
 
     it 'player2 has not eaten' do
       game
-      allow(game).to receive(:player2_has_eaten).and_return(false)
+      allow(mock_board).to receive(:has_eaten_food?).with(game.player1).and_return(false)
+      allow(mock_board).to receive(:has_eaten_food?).with(game.player2).and_return(false)
       allow(game.player2).to receive(:grow)
 
+      game.draw_board
       game.eat_and_grow
 
       expect(game.player2).not_to have_received(:grow)
