@@ -206,7 +206,7 @@ RSpec.describe RacingSnakes::Game do
     before do
       allow(RacingSnakes::Clock).to receive(:new).and_return(mock_clock)
       allow(RacingSnakes::Board).to receive(:new).and_return(mock_board)
-      allow(mock_board).to receive_messages(respawn_food:nil, draw:nil)
+      allow(mock_board).to receive_messages(respawn_food: nil, draw: nil)
       allow(mock_clock).to receive(:reset)
     end
 
