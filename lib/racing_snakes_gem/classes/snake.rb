@@ -18,7 +18,7 @@ module RacingSnakes
       RacingSnakes::Directions::UP
     end
     def color_name
-      color
+      @color.capitalize 
     end
     def detect_key(keyname); end
     def draw; end
