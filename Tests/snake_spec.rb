@@ -5,7 +5,7 @@ load 'player_ids.rb'
 load 'directions.rb'
 require 'ruby2d'
 
-RSpec.describe Snake do
+RSpec.describe Snake do:
   describe '#initialize' do
     it 'passing a player one id to Snake gets it passed to Button' do
       allow(Button).to receive(:new)

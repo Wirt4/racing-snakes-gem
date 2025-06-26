@@ -1,0 +1,677 @@
+
+RacingSnakes::CLI
+  .run
+    initializes an engine
+    calls start_game_loop on the engine instance
+
+RacingSnakes::Clock
+  #initialize
+    clock defaults with time at 0
+    clock will initialized with loaded time
+  #tick
+    increment from 0 to 1
+    increment from 7 to 8
+  #reset
+    clock after reset has tick == 0
+  #food_tim?e
+    returns true when time > cutoff
+    returns false when time <= cutoff
+
+RacingSnakes::Engine
+  #initialize
+    engine has a defined Game to manipulate
+    sets up the game window with default configurations
+    stores the game instance
+    calls the draw_snakes method on game
+  #game_tick
+    calls move when game is not paused
+    does not call move when game is paused
+    draws snakes each game tick
+    draws board
+    if game.player_eats is true, then call eat_and_grow
+    if game.player_eats if false, then do not call eat_and_grow
+    respawn food if it is food time
+    does notrespawn food if it is not food time
+    if collsion, then stop_game is called
+    if no collsion, then stop_game is not called
+  #register_keystroke
+    closes the window when escape key is hit
+    does not close the window if escape is not hit
+    passes the keystroke to the game method
+
+RacingSnakes::Game
+  #initialize
+    initalizes a new clock object
+    initializes two snakes
+    intializes a board
+  #draw_snakse
+    calls draw on both snakes (FAILED - 1)
+  #draw_board
+    drawing the board should draw the snakes (FAILED - 2)
+    drawing the board should call board.draw (FAILED - 3)
+    drawing the board checks if the snakes have eaten food (FAILED - 4)
+    given that neither of the players have eaten (FAILED - 5)
+    player 1 has eaten (FAILED - 6)
+  #paused?
+    board is in neither in menu mode nor finished (FAILED - 7)
+    board is in menu mode (FAILED - 8)
+    board is finished (FAILED - 9)
+  #move
+    checks for a tie condition (FAILED - 10)
+    moves the players (FAILED - 11)
+    increments the clock (FAILED - 12)
+  #player_has_eaten?
+    neither player has eaten anything (FAILED - 13)
+    player one has eaten (FAILED - 14)
+    player two has eaten (FAILED - 15)
+  #eat_and_grow
+    player1 has eaten (FAILED - 16)
+    player1 has not eaten (FAILED - 17)
+    player2 has eaten (FAILED - 18)
+    player2 has not eaten (FAILED - 19)
+    respawns food on game board: location1 (FAILED - 20)
+    respawns on board: position 2 (FAILED - 21)
+    resets the clock (FAILED - 22)
+  #food time?
+    food time is true (FAILED - 23)
+    food time is false (FAILED - 24)
+  #collision?
+    board.collision? is true (FAILED - 25)
+    board.collision? is false (FAILED - 26)
+    board.collision? is called with player positions (FAILED - 27)
+  #stop_game
+    board.finish is called (FAILED - 28)
+    board.winner is called (FAILED - 29)
+    player1 is the winner (FAILED - 30)
+    player2 is the winner (FAILED - 31)
+  #keydown
+    player1.detect_key called (FAILED - 32)
+    player2.detect_key called (FAILED - 33)
+    if key is space, then pause the board (FAILED - 34)
+    do not pause board if key is not space (FAILED - 35)
+    board is recreated if its state is finished and keystroke is space (FAILED - 36)
+    new snakes are generated if board state is finished and keystroke is space (FAILED - 37)
+    board is not recreated if its state is finished and keystroke is not space (FAILED - 38)
+    board is not recreated if its state is not finished and keystroke is space (FAILED - 39)
+
+RacingSnakes::Snake
+  #initialize
+    snakes id defaults to player one (FAILED - 40)
+    direction is initialized as up (FAILED - 41)
+
+RacingSnakesGem
+  has a version number
+
+Failures:
+
+  1) RacingSnakes::Game#draw_snakse calls draw on both snakes
+     Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+     NameError:
+       uninitialized constant RacingSnakes::Button
+     # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+     # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+     # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+     # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+     # ./spec/racing_snakes/game_spec.rb:41:in `new'
+     # ./spec/racing_snakes/game_spec.rb:41:in `block (3 levels) in <top (required)>'
+     # ./spec/racing_snakes/game_spec.rb:45:in `block (3 levels) in <top (required)>'
+
+  2) RacingSnakes::Game#draw_board drawing the board should draw the snakes
+     Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+     NameError:
+       uninitialized constant RacingSnakes::Button
+     # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+     # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+     # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+     # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+     # ./spec/racing_snakes/game_spec.rb:57:in `new'
+     # ./spec/racing_snakes/game_spec.rb:57:in `block (3 levels) in <top (required)>'
+     # ./spec/racing_snakes/game_spec.rb:60:in `block (3 levels) in <top (required)>'
+
+  3) RacingSnakes::Game#draw_board drawing the board should call board.draw
+     Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+     NameError:
+       uninitialized constant RacingSnakes::Button
+     # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+     # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+     # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+     # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+     # ./spec/racing_snakes/game_spec.rb:57:in `new'
+     # ./spec/racing_snakes/game_spec.rb:57:in `block (3 levels) in <top (required)>'
+     # ./spec/racing_snakes/game_spec.rb:69:in `block (3 levels) in <top (required)>'
+
+  4) RacingSnakes::Game#draw_board drawing the board checks if the snakes have eaten food
+     Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+     NameError:
+       uninitialized constant RacingSnakes::Button
+     # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+     # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+     # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+     # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+     # ./spec/racing_snakes/game_spec.rb:57:in `new'
+     # ./spec/racing_snakes/game_spec.rb:57:in `block (3 levels) in <top (required)>'
+     # ./spec/racing_snakes/game_spec.rb:76:in `block (3 levels) in <top (required)>'
+
+  5) RacingSnakes::Game#draw_board given that neither of the players have eaten
+     Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+     NameError:
+       uninitialized constant RacingSnakes::Button
+     # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+     # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+     # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+     # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+     # ./spec/racing_snakes/game_spec.rb:57:in `new'
+     # ./spec/racing_snakes/game_spec.rb:57:in `block (3 levels) in <top (required)>'
+     # ./spec/racing_snakes/game_spec.rb:90:in `block (3 levels) in <top (required)>'
+
+  6) RacingSnakes::Game#draw_board player 1 has eaten
+     Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+     NameError:
+       uninitialized constant RacingSnakes::Button
+     # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+     # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+     # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+     # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+     # ./spec/racing_snakes/game_spec.rb:57:in `new'
+     # ./spec/racing_snakes/game_spec.rb:57:in `block (3 levels) in <top (required)>'
+     # ./spec/racing_snakes/game_spec.rb:101:in `block (3 levels) in <top (required)>'
+
+  7) RacingSnakes::Game#paused? board is in neither in menu mode nor finished
+     Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+     NameError:
+       uninitialized constant RacingSnakes::Button
+     # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+     # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+     # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+     # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+     # ./spec/racing_snakes/game_spec.rb:113:in `new'
+     # ./spec/racing_snakes/game_spec.rb:113:in `block (3 levels) in <top (required)>'
+     # ./spec/racing_snakes/game_spec.rb:121:in `block (3 levels) in <top (required)>'
+
+  8) RacingSnakes::Game#paused? board is in menu mode
+     Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+     NameError:
+       uninitialized constant RacingSnakes::Button
+     # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+     # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+     # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+     # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+     # ./spec/racing_snakes/game_spec.rb:113:in `new'
+     # ./spec/racing_snakes/game_spec.rb:113:in `block (3 levels) in <top (required)>'
+     # ./spec/racing_snakes/game_spec.rb:128:in `block (3 levels) in <top (required)>'
+
+  9) RacingSnakes::Game#paused? board is finished
+     Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+     NameError:
+       uninitialized constant RacingSnakes::Button
+     # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+     # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+     # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+     # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+     # ./spec/racing_snakes/game_spec.rb:113:in `new'
+     # ./spec/racing_snakes/game_spec.rb:113:in `block (3 levels) in <top (required)>'
+     # ./spec/racing_snakes/game_spec.rb:134:in `block (3 levels) in <top (required)>'
+
+  10) RacingSnakes::Game#move checks for a tie condition
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:141:in `new'
+      # ./spec/racing_snakes/game_spec.rb:141:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:153:in `block (3 levels) in <top (required)>'
+
+  11) RacingSnakes::Game#move moves the players
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:141:in `new'
+      # ./spec/racing_snakes/game_spec.rb:141:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:162:in `block (3 levels) in <top (required)>'
+
+  12) RacingSnakes::Game#move increments the clock
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:141:in `new'
+      # ./spec/racing_snakes/game_spec.rb:141:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:173:in `block (3 levels) in <top (required)>'
+
+  13) RacingSnakes::Game#player_has_eaten? neither player has eaten anything
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:180:in `new'
+      # ./spec/racing_snakes/game_spec.rb:180:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:183:in `block (3 levels) in <top (required)>'
+
+  14) RacingSnakes::Game#player_has_eaten? player one has eaten
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:180:in `new'
+      # ./spec/racing_snakes/game_spec.rb:180:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:189:in `block (3 levels) in <top (required)>'
+
+  15) RacingSnakes::Game#player_has_eaten? player two has eaten
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:180:in `new'
+      # ./spec/racing_snakes/game_spec.rb:180:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:195:in `block (3 levels) in <top (required)>'
+
+  16) RacingSnakes::Game#eat_and_grow player1 has eaten
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:202:in `new'
+      # ./spec/racing_snakes/game_spec.rb:202:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:214:in `block (3 levels) in <top (required)>'
+
+  17) RacingSnakes::Game#eat_and_grow player1 has not eaten
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:202:in `new'
+      # ./spec/racing_snakes/game_spec.rb:202:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:224:in `block (3 levels) in <top (required)>'
+
+  18) RacingSnakes::Game#eat_and_grow player2 has eaten
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:202:in `new'
+      # ./spec/racing_snakes/game_spec.rb:202:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:234:in `block (3 levels) in <top (required)>'
+
+  19) RacingSnakes::Game#eat_and_grow player2 has not eaten
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:202:in `new'
+      # ./spec/racing_snakes/game_spec.rb:202:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:244:in `block (3 levels) in <top (required)>'
+
+  20) RacingSnakes::Game#eat_and_grow respawns food on game board: location1
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:202:in `new'
+      # ./spec/racing_snakes/game_spec.rb:202:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:254:in `block (3 levels) in <top (required)>'
+
+  21) RacingSnakes::Game#eat_and_grow respawns on board: position 2
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:202:in `new'
+      # ./spec/racing_snakes/game_spec.rb:202:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:265:in `block (3 levels) in <top (required)>'
+
+  22) RacingSnakes::Game#eat_and_grow resets the clock
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:202:in `new'
+      # ./spec/racing_snakes/game_spec.rb:202:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:276:in `block (3 levels) in <top (required)>'
+
+  23) RacingSnakes::Game#food time? food time is true
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:283:in `new'
+      # ./spec/racing_snakes/game_spec.rb:283:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:292:in `block (3 levels) in <top (required)>'
+
+  24) RacingSnakes::Game#food time? food time is false
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:283:in `new'
+      # ./spec/racing_snakes/game_spec.rb:283:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:298:in `block (3 levels) in <top (required)>'
+
+  25) RacingSnakes::Game#collision? board.collision? is true
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:304:in `new'
+      # ./spec/racing_snakes/game_spec.rb:304:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:313:in `block (3 levels) in <top (required)>'
+
+  26) RacingSnakes::Game#collision? board.collision? is false
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:304:in `new'
+      # ./spec/racing_snakes/game_spec.rb:304:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:320:in `block (3 levels) in <top (required)>'
+
+  27) RacingSnakes::Game#collision? board.collision? is called with player positions
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:304:in `new'
+      # ./spec/racing_snakes/game_spec.rb:304:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:327:in `block (3 levels) in <top (required)>'
+
+  28) RacingSnakes::Game#stop_game board.finish is called
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:336:in `new'
+      # ./spec/racing_snakes/game_spec.rb:336:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:345:in `block (3 levels) in <top (required)>'
+
+  29) RacingSnakes::Game#stop_game board.winner is called
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:336:in `new'
+      # ./spec/racing_snakes/game_spec.rb:336:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:353:in `block (3 levels) in <top (required)>'
+
+  30) RacingSnakes::Game#stop_game player1 is the winner
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:336:in `new'
+      # ./spec/racing_snakes/game_spec.rb:336:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:361:in `block (3 levels) in <top (required)>'
+
+  31) RacingSnakes::Game#stop_game player2 is the winner
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `new'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:336:in `new'
+      # ./spec/racing_snakes/game_spec.rb:336:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:370:in `block (3 levels) in <top (required)>'
+
+  32) RacingSnakes::Game#keydown player1.detect_key called
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:380:in `new'
+      # ./spec/racing_snakes/game_spec.rb:380:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:390:in `block (3 levels) in <top (required)>'
+
+  33) RacingSnakes::Game#keydown player2.detect_key called
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:380:in `new'
+      # ./spec/racing_snakes/game_spec.rb:380:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:400:in `block (3 levels) in <top (required)>'
+
+  34) RacingSnakes::Game#keydown if key is space, then pause the board
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:380:in `new'
+      # ./spec/racing_snakes/game_spec.rb:380:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:410:in `block (3 levels) in <top (required)>'
+
+  35) RacingSnakes::Game#keydown do not pause board if key is not space
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:380:in `new'
+      # ./spec/racing_snakes/game_spec.rb:380:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:416:in `block (3 levels) in <top (required)>'
+
+  36) RacingSnakes::Game#keydown board is recreated if its state is finished and keystroke is space
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:380:in `new'
+      # ./spec/racing_snakes/game_spec.rb:380:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:424:in `block (3 levels) in <top (required)>'
+
+  37) RacingSnakes::Game#keydown new snakes are generated if board state is finished and keystroke is space
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:380:in `new'
+      # ./spec/racing_snakes/game_spec.rb:380:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:432:in `block (3 levels) in <top (required)>'
+
+  38) RacingSnakes::Game#keydown board is not recreated if its state is finished and keystroke is not space
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:380:in `new'
+      # ./spec/racing_snakes/game_spec.rb:380:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:440:in `block (3 levels) in <top (required)>'
+
+  39) RacingSnakes::Game#keydown board is not recreated if its state is not finished and keystroke is space
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./lib/racing_snakes_gem/classes/game.rb:14:in `set_players_and_board'
+      # ./lib/racing_snakes_gem/classes/game.rb:10:in `initialize'
+      # ./spec/racing_snakes/game_spec.rb:380:in `new'
+      # ./spec/racing_snakes/game_spec.rb:380:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/game_spec.rb:448:in `block (3 levels) in <top (required)>'
+
+  40) RacingSnakes::Snake#initialize snakes id defaults to player one
+      Failure/Error:
+            def initialize(button_mapping)
+              unless button_mapping.is_a?(RacingSnakes::Button)
+          raise ArgumentError, "Expected argument to be a Button, got #{button_mapping.class}"
+        end
+              @position = []
+              @z_index = 0
+
+      ArgumentError:
+        wrong number of arguments (given 0, expected 1)
+      # ./lib/racing_snakes_gem/classes/snake.rb:7:in `initialize'
+      # ./spec/racing_snakes/snake_spec.rb:7:in `new'
+      # ./spec/racing_snakes/snake_spec.rb:7:in `block (3 levels) in <top (required)>'
+
+  41) RacingSnakes::Snake#initialize direction is initialized as up
+      Failure/Error: unless button_mapping.is_a?(RacingSnakes::Button)
+
+      NameError:
+        uninitialized constant RacingSnakes::Button
+      # ./lib/racing_snakes_gem/classes/snake.rb:8:in `initialize'
+      # ./spec/racing_snakes/snake_spec.rb:5:in `new'
+      # ./spec/racing_snakes/snake_spec.rb:5:in `block (3 levels) in <top (required)>'
+      # ./spec/racing_snakes/snake_spec.rb:11:in `block (3 levels) in <top (required)>'
+
+Finished in 0.03854 seconds (files took 0.06948 seconds to load)
+71 examples, 41 failures
+
+Failed examples:
+
+rspec ./spec/racing_snakes/game_spec.rb:44 # RacingSnakes::Game#draw_snakse calls draw on both snakes
+rspec ./spec/racing_snakes/game_spec.rb:59 # RacingSnakes::Game#draw_board drawing the board should draw the snakes
+rspec ./spec/racing_snakes/game_spec.rb:68 # RacingSnakes::Game#draw_board drawing the board should call board.draw
+rspec ./spec/racing_snakes/game_spec.rb:75 # RacingSnakes::Game#draw_board drawing the board checks if the snakes have eaten food
+rspec ./spec/racing_snakes/game_spec.rb:89 # RacingSnakes::Game#draw_board given that neither of the players have eaten
+rspec ./spec/racing_snakes/game_spec.rb:100 # RacingSnakes::Game#draw_board player 1 has eaten
+rspec ./spec/racing_snakes/game_spec.rb:120 # RacingSnakes::Game#paused? board is in neither in menu mode nor finished
+rspec ./spec/racing_snakes/game_spec.rb:127 # RacingSnakes::Game#paused? board is in menu mode
+rspec ./spec/racing_snakes/game_spec.rb:133 # RacingSnakes::Game#paused? board is finished
+rspec ./spec/racing_snakes/game_spec.rb:152 # RacingSnakes::Game#move checks for a tie condition
+rspec ./spec/racing_snakes/game_spec.rb:161 # RacingSnakes::Game#move moves the players
+rspec ./spec/racing_snakes/game_spec.rb:172 # RacingSnakes::Game#move increments the clock
+rspec ./spec/racing_snakes/game_spec.rb:182 # RacingSnakes::Game#player_has_eaten? neither player has eaten anything
+rspec ./spec/racing_snakes/game_spec.rb:188 # RacingSnakes::Game#player_has_eaten? player one has eaten
+rspec ./spec/racing_snakes/game_spec.rb:194 # RacingSnakes::Game#player_has_eaten? player two has eaten
+rspec ./spec/racing_snakes/game_spec.rb:213 # RacingSnakes::Game#eat_and_grow player1 has eaten
+rspec ./spec/racing_snakes/game_spec.rb:223 # RacingSnakes::Game#eat_and_grow player1 has not eaten
+rspec ./spec/racing_snakes/game_spec.rb:233 # RacingSnakes::Game#eat_and_grow player2 has eaten
+rspec ./spec/racing_snakes/game_spec.rb:243 # RacingSnakes::Game#eat_and_grow player2 has not eaten
+rspec ./spec/racing_snakes/game_spec.rb:253 # RacingSnakes::Game#eat_and_grow respawns food on game board: location1
+rspec ./spec/racing_snakes/game_spec.rb:264 # RacingSnakes::Game#eat_and_grow respawns on board: position 2
+rspec ./spec/racing_snakes/game_spec.rb:275 # RacingSnakes::Game#eat_and_grow resets the clock
+rspec ./spec/racing_snakes/game_spec.rb:290 # RacingSnakes::Game#food time? food time is true
+rspec ./spec/racing_snakes/game_spec.rb:296 # RacingSnakes::Game#food time? food time is false
+rspec ./spec/racing_snakes/game_spec.rb:312 # RacingSnakes::Game#collision? board.collision? is true
+rspec ./spec/racing_snakes/game_spec.rb:319 # RacingSnakes::Game#collision? board.collision? is false
+rspec ./spec/racing_snakes/game_spec.rb:326 # RacingSnakes::Game#collision? board.collision? is called with player positions
+rspec ./spec/racing_snakes/game_spec.rb:344 # RacingSnakes::Game#stop_game board.finish is called
+rspec ./spec/racing_snakes/game_spec.rb:352 # RacingSnakes::Game#stop_game board.winner is called
+rspec ./spec/racing_snakes/game_spec.rb:360 # RacingSnakes::Game#stop_game player1 is the winner
+rspec ./spec/racing_snakes/game_spec.rb:369 # RacingSnakes::Game#stop_game player2 is the winner
+rspec ./spec/racing_snakes/game_spec.rb:389 # RacingSnakes::Game#keydown player1.detect_key called
+rspec ./spec/racing_snakes/game_spec.rb:399 # RacingSnakes::Game#keydown player2.detect_key called
+rspec ./spec/racing_snakes/game_spec.rb:409 # RacingSnakes::Game#keydown if key is space, then pause the board
+rspec ./spec/racing_snakes/game_spec.rb:415 # RacingSnakes::Game#keydown do not pause board if key is not space
+rspec ./spec/racing_snakes/game_spec.rb:421 # RacingSnakes::Game#keydown board is recreated if its state is finished and keystroke is space
+rspec ./spec/racing_snakes/game_spec.rb:429 # RacingSnakes::Game#keydown new snakes are generated if board state is finished and keystroke is space
+rspec ./spec/racing_snakes/game_spec.rb:437 # RacingSnakes::Game#keydown board is not recreated if its state is finished and keystroke is not space
+rspec ./spec/racing_snakes/game_spec.rb:445 # RacingSnakes::Game#keydown board is not recreated if its state is not finished and keystroke is space
+rspec ./spec/racing_snakes/snake_spec.rb:6 # RacingSnakes::Snake#initialize snakes id defaults to player one
+rspec ./spec/racing_snakes/snake_spec.rb:10 # RacingSnakes::Snake#initialize direction is initialized as up
+

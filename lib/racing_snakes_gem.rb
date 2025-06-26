@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'racing_snakes_gem/version'
-require_relative 'racing_snakes_gem/clases/buttons'
+require_relative 'racing_snakes_gem/classes/buttons'
 require_relative 'racing_snakes_gem/classes/cli'
 require_relative 'racing_snakes_gem/classes/engine'
 require_relative 'racing_snakes_gem/classes/game'

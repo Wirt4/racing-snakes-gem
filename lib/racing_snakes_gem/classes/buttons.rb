@@ -1,3 +1,4 @@
+module RacingSnakes
 class Button
   attr_reader :up, :down, :left, :right
 end
@@ -19,4 +20,4 @@ class PlayerTwoButton < Button
     @down = Keyboard::S
   end
 end
-
+end
