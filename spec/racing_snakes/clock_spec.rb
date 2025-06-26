@@ -37,6 +37,7 @@ RSpec.describe RacingSnakes::Clock do
       expect(clock.time).to eq(0)
     end
   end
+
   describe '#food_tim?e' do
     let(:fixed_randomizer) { -> { 400 } }
 
@@ -50,4 +51,4 @@ RSpec.describe RacingSnakes::Clock do
       expect(clock.food_time?).to be(false)
     end
   end
-  end
+end
