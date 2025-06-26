@@ -2,7 +2,7 @@
 
 module RacingSnakes
   class Snake
-    attr_accessor :position
+    attr_accessor :position, :growing
 
     def initialize(button_mapping, colors)
       unless button_mapping.is_a?(RacingSnakes::Button)
@@ -13,6 +13,7 @@ module RacingSnakes
 
       @position = []
       @z_index = 0
+      @growing = false
     end
 
     def direction

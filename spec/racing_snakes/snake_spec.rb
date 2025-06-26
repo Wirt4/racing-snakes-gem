@@ -14,5 +14,9 @@ RSpec.describe RacingSnakes::Snake do
       snake = described_class.new(RacingSnakes::PlayerOneButton.new, colors)
       expect(snake.color_name).to eq('Yellow')
     end
+
+    it 'inialized with growing set to false' do
+      expect(snake.growing).to eq(false)
+    end
   end
 end
