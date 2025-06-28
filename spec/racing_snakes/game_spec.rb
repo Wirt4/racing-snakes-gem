@@ -46,15 +46,15 @@ RSpec.describe RacingSnakes::Game do
 
       (RacingSnakes.configuration.start_y_tail ..end_range).each do |n|
          y =RacingSnakes.configuration.grid_height - n
-         snake_start_1.push(RacingSnakes::Coordinates.new(player_1_x, y))
+         snake_start_1.push(RacingSnakes::Coordinates.new(player_1_x,y))
          snake_start_2.push(RacingSnakes::Coordinates.new(player_2_x, y))
     end
 
 
       game
 
-      expect(snake_args[0][2]).to eq(RacingSnakes::PlayerOneButton.new)
-      expect(snake_args[1][2]).to eq(RacingSnakes::PlayerTwoButton.new)
+      expect(snake_args[0][2]).to eq(snake_start_1)
+      expect(snake_args[1][2]).to eq(snake_start_2)
     end
 
     it 'intializes a board' do
