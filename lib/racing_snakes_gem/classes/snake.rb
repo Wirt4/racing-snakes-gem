@@ -24,6 +24,10 @@ module RacingSnakes
       @color.capitalize
     end
 
+    def crashed?
+      false
+    end
+
     def detect_key(keyname); end
     def draw; end
     def move; end
