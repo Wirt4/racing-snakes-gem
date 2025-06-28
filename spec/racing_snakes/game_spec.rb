@@ -31,6 +31,32 @@ RSpec.describe RacingSnakes::Game do
       expect(snake_args[1][0]).to eq(RacingSnakes::PlayerTwoButton.new)
     end
 
+    it 'initializes snakes with correct starting positions' do
+      snake_args = []
+      allow(RacingSnakes::Snake).to receive(:new) do |*args|
+        snake_args << args
+        double(RacingSnakes::Snake)
+      end
+      player_1_x =  2 * RacingSnakes.configuration.grid_width / 3
+      player_2_x = RacingSnakes.configuration.grid_width / 3
+
+      snake_start_1 =[]
+      snake_start_2 =[]
+      end_range = RacingSnakes.configuration.start_y_tail + RacingSnakes.configuration.start_length - 1
+
+       (RacingSnakes.configuration.start_y_tail ..end_range).each do |n|
+         y =RacingSnakes.configuration.grid_height - n
+         snake_start_1.push(RacingSnakes::Coordinates.new(player_1_x, y))
+         snake_start_2.push(RacingSnakes::Coordinates.new(player_2_x, y))
+    end
+
+
+      game
+
+      expect(snake_args[0][2]).to eq(RacingSnakes::PlayerOneButton.new)
+      expect(snake_args[1][2]).to eq(RacingSnakes::PlayerTwoButton.new)
+    end
+
     it 'intializes a board' do
       game
       expect(game.board).to eq(mock_board)
