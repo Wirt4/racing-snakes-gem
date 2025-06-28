@@ -19,13 +19,16 @@ RSpec.describe RacingSnakes::Snake do
       expect(snake.growing).to be(false)
     end
   end
+
   describe '#crash?' do
-    it 'there is no collision, crash is false' do 
-      body = [RacingSnakes::Coordinates.new(0,0), RacingSnakes::Coordinates.new(0,2), RacingSnakes::Coordinates.new(0,3), RacingSnakes::Coordinates.new(0,4), RacingSnakes::Coordinates.new(0,5), ]
+    it 'there is no collision, crash is false' do
+      body = [RacingSnakes::Coordinates.new(0, 0), RacingSnakes::Coordinates.new(0, 2),
+              RacingSnakes::Coordinates.new(0, 3), RacingSnakes::Coordinates.new(0, 4), RacingSnakes::Coordinates.new(0, 5)]
       snake = described_class.new(RacingSnakes::PlayerOneButton.new, ['red'], body)
       expect(snake.crashed?).to be(false)
     end
-    it 'there is a collisioni, crash is true' do 
+
+    it 'there is a collisioni, crash is true' do
     end
   end
 end

@@ -10,7 +10,7 @@ module RacingSnakes
       set_players_and_board
     end
 
-    #TODO: write a test that this fails
+    # TODO: write a test that this fails
     def set_players_and_board
       @player1 = RacingSnakes::Snake.new(RacingSnakes::PlayerOneButton.new,
                                          RacingSnakes.configuration.player_one_colors, [])
