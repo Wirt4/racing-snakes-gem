@@ -4,14 +4,14 @@ module RacingSnakes
   class Snake
     attr_accessor :position, :growing
 
-    def initialize(button_mapping, colors)
+    def initialize(button_mapping, colors, body)
       unless button_mapping.is_a?(RacingSnakes::Button)
         raise ArgumentError, "Expected argument to be a Button, got #{button_mapping.class}"
       end
 
       @color = colors.sample
 
-      @position = []
+      @position = body
       @z_index = 0
       @growing = false
     end

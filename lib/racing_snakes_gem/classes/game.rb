@@ -10,11 +10,12 @@ module RacingSnakes
       set_players_and_board
     end
 
+    #TODO: write a test that this fails
     def set_players_and_board
       @player1 = RacingSnakes::Snake.new(RacingSnakes::PlayerOneButton.new,
-                                         RacingSnakes.configuration.player_one_colors)
+                                         RacingSnakes.configuration.player_one_colors, [])
       @player2 = RacingSnakes::Snake.new(RacingSnakes::PlayerTwoButton.new,
-                                         RacingSnakes.configuration.player_two_colors)
+                                         RacingSnakes.configuration.player_two_colors, [])
       @board = RacingSnakes::Board.new(@player1, @player2)
     end
 
