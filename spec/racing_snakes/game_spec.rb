@@ -71,7 +71,7 @@ RSpec.describe RacingSnakes::Game do
       game.draw_board
       expect(game.board).to have_received(:draw)
     end
-      end
+  end
 
   describe '#paused?' do
     subject(:game) { described_class.new }
@@ -142,10 +142,11 @@ RSpec.describe RacingSnakes::Game do
 
   describe '#player_has_eaten?' do
     subject(:game) { described_class.new }
-      include_context 'with a board mock'
+
+    include_context 'with a board mock'
 
     before do
-        allow(RacingSnakes::Board).to receive(:new).and_return(mock_board)
+      allow(RacingSnakes::Board).to receive(:new).and_return(mock_board)
     end
 
     it 'neither player has eaten anything' do
