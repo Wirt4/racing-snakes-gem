@@ -44,7 +44,7 @@ RSpec.describe RacingSnakes::Game do
       snake_start_2 =[]
       end_range = RacingSnakes.configuration.start_y_tail + RacingSnakes.configuration.start_length - 1
 
-       (RacingSnakes.configuration.start_y_tail ..end_range).each do |n|
+      (RacingSnakes.configuration.start_y_tail ..end_range).each do |n|
          y =RacingSnakes.configuration.grid_height - n
          snake_start_1.push(RacingSnakes::Coordinates.new(player_1_x, y))
          snake_start_2.push(RacingSnakes::Coordinates.new(player_2_x, y))
