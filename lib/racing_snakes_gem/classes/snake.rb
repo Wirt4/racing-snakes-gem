@@ -2,7 +2,7 @@
 
 module RacingSnakes
   class Snake
-    attr_accessor :position, :growing
+    attr_accessor :growing, :body
 
     def initialize(button_mapping, colors, body)
       unless button_mapping.is_a?(RacingSnakes::Button)
@@ -11,7 +11,7 @@ module RacingSnakes
 
       @color = colors.sample
 
-      @position = body
+      @body = body
       @z_index = 0
       @growing = false
     end
@@ -25,7 +25,7 @@ module RacingSnakes
     end
 
     def crashed?
-      false
+      @body.length != @body.uniq.length
     end
 
     def detect_key(keyname); end

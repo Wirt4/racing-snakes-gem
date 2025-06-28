@@ -263,8 +263,8 @@ RSpec.describe RacingSnakes::Game do
 
     it 'respawns food on game board: location1' do
       game
-      game.player1.position = [[-1, 0], [-1, -1], [-1, -2]]
-      game.player2.position = [[1, 0], [1, -1], [1, -2]]
+      game.player1.body = [[-1, 0], [-1, -1], [-1, -2]]
+      game.player2.body = [[1, 0], [1, -1], [1, -2]]
       expected = [[-1, 0], [-1, -1], [-1, -2], [1, 0], [1, -1], [1, -2]]
 
       game.eat_and_grow
@@ -274,8 +274,8 @@ RSpec.describe RacingSnakes::Game do
 
     it 'respawns on board: position 2' do
       game
-      game.player1.position = [[0, 0], [0, -1], [0, -2]]
-      game.player2.position = [[1, 0], [1, -1], [1, -2]]
+      game.player1.body = [[0, 0], [0, -1], [0, -2]]
+      game.player2.body = [[1, 0], [1, -1], [1, -2]]
       expected = [[0, 0], [0, -1], [0, -2], [1, 0], [1, -1], [1, -2]]
 
       game.eat_and_grow
@@ -339,7 +339,7 @@ RSpec.describe RacingSnakes::Game do
 
       game.collision?
 
-      expect(mock_board).to have_received(:collision?).with(game.player1.position, game.player2.position)
+      expect(mock_board).to have_received(:collision?).with(game.player1.body, game.player2.body)
     end
   end
 

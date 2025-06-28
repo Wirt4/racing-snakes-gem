@@ -68,12 +68,12 @@ module RacingSnakes
     end
 
     def respawn_food
-      board.respawn_food(player1.position + player2.position)
+      board.respawn_food(player1.body + player2.body)
       clock.reset
     end
 
     def collision?
-      @board.collision?(@player1.position, @player2.position)
+      @board.collision?(@player1.body, @player2.body)
     end
 
     def stop_game
