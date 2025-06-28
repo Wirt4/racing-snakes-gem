@@ -71,43 +71,7 @@ RSpec.describe RacingSnakes::Game do
       game.draw_board
       expect(game.board).to have_received(:draw)
     end
-
-    it 'drawing the board checks if the snakes have eaten food' do
-      game
-      allow(game).to receive(:draw_snakes)
-      allow(game.board).to receive(:draw)
-      board_args = []
-      allow(game.board).to receive(:has_eaten_food?) do |*args|
-        board_args << args
-        double(game.board)
       end
-      game.draw_board
-
-      expect(board_args).to eq([[game.player1], [game.player2]])
-    end
-
-    it 'given that neither of the players have eaten' do
-      game
-      allow(game).to receive(:draw_snakes)
-      allow(game.board).to receive(:draw)
-      allow(game.board).to receive(:has_eaten_food?).and_return(false, false)
-      game.draw_board
-
-      expect(game.player1_has_eaten).to be(false)
-      expect(game.player2_has_eaten).to be(false)
-    end
-
-    it 'player 1 has eaten' do
-      game
-      allow(game).to receive(:draw_snakes)
-      allow(game.board).to receive(:draw)
-      allow(game.board).to receive(:has_eaten_food?).and_return(true, false)
-      game.draw_board
-
-      expect(game.player1_has_eaten).to be(true)
-      expect(game.player2_has_eaten).to be(false)
-    end
-  end
 
   describe '#paused?' do
     subject(:game) { described_class.new }
@@ -178,22 +142,31 @@ RSpec.describe RacingSnakes::Game do
 
   describe '#player_has_eaten?' do
     subject(:game) { described_class.new }
+      include_context 'with a board mock'
+
+    before do
+        allow(RacingSnakes::Board).to receive(:new).and_return(mock_board)
+    end
 
     it 'neither player has eaten anything' do
       game
-      allow(game).to receive_messages(player1_has_eaten: false, player2_has_eaten: false)
+
+      allow(mock_board).to receive(:has_eaten_food?).and_return(false)
       expect(game.player_has_eaten?).to be(false)
     end
 
     it 'player one has eaten' do
       game
-      allow(game).to receive_messages(player1_has_eaten: true, player2_has_eaten: false)
+      allow(mock_board).to receive(:has_eaten_food?).with(game.player1).and_return(true)
+      allow(mock_board).to receive(:has_eaten_food?).with(game.player2).and_return(false)
+
       expect(game.player_has_eaten?).to be(true)
     end
 
     it 'player two has eaten' do
       game
-      allow(game).to receive_messages(player1_has_eaten: false, player2_has_eaten: true)
+      allow(mock_board).to receive(:has_eaten_food?).with(game.player1).and_return(false)
+      allow(mock_board).to receive(:has_eaten_food?).with(game.player2).and_return(true)
       expect(game.player_has_eaten?).to be(true)
     end
   end

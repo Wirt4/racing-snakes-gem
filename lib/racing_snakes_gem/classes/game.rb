@@ -49,17 +49,15 @@ module RacingSnakes
     def draw_board
       draw_snakes
       @board.draw
-      @player1_has_eaten = @board.has_eaten_food?(@player1)
-      @player2_has_eaten = @board.has_eaten_food?(@player2)
     end
 
     def player_has_eaten?
-      player1_has_eaten || player2_has_eaten
+      @board.has_eaten_food?(@player1) || @board.has_eaten_food?(@player2)
     end
 
     def eat_and_grow
-      player1.grow if player1_has_eaten
-      player2.grow if player2_has_eaten
+      player1.grow if @board.has_eaten_food?(@player1)
+      player2.grow if @board.has_eaten_food?(@player2)
       respawn_food
     end
 
