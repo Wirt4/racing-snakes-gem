@@ -26,7 +26,7 @@ RSpec.describe Food do
 
       food.respawn(occupied_positions, rng)
 
-      expect([board.food_x, board.food_y]).to eq([8, 9])
+      expect([food.x, food.y]).to eq([8, 9])
     end
 
     it 'retries until it finds an unoccupied position' do

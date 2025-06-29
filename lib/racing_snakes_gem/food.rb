@@ -7,12 +7,12 @@ class Food
     @color = Settings::FOOD_COLOR
   end
 
-  def respawn_food(pos, rng: Kernel)
-    @food_x = rng.rand(Settings::GRID_WIDTH)
-    @food_y = rng.rand(Settings::GRID_HEIGHT)
+  def respawn(pos, rng = Kernel)
+    @x = rng.rand(Settings::GRID_WIDTH)
+    @y = rng.rand(Settings::GRID_HEIGHT)
     while pos.include?([@food_x, @food_y])
-      @food_x = rng.rand(Settings::GRID_WIDTH)
-      @food_y = rng.rand(Settings::GRID_HEIGHT)
+      @x = rng.rand(Settings::GRID_WIDTH)
+      @y = rng.rand(Settings::GRID_HEIGHT)
     end
   end
 end
