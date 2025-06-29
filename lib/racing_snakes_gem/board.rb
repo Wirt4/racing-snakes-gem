@@ -10,10 +10,8 @@ class Board
 
   # colors are ruby2d keywords
   def initialize(snake1, snake2)
-    @food_x = Settings::GRID_WIDTH / 2
-    @food_y = Settings::GRID_HEIGHT / 3
+    @food = Food.new
     @finished = false
-    @food_color = Settings::FOOD_COLOR
     @paused = true
     @tie = false
     @p1color = snake1.color
@@ -71,8 +69,8 @@ class Board
   # displays the instructions, menu screen and food
   def draw
     unless finished? || menu?
-      Square.new(x: @food_x * Settings::GRID_SIZE, y: @food_y * Settings::GRID_SIZE, size: Settings::NODE_SIZE,
-                 color: @food_color)
+      Square.new(x: @food.location.x * Settings::GRID_SIZE, y: @food.location.y * Settings::GRID_SIZE, size: Settings::NODE_SIZE,
+                 color: @food.color)
     end
 
     display_menu_prompts if menu?
@@ -104,17 +102,12 @@ class Board
   end
 
   def snake_eat_food?(snake)
-    @food_x == snake.x && @food_y == snake.y
+    @food.x == snake.x && @food.y == snake.y
   end
 
   # want to respawn the food in any location that is not occupied by a snake
   def respawn_food(pos)
-    @food_x = rand(Settings::GRID_WIDTH)
-    @food_y = rand(Settings::GRID_HEIGHT)
-    while pos.include?([@food_x, @food_y])
-      @food_x = rand(Settings::GRID_WIDTH)
-      @food_y = rand(Settings::GRID_HEIGHT)
-    end
+    @food.respawn(pos)
   end
 
   def finish

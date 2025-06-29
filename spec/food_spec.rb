@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../lib/racing_snakes_gem/food'
 require_relative '../lib/racing_snakes_gem/settings'
 
