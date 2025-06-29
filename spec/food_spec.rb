@@ -15,4 +15,28 @@ RSpec.describe Food do
       expect(food.y).to eq(10)
     end
   end
+  describe '#respawn_food' do
+    subject(:food) { described_class.new }
+    let(:occupied_positions) { [[2, 3], [4, 5], [6, 7]] }
+    let(:rng) { instance_double('Random') }
+
+    it 'places food not in occupied positions on first try' do
+      allow(rng).to receive(:rand).with(Settings::GRID_WIDTH).and_return(8)
+      allow(rng).to receive(:rand).with(Settings::GRID_HEIGHT).and_return(9)
+
+      food.respawn(occupied_positions, rng)
+
+      expect([board.food_x, board.food_y]).to eq([8, 9])
+    end
+
+    it 'retries until it finds an unoccupied position' do
+      # First three attempts are occupied, fourth is not
+      allow(rng).to receive(:rand).with(Settings::GRID_WIDTH).and_return(2, 4, 6, 8)
+      allow(rng).to receive(:rand).with(Settings::GRID_HEIGHT).and_return(3, 5, 7, 9)
+
+      food.respawn(occupied_positions, rng)
+
+      expect([food.x, food.y]).to eq([8, 9])
+    end
+  end
 end
