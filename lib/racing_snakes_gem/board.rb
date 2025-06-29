@@ -3,6 +3,8 @@
 require_relative 'constants'
 require_relative 'settings'
 require_relative 'coordinates'
+# Board manages the game state for Racing Snakes, including food placement,
+# player colors, game status, collision detection, and rendering of UI elements.
 class Board
   attr_accessor :food_x, :food_y, :tie, :p1color, :p2color, :finished
 
@@ -25,7 +27,7 @@ class Board
   end
 
   # need to detect one space ahead in the case of a head - on collision
-  def is_tie(snake1, snake2)
+  def tie?(snake1, snake2)
     if snake1.head[0] == snake2.head[0] # TODO: make this a snake method so it's self-documenting
       @tie = tie_lemma?(1, snake1, snake2, Directions::UP, Directions::DOWN)
       return

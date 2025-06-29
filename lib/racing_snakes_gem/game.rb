@@ -40,7 +40,7 @@ class Game
   end
 
   def move
-    @board.is_tie(@player1, @player2)
+    @board.tie?(@player1, @player2)
     @player1.move
     @player2.move
     @clock.increment

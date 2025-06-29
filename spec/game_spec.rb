@@ -143,9 +143,9 @@ RSpec.describe Game do
   describe '#move' do
     it 'should call Board.is_tie' do
       game = Game.new
-      allow(game.board).to receive(:is_tie)
+      allow(game.board).to receive(:tie?)
       game.move
-      expect(game.board).to have_received(:is_tie).with(game.player1, game.player2)
+      expect(game.board).to have_received(:tie?).with(game.player1, game.player2)
     end
     it 'should call move for both players' do
       game = Game.new
