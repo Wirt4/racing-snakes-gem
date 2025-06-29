@@ -18,23 +18,19 @@ RSpec.describe Snake do
       expect(Button).to have_received(:new).with(PlayerIds::PLAYER_TWO)
     end
     it 'making sure the color is set with the results from sampling the settings' do
-      allow(Settings::PLAYER_TWO_COLORS).to receive(:sample).and_return('blue')
-      snake = Snake.new(PlayerIds::PLAYER_TWO)
+      snake = Snake.new(PlayerIds::PLAYER_TWO, 'blue')
       expect(snake.color_name).to eq('Blue')
     end
     it 'making sure the color is set with the results from sampling the settings' do
-      allow(Settings::PLAYER_TWO_COLORS).to receive(:sample).and_return('red')
-      snake = Snake.new(PlayerIds::PLAYER_TWO)
+      snake = Snake.new(PlayerIds::PLAYER_TWO, 'red')
       expect(snake.color_name).to eq('Red')
     end
     it 'making sure the color is set with the results from sampling the settings' do
-      allow(Settings::PLAYER_TWO_COLORS).to receive(:sample).and_return('blue')
-      snake = Snake.new(PlayerIds::PLAYER_TWO)
+      snake = Snake.new(PlayerIds::PLAYER_TWO, 'blue')
       expect(snake.color_name).to eq('Blue')
     end
     it 'making sure the color is set with the results from sampling the settings' do
-      allow(Settings::PLAYER_ONE_COLORS).to receive(:sample).and_return('red')
-      snake = Snake.new(PlayerIds::PLAYER_ONE)
+      snake = Snake.new(PlayerIds::PLAYER_ONE, 'red')
       expect(snake.color_name).to eq('Red')
     end
     it 'position is set for snake 1' do
@@ -68,13 +64,11 @@ RSpec.describe Snake do
       expect(snake.z).to eq(0)
     end
     it 'test color getter' do
-      allow(Settings::PLAYER_TWO_COLORS).to receive(:sample).and_return('blue')
-      snake = Snake.new(PlayerIds::PLAYER_TWO)
+      snake = Snake.new(PlayerIds::PLAYER_TWO, 'blue')
       expect(snake.color).to eq('blue')
     end
     it 'test color getter, yellow' do
-      allow(Settings::PLAYER_TWO_COLORS).to receive(:sample).and_return('yellow')
-      snake = Snake.new(PlayerIds::PLAYER_TWO)
+      snake = Snake.new(PlayerIds::PLAYER_TWO, 'yellow')
       expect(snake.color).to eq('yellow')
     end
   end
@@ -156,23 +150,20 @@ RSpec.describe Snake do
       expect(Square).to have_received(:new)
     end
     it 'expect Square to be called with specific coordinates' do
-      allow(Settings::PLAYER_ONE_COLORS).to receive(:sample).and_return('red')
-      snake = Snake.new(PlayerIds::PLAYER_ONE)
+      snake = Snake.new(PlayerIds::PLAYER_ONE, 'red')
       allow(Square).to receive(:new)
       snake.draw_base([0, 0])
       expect(Square).to have_received(:new).with(x: 0, y: 0, size: Settings::NODE_SIZE, color: 'red', z: 0)
     end
     it 'expect Square to be called with different arguments' do
-      allow(Settings::PLAYER_ONE_COLORS).to receive(:sample).and_return('yellow')
-      snake = Snake.new(PlayerIds::PLAYER_ONE)
+      snake = Snake.new(PlayerIds::PLAYER_ONE, 'yellow')
       allow(Square).to receive(:new)
       snake.draw_base([1, 1])
       expect(Square).to have_received(:new).with(x: Settings::GRID_SIZE, y: Settings::GRID_SIZE,
                                                  size: Settings::NODE_SIZE, color: 'yellow', z: 0)
     end
     it 'expect Square to be called with different arguments' do
-      allow(Settings::PLAYER_TWO_COLORS).to receive(:sample).and_return('green')
-      snake = Snake.new(PlayerIds::PLAYER_TWO)
+      snake = Snake.new(PlayerIds::PLAYER_TWO, 'green')
       allow(Square).to receive(:new)
       snake.draw_base([3, 5])
       expect(Square).to have_received(:new).with(x: 3 * Settings::GRID_SIZE, y: 5 * Settings::GRID_SIZE,
