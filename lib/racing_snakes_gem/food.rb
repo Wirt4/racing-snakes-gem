@@ -10,7 +10,7 @@ class Food
   def respawn(pos, rng = Kernel)
     @x = rng.rand(Settings::GRID_WIDTH)
     @y = rng.rand(Settings::GRID_HEIGHT)
-    while pos.include?([@food_x, @food_y])
+    while pos.include?([@x, @y])
       @x = rng.rand(Settings::GRID_WIDTH)
       @y = rng.rand(Settings::GRID_HEIGHT)
     end

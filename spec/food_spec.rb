@@ -31,8 +31,9 @@ RSpec.describe Food do
 
     it 'retries until it finds an unoccupied position' do
       # First three attempts are occupied, fourth is not
-      allow(rng).to receive(:rand).with(Settings::GRID_WIDTH).and_return(2, 4, 6, 8)
-      allow(rng).to receive(:rand).with(Settings::GRID_HEIGHT).and_return(3, 5, 7, 9)
+      allow(rng).to receive(:rand).and_return(2, 3, 4, 5, 6, 7, 8, 9)
+      # allow(rng).to receive(:rand).with(Settings::GRID_WIDTH).and_return(2, 4, 6, 8)
+      # allow(rng).to receive(:rand).with(Settings::GRID_HEIGHT).and_return(3, 5, 7, 9)
 
       food.respawn(occupied_positions, rng)
 
