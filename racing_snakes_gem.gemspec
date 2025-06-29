@@ -23,10 +23,4 @@ Gem::Specification.new do |spec|
   # If you later add a CLI launcher, uncomment these:
   spec.bindir        = 'exe'
   spec.executables   = ['racing_snakes']
-
-  # Metadata (optional but recommended for RubyGems.org)
-  spec.metadata['homepage_uri'] = spec.homepage
-  spec.metadata['source_code_uri'] = spec.homepage
-  spec.metadata['bug_tracker_uri'] = "#{spec.homepage}/issues"
-  spec.metadata['allowed_push_host'] = 'https://rubygems.org'
 end
