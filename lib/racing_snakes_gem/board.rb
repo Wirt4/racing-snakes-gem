@@ -132,13 +132,14 @@ class Board
   private
 
   def tie_lemma?(h_ndx, player1, player2, dir1, dir2)
-    if player1.head[h_ndx] - 1 == player2.head[h_ndx] && player1.direction == dir1 && player2.direction == dir2
-      return true
-    end
-    if player1.head[h_ndx] + 1 == player2.head[h_ndx] && player1.direction == dir2 && player2.direction == dir1
-      return true
-    end
+    head1 = player1.head[h_ndx]
+    head2 = player2.head[h_ndx]
+    dir_p1 = player1.direction
+    dir_p2 = player2.direction
 
-    false
+    adjacent = (head1 - head2).abs == 1
+    opposing_directions = (dir_p1 == dir1 && dir_p2 == dir2) || (dir_p1 == dir2 && dir_p2 == dir1)
+
+    adjacent && opposing_directions
   end
 end
