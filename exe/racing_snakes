@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'ruby2d'
 require 'racing_snakes_gem'
 
@@ -15,13 +17,9 @@ update do
   clear
 
   game.move unless game.is_paused?
-
   game.draw_board
-
   game.eat_and_grow if game.player_eats
-
   game.respawn_food if game.food_time?
-
   # prints out the winner of the game if it ends
   game.stop_game if game.is_collision?
 end

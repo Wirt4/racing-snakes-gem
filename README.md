@@ -1,37 +1,101 @@
-# racing_snakes
-<i>Eat the food and destroy your enemies!</i>
-<h1>About</h1>
-<p>A two-player spin on the snake game, written in <a href="https://www.ruby2d.com/">ruby 2d</a> framework and initial snake mechanics taken from Mario Visic's <a href ="https://www.youtube.com/watch?v=2UVhYHBT_1o">tutorial</a></p>
-<h1>Setup</h1>
-<p>
-<h2>Assumptions</h2>
-<ul>
-<li>You're running MacOS or Linux</li>
-<li>You're conversant with Ruby and Ruby Gems</li>
-</ul>
-<h2>Requirements</h2>
-<ol>
-<li>Install a manager for ruby (I use <code>rbenv</code>)</li>
-<li>Install the latest stable version of Ruby (<code>rbenv install 3.4.3</code>)</li>
-<li>Make sure you can use the latest version (I got lazy and set it to global <code>rbenv global 3.4.3</code>)</li>
-<li>install the gem ruby 2d <code>gem install ruby2d</code> (you may need to use <code>sudo</code>)</li>
-</ol>
-</p>
+# 🎮 Racing Snakes
 
-<h1>To Play</h1>
-<p>Run the followoing to start the app</p>
-<code>ruby racing_snakes.rb</cold>
-<h2>The rules</h2>
-<p>A game for two players: Move your snake with either W, D keys or O,P keys. The left key turns  your snake had anticlockwise. Right turns your snake head clockwise. Eat the snake food to grow. The first snake to crash loses. Two snakes colliding directly head-on counts as a tie. Press space to pause and esc to close.</p>
-<h1>Changes Made</h1>
-<p>Mario Visic's <a href ="https://www.youtube.com/watch?v=2UVhYHBT_1o">tutorial</a> was very helpful in creating snake and game classes, and managing the snake objects growth, movement and collision detection via an array of tile coordinates. I've made the following changes from Mario's tutorial:
-  <ul>
-    <li>Two snakes that interact with each other</li>
-    <li>Food will not spawn in space occumpied by a snake</li>
-    <li>Gameplay change: only one turn per clock tick</li>
-    <li>Food respawns after 15 - 20 seconds of inactivity</li>
-    <li>Randomized colors for snakes and graphical embellishments</li>
-    <li>a pause button (space bar)</li>
-</ul>
-<h1>To Test</h1>
-<p>`rspec Tests/*`</p>
+*Eat the food. Outsmart your opponent. Claim eternal glory.*
+
+---
+
+## 🐍 About
+
+**Racing Snakes** is a fast-paced, two-player twist on the classic Snake game, built with the [Ruby2D](https://www.ruby2d.com/) framework.
+
+Inspired by [Mario Visic's tutorial](https://www.youtube.com/watch?v=2UVhYHBT_1o), this project introduces multiplayer gameplay, randomized aesthetics, and refined game rules for a fresh competitive experience.
+
+---
+
+## ⚙️ Setup and Installation
+
+### Requirements
+
+- **macOS** or **Linux**
+- **Ruby 3.3+** (recommended: [rbenv](https://github.com/rbenv/rbenv))
+- **RubyGems** & **Bundler**
+
+### Environment Setup
+
+```sh
+# Install Ruby using rbenv
+rbenv install 3.3.4
+rbenv global 3.3.4
+
+# Clone the repository
+git clone https://github.com/yourusername/racing_snakes_gem.git
+cd racing_snakes_gem
+
+# Install dependencies
+bundle install
+```
+
+### Using the Rakefile
+
+You can use `rake` to build, install, and test the gem:
+
+| Task           | Description                  |
+|----------------|-----------------------------|
+| `rake`         | Run all specs (default)      |
+| `rake build`   | Build the `.gem` file        |
+| `rake install` | Build and install locally    |
+| `rake clean`   | Remove generated `.gem` files|
+
+To install locally:
+```sh
+rake install
+```
+
+---
+
+## 🕹️ How To Play
+
+Once installed, start the game from your terminal:
+
+```sh
+racing_snakes
+```
+
+### Controls
+
+- **Player 1:** `↑` = Up, `↓` = Down, `←` = Left, `→` = Right
+- **Player 2:** `W` = Up, `S` = Down, `A` = Left, `D` = Right
+- **Pause:** `Space`
+- **Quit:** `Escape`
+
+**Goal:** Eat food to grow. The first snake to crash loses. A head-on collision results in a draw.
+
+---
+
+## 🧪 Testing
+
+Run the test suite with:
+
+```sh
+rake
+# or
+bundle exec rspec spec/
+```
+
+---
+
+## ✨ Features & Enhancements
+
+Compared to the original tutorial, this version adds:
+
+- 🐍 **Two-player competitive mode**
+- 🥗 **Food spawns only on empty tiles**
+- ⏱️ **Food re-spawns after 15–20 seconds of inactivity**
+- 🎨 **Randomized snake colors & graphical polish**
+- ⏸️ **Pause function (space bar)**
+- 🧠 **Clock-based turn logic: only one turn per tick**
+
+---
+
+Enjoy the game and may the best snake win!
+
