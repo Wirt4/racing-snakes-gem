@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Food class for the Snake game
 class Food
   attr_reader :location, :color
 

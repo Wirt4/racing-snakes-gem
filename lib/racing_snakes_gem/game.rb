@@ -4,9 +4,11 @@ require_relative 'game_clock'
 require_relative 'snake'
 require_relative 'player_ids'
 
+# Houses the game logic and state
+# TODO: Add description of class invariants
 class Game
   attr_reader :player1, :player2, :board, :clock
-  attr_accessor :player1Eats, :player2Eats
+  attr_accessor :player_1_eats, :player_2_eats
 
   def initialize
     @clock = GameClock.new
@@ -31,8 +33,8 @@ class Game
   def draw_board
     draw_snakes
     @board.draw
-    @player1Eats = @board.snake_eat_food?(@player1)
-    @player2Eats = @board.snake_eat_food?(@player2)
+    @player_1_eats = @board.snake_eat_food?(@player1)
+    @player_2_eats = @board.snake_eat_food?(@player2)
   end
 
   def is_paused?
@@ -47,12 +49,12 @@ class Game
   end
 
   def player_eats
-    @player1Eats || @player2Eats
+    @player_1_eats || @player_2_eats
   end
 
   def eat_and_grow
-    @player1.grow if player1Eats
-    @player2.grow if player2Eats
+    @player1.grow if player_1_eats
+    @player2.grow if player_2_eats
 
     respawn_food
   end

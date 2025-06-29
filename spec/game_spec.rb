@@ -91,8 +91,8 @@ RSpec.describe Game do
       allow(game.board).to receive(:snake_eat_food?).and_return(false, false)
       game.draw_board
 
-      expect(game.player1Eats).to eq(false)
-      expect(game.player2Eats).to eq(false)
+      expect(game.player_1_eats).to eq(false)
+      expect(game.player_2_eats).to eq(false)
     end
     it 'Snake 1 ate the food' do
       game = Game.new
@@ -101,8 +101,8 @@ RSpec.describe Game do
       allow(game.board).to receive(:snake_eat_food?).and_return(true, false)
       game.draw_board
 
-      expect(game.player1Eats).to eq(true)
-      expect(game.player2Eats).to eq(false)
+      expect(game.player_1_eats).to eq(true)
+      expect(game.player_2_eats).to eq(false)
     end
     it 'Snake 2 ate the food' do
       game = Game.new
@@ -111,8 +111,8 @@ RSpec.describe Game do
       allow(game.board).to receive(:snake_eat_food?).and_return(false, true)
       game.draw_board
 
-      expect(game.player1Eats).to eq(false)
-      expect(game.player2Eats).to eq(true)
+      expect(game.player_1_eats).to eq(false)
+      expect(game.player_2_eats).to eq(true)
     end
   end
 
@@ -169,27 +169,27 @@ RSpec.describe Game do
   describe '#player_eats' do
     it 'neiher player one nor player two eats anything' do
       game = Game.new
-      game.player1Eats = false
-      game.player2Eats = false
+      game.player_1_eats = false
+      game.player_2_eats = false
       expect(game.player_eats).to eq(false)
     end
     it 'player one eats something' do
       game = Game.new
-      game.player1Eats = true
-      game.player2Eats = false
+      game.player_1_eats = true
+      game.player_2_eats = false
       expect(game.player_eats).to eq(true)
     end
     it 'player two eats something' do
       game = Game.new
-      game.player1Eats = false
-      game.player2Eats = true
+      game.player_1_eats = false
+      game.player_2_eats = true
       expect(game.player_eats).to eq(true)
     end
   end
   describe '#eat_and_grow' do
     it 'player1Eats is true, player one has "grow" called' do
       game = Game.new
-      game.player1Eats = true
+      game.player_1_eats = true
       allow(game.player1).to receive(:grow)
 
       game.eat_and_grow
@@ -198,7 +198,7 @@ RSpec.describe Game do
     end
     it 'player1Eats is true, player one has "grow" called' do
       game = Game.new
-      game.player1Eats = false
+      game.player_1_eats = false
       allow(game.player1).to receive(:grow)
 
       game.eat_and_grow
@@ -207,7 +207,7 @@ RSpec.describe Game do
     end
     it 'player2Eats is true, player two has "grow" called' do
       game = Game.new
-      game.player2Eats = true
+      game.player_2_eats = true
       allow(game.player2).to receive(:grow)
 
       game.eat_and_grow
@@ -216,7 +216,7 @@ RSpec.describe Game do
     end
     it 'player2Eats is false, player two does not "grow" called' do
       game = Game.new
-      game.player2Eats = false
+      game.player_2_eats = false
       allow(game.player2).to receive(:grow)
 
       game.eat_and_grow
