@@ -134,7 +134,7 @@ class Snake
 
   # returns all slots occupied by the snake minus the head
   def body
-    @position.pop
+    @position[0..-1]
   end
 
   def head
