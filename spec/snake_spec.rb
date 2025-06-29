@@ -74,40 +74,40 @@ RSpec.describe Snake do
   end
   describe 'hit_wall?' do
     it 'make sure the body has been called' do
-      snake_1 = Snake.new(PlayerIds::PLAYER_ONE)
-      snake_2 = Snake.new(PlayerIds::PLAYER_TWO)
-      allow(snake_1).to receive(:body).and_call_original
-      snake_1.hit_wall?(snake_2)
-      expect(snake_1).to have_received(:body)
+      snake1 = Snake.new(PlayerIds::PLAYER_ONE)
+      snake2 = Snake.new(PlayerIds::PLAYER_TWO)
+      allow(snake1).to receive(:body).and_call_original
+      snake1.hit_wall?(snake2)
+      expect(snake1).to have_received(:body)
     end
     it 'make sure position is now equal to the result of body + otherplayer.head' do
-      snake_1 = Snake.new(PlayerIds::PLAYER_ONE)
-      snake_2 = Snake.new(PlayerIds::PLAYER_TWO)
+      snake1 = Snake.new(PlayerIds::PLAYER_ONE)
+      snake2 = Snake.new(PlayerIds::PLAYER_TWO)
       xpos = Settings::GRID_WIDTH * 2 / 3
-      allow(snake_1).to receive(:body).and_return([[xpos, Settings::GRID_HEIGHT - 3],
-                                                   [xpos, Settings::GRID_HEIGHT - 4]])
-      allow(snake_2).to receive(:head).and_return([1, 1])
-      snake_1.hit_wall?(snake_2)
-      expect(snake_1.position).to eq(snake_1.body + [snake_2.head])
+      allow(snake1).to receive(:body).and_return([[xpos, Settings::GRID_HEIGHT - 3],
+                                                  [xpos, Settings::GRID_HEIGHT - 4]])
+      allow(snake2).to receive(:head).and_return([1, 1])
+      snake1.hit_wall?(snake2)
+      expect(snake1.position).to eq(snake1.body + [snake2.head])
     end
     it 'confirm crash has been called' do
-      snake_1 = Snake.new(PlayerIds::PLAYER_ONE)
-      snake_2 = Snake.new(PlayerIds::PLAYER_TWO)
-      allow(snake_1).to receive(:crash?)
-      snake_1.hit_wall?(snake_2)
-      expect(snake_1).to have_received(:crash?)
+      snake1 = Snake.new(PlayerIds::PLAYER_ONE)
+      snake2 = Snake.new(PlayerIds::PLAYER_TWO)
+      allow(snake1).to receive(:crash?)
+      snake1.hit_wall?(snake2)
+      expect(snake1).to have_received(:crash?)
     end
     it 'crash is true' do
-      snake_1 = Snake.new(PlayerIds::PLAYER_ONE)
-      snake_2 = Snake.new(PlayerIds::PLAYER_TWO)
-      allow(snake_1).to receive(:crash?).and_return(true)
-      expect(snake_1.hit_wall?(snake_2)).to eq(true)
+      snake1 = Snake.new(PlayerIds::PLAYER_ONE)
+      snake2 = Snake.new(PlayerIds::PLAYER_TWO)
+      allow(snake1).to receive(:crash?).and_return(true)
+      expect(snake1.hit_wall?(snake2)).to eq(true)
     end
     it 'crash is false' do
-      snake_1 = Snake.new(PlayerIds::PLAYER_ONE)
-      snake_2 = Snake.new(PlayerIds::PLAYER_TWO)
-      allow(snake_1).to receive(:crash?).and_return(false)
-      expect(snake_1.hit_wall?(snake_2)).to eq(false)
+      snake1 = Snake.new(PlayerIds::PLAYER_ONE)
+      snake2 = Snake.new(PlayerIds::PLAYER_TWO)
+      allow(snake1).to receive(:crash?).and_return(false)
+      expect(snake1.hit_wall?(snake2)).to eq(false)
     end
   end
   describe('draw') do
