@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'keyboard_buttons'
-
+# Button class to handle player input for movement
 class Button
   attr_accessor :up, :down, :left, :right
 
