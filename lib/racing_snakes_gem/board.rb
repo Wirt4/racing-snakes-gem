@@ -12,7 +12,6 @@ class Board
     @food_color = Settings::FOOD_COLOR
     @paused = true
     @tie = false
-    # {}@p1_winner = false
     @p1color = snake1.color
     @p2color = snake2.color
   end
@@ -130,7 +129,6 @@ class Board
 
   def tie_lemma?(h_ndx, p1, p2, dir1, dir2)
     return true if p1.head[h_ndx] - 1 == p2.head[h_ndx] && p1.direction == dir1 && p2.direction == dir2
-
     return true if p1.head[h_ndx] + 1 == p2.head[h_ndx] && p1.direction == dir2 && p2.direction == dir1
 
     false
