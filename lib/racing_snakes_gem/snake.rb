@@ -7,7 +7,7 @@ class Snake
   # using color keywords so can id players in feedback.
 
   attr_accessor :position, :growing, :direction, :turned
-  attr_reader :turned, :z, :color
+  attr_reader :z, :color
 
   # snakes are initialized with a color and integer, player one of two
   # colors are ruby2d keywords
