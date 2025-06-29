@@ -1,10 +1,5 @@
 require 'ruby2d'
-require_relative 'lib/racing_snakes_gem/board'
-require_relative 'lib/racing_snakes_gem/game'
-require_relative 'lib/racing_snakes_gem/game_clock'
-require_relative 'lib/racing_snakes_gem/settings'
-require_relative 'lib/racing_snakes_gem/snake'
-require_relative 'lib/racing_snakes_gem/keyboard_buttons'
+require 'racing_snakes_gem'
 
 set background: Settings::BACKGROUND
 set width: Settings::WIDTH
