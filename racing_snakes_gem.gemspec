@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'A Ruby2D-based snake game for two players'
   spec.description   = 'RacingSnakes is a two-player competitive snake game built with Ruby2D, packaged as a gem for reuse and extension.'
-  spec.homepage      = 'https://github.com/yourusername/racing_snakes_gem'
+  spec.homepage      = 'https://github.com/Wirt4/racing-snakes-gem'
   spec.license       = 'MIT'
 
   # Directories
