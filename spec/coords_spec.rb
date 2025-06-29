@@ -3,11 +3,11 @@ require_relative '../lib/racing_snakes_gem/coordinates'
 
 RSpec.describe Coordinates do
   describe '#initialize' do
-    it 'defalt x coord is 0' do
+    it 'default x coord is 0' do
       coords = Coordinates.new
       expect(coords.x).to eq(0)
     end
-    it 'defalt y coord is 0' do
+    it 'default y coord is 0' do
       coords = Coordinates.new
       expect(coords.y).to eq(0)
     end
