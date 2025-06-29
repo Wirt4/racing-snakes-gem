@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rspec'
 require_relative '../lib/racing_snakes_gem/game'
 require_relative '../lib/racing_snakes_gem/game_clock'

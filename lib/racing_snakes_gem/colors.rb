@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module Colors
   YELLOW ||= 'yellow'
-  ORANGE ||=  'orange'
+  ORANGE ||= 'orange'
   RED ||= 'red'
   FUCHSIA ||= 'fuchsia'
   BLUE ||= 'blue'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Constants
   GAME_TITLE ||= 'SNAKE RACE'
   PROMPT ||= 'Turn:'

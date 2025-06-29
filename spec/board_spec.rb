@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rspec'
 require 'ruby2d'
 require_relative '../lib/racing_snakes_gem/board'

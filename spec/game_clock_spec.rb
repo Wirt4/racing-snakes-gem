@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../lib/racing_snakes_gem/game_clock'
 
 RSpec.describe GameClock do

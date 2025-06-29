@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../lib/racing_snakes_gem/snake'
 require_relative '../lib/racing_snakes_gem/player_ids'
 require_relative '../lib/racing_snakes_gem/directions'

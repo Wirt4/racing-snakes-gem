@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'button'
 require_relative 'settings'
 require_relative 'directions'
@@ -134,7 +136,7 @@ class Snake
 
   # returns all slots occupied by the snake minus the head
   def body
-    @position[0..-1]
+    @position
   end
 
   def head

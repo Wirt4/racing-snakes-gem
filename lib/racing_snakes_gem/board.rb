@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'constants'
 require_relative 'settings'
 require_relative 'coordinates'
@@ -53,7 +55,7 @@ class Board
            else
              Constants::PLAYER_TWO_KEYS
            end
-    Constants::PROMPT + ' ' + keys
+    "#{Constants::PROMPT} #{keys}"
   end
 
   def display_player_keys

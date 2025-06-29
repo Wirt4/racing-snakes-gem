@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'racing_snakes_gem/version'
 require 'racing_snakes_gem/constants'
 require 'racing_snakes_gem/board'

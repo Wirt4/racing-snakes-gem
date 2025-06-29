@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Gem::Specification.new do |spec|
   spec.name          = 'racing_snakes_gem'
   spec.version       = '0.1.0'
@@ -19,7 +21,7 @@ Gem::Specification.new do |spec|
 
   # Development dependencies (optional)
   spec.add_development_dependency 'rspec', '~> 3.12'
-
+  spec.add_development_dependency 'rubocop', '~> 1.0'
   # If you later add a CLI launcher, uncomment these:
   spec.bindir        = 'exe'
   spec.executables   = ['racing_snakes']

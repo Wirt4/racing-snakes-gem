@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module Keyboard
   SPACE ||= 'space'
   ESCAPE ||= 'escape'
   LEFT ||= 'left'
   RIGHT ||= 'right'
-  UP ||='up'
+  UP ||= 'up'
   DOWN ||= 'down'
   A ||= 'a'
   W ||= 'w'

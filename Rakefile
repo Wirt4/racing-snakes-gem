@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rake'
 require 'rspec/core/rake_task'
 
@@ -18,7 +20,7 @@ end
 # ----- Install the gem locally -----
 desc 'Build and install the gem'
 task install: :build do
-  gem_file = Dir['racing_snakes_gem-*.gem'].sort.last
+  gem_file = Dir['racing_snakes_gem-*.gem'].max
   sh "gem install ./#{gem_file}"
 end
 

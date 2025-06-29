@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'game_clock'
 require_relative 'snake'
 require_relative 'player_ids'
