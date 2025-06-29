@@ -22,11 +22,11 @@ class Game
     @player2.draw
   end
 
-  def get_player_one_color
+  def player_one_color
     Settings::PLAYER_ONE_COLORS.sample
   end
 
-  def get_player_two_color
+  def player_two_color
     Settings::PLAYER_TWO_COLORS.sample
   end
 
