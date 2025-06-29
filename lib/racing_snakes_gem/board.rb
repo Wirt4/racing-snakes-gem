@@ -81,13 +81,13 @@ class Board
   end
 
   # returns a string of who wins
-  def winner(p1, p2)
+  def winner(player1, player2)
     return Settings::TIE_MESSAGE if @tie
 
-    winner = if p1.crash? || p2.hit_wall?(p1)
-               p2
+    winner = if player1.crash? || player2.hit_wall?(player1)
+               player2
              else
-               p1
+               player1
              end
     winner.color_name.concat(Settings::WINNER_MESSAGE)
   end
@@ -131,9 +131,13 @@ class Board
 
   private
 
-  def tie_lemma?(h_ndx, p1, p2, dir1, dir2)
-    return true if p1.head[h_ndx] - 1 == p2.head[h_ndx] && p1.direction == dir1 && p2.direction == dir2
-    return true if p1.head[h_ndx] + 1 == p2.head[h_ndx] && p1.direction == dir2 && p2.direction == dir1
+  def tie_lemma?(h_ndx, player1, player2, dir1, dir2)
+    if player1.head[h_ndx] - 1 == player2.head[h_ndx] && player1.direction == dir1 && player2.direction == dir2
+      return true
+    end
+    if player1.head[h_ndx] + 1 == player2.head[h_ndx] && player1.direction == dir2 && player2.direction == dir1
+      return true
+    end
 
     false
   end
