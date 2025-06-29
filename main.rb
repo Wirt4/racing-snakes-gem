@@ -16,7 +16,7 @@ game.draw_snakes
 update do
   clear
 
-  game.move unless game.is_paused?
+  game.move unless game.paused?
 
   game.draw_board
 

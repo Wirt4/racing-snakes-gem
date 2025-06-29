@@ -37,7 +37,7 @@ class Game
     @player_2_eats = @board.snake_eat_food?(@player2)
   end
 
-  def is_paused?
+  def paused?
     board.finished? || board.menu?
   end
 
@@ -68,7 +68,7 @@ class Game
     @board.respawn_food(@player1.position + @player2.position)
   end
 
-  def is_collision?
+  def collision?
     @board.collision?(@player1.position, @player2.position)
   end
 

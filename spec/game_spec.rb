@@ -122,21 +122,21 @@ RSpec.describe Game do
       allow(game.board).to receive(:finished?) { false }
       allow(game.board).to receive(:menu?) { false }
 
-      expect(game.is_paused?).to eq(false)
+      expect(game.paused?).to eq(false)
     end
     it 'Board.finished is true and Board.menu is false' do
       game = Game.new
       allow(game.board).to receive(:finished?) { true }
       allow(game.board).to receive(:menu?) { false }
 
-      expect(game.is_paused?).to eq(true)
+      expect(game.paused?).to eq(true)
     end
     it 'Board.finished is false and Board.menu is true' do
       game = Game.new
       allow(game.board).to receive(:finished?) { false }
       allow(game.board).to receive(:menu?) { true }
 
-      expect(game.is_paused?).to eq(true)
+      expect(game.paused?).to eq(true)
     end
   end
 
@@ -292,19 +292,19 @@ RSpec.describe Game do
       game = Game.new
       allow(game.board).to receive(:collision?).and_return(true)
 
-      expect(game.is_collision?).to eq(true)
+      expect(game.collision?).to eq(true)
     end
     it 'board.collision? is false' do
       game = Game.new
       allow(game.board).to receive(:collision?).and_return(false)
 
-      expect(game.is_collision?).to eq(false)
+      expect(game.collision?).to eq(false)
     end
     it 'board.collision? is called with player positions' do
       game = Game.new
       allow(game.board).to receive(:collision?)
 
-      game.is_collision?
+      game.collision?
 
       expect(game.board).to have_received(:collision?).with(game.player1.position, game.player2.position)
     end
