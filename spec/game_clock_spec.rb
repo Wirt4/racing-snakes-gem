@@ -36,22 +36,22 @@ RSpec.describe GameClock do
     it 'tick is greater than random_cutoff_mark, upper range ' do
       clock = GameClock.new(401)
       allow(clock).to receive(:random_cutoff_mark).and_return(400)
-      expect(clock.is_food_time).to eq(true)
+      expect(clock.food_time?).to eq(true)
     end
     it 'tick is greater than random_cutoff_mark, lower range ' do
       clock = GameClock.new(301)
       allow(clock).to receive(:random_cutoff_mark).and_return(300)
-      expect(clock.is_food_time).to eq(true)
+      expect(clock.food_time?).to eq(true)
     end
     it 'tick is equal to than random_cutoff_mark, upper range ' do
       clock = GameClock.new(400)
       allow(clock).to receive(:random_cutoff_mark).and_return(400)
-      expect(clock.is_food_time).to eq(false)
+      expect(clock.food_time?).to eq(false)
     end
     it 'tick is lower than random_cutoff_mark, lower range ' do
       clock = GameClock.new(299)
       allow(clock).to receive(:random_cutoff_mark).and_return(300)
-      expect(clock.is_food_time).to eq(false)
+      expect(clock.food_time?).to eq(false)
     end
   end
   it 'makes sure rand is called with 300..400 as range' do

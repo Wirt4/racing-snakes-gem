@@ -79,17 +79,17 @@ class Game
     @board.drop_shadow(winner, Coordinates.new(Settings::WINNER_MSG_X, Settings::WINNER_MSG_Y), Settings::TEXT_COLOR)
   end
 
-  def detect_key(k)
-    @player1.detect_key(k)
-    @player2.detect_key(k)
+  def detect_key(keystroke)
+    @player1.detect_key(keystroke)
+    @player2.detect_key(keystroke)
 
-    if board.finished? && k == Keyboard::SPACE
+    if board.finished? && keystroke == Keyboard::SPACE
       @player1 = Snake.new(PlayerIds::PLAYER_ONE)
       @player2 = Snake.new(PlayerIds::PLAYER_TWO)
       @board = Board.new(@player1, @player2)
     end
 
-    return unless k == Keyboard::SPACE
+    return unless keystroke == Keyboard::SPACE
 
     pause
   end

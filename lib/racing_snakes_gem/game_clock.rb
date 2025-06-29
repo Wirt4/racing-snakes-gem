@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
+# GameClock class to manage the game time and food spawning logic.
 class GameClock
-  def initialize(startTime = 0)
-    @tick = startTime
+  def initialize(start_time = 0)
+    @tick = start_time
   end
 
   def increment
@@ -15,7 +16,7 @@ class GameClock
     @tick = 0
   end
 
-  def is_food_time
+  def food_time?
     @tick > random_cutoff_mark
   end
 
