@@ -7,4 +7,8 @@ class Coordinates
     @x = x
     @y = y
   end
+
+  def ==(other)
+    other.is_a?(Coordinates) && @x == other.x && @y == other.y
+  end
 end

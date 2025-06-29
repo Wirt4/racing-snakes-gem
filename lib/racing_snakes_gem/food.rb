@@ -1,18 +1,19 @@
 class Food
-  attr_reader :x, :y, :color
+  attr_reader :location, :color
 
   def initialize
-    @x = Settings::GRID_WIDTH / 2
-    @y = Settings::GRID_HEIGHT / 3
+    @location = Coordinates.new(Settings::GRID_WIDTH / 2, Settings::GRID_HEIGHT / 3)
     @color = Settings::FOOD_COLOR
   end
 
   def respawn(pos, rng = Kernel)
-    @x = rng.rand(Settings::GRID_WIDTH)
-    @y = rng.rand(Settings::GRID_HEIGHT)
-    while pos.include?([@x, @y])
-      @x = rng.rand(Settings::GRID_WIDTH)
-      @y = rng.rand(Settings::GRID_HEIGHT)
-    end
+    randomize_location(rng)
+    randomize_location(rng) while pos.include?([@location.x, @location.y])
+  end
+
+  private
+
+  def randomize_location(rng)
+    @location = Coordinates.new(rng.rand(Settings::GRID_WIDTH), rng.rand(Settings::GRID_HEIGHT))
   end
 end
