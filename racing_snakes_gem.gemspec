@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   # Directories
   spec.files         = Dir.glob('lib/**/*.rb') +
-                       %w[README.md LICENSE.txt]
+                       %w[exe/racing_snakes README.md LICENSE.txt]
   spec.require_paths = ['lib']
 
   # Runtime dependencies
@@ -21,8 +21,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '~> 3.12'
 
   # If you later add a CLI launcher, uncomment these:
-  # spec.bindir        = "exe"
-  # spec.executables   = ["racing_snakes"]
+  spec.bindir        = 'exe'
+  spec.executables   = ['racing_snakes']
 
   # Metadata (optional but recommended for RubyGems.org)
   spec.metadata['homepage_uri'] = spec.homepage
