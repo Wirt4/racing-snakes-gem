@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 require_relative 'constants'
 require_relative 'settings'
 require_relative 'coordinates'
+# Board manages the game state for Racing Snakes, including food placement,
+# player colors, game status, collision detection, and rendering of UI elements.
 class Board
   attr_accessor :food_x, :food_y, :tie, :p1color, :p2color, :finished
 
   # colors are ruby2d keywords
   def initialize(snake1, snake2)
-    @food_x = Settings::GRID_WIDTH / 2
-    @food_y = Settings::GRID_HEIGHT / 3
+    @food = Food.new
     @finished = false
-    @food_color = Settings::FOOD_COLOR
     @paused = true
     @tie = false
     @p1color = snake1.color
@@ -23,7 +25,7 @@ class Board
   end
 
   # need to detect one space ahead in the case of a head - on collision
-  def is_tie(snake1, snake2)
+  def tie?(snake1, snake2)
     if snake1.head[0] == snake2.head[0] # TODO: make this a snake method so it's self-documenting
       @tie = tie_lemma?(1, snake1, snake2, Directions::UP, Directions::DOWN)
       return
@@ -53,7 +55,7 @@ class Board
            else
              Constants::PLAYER_TWO_KEYS
            end
-    Constants::PROMPT + ' ' + keys
+    "#{Constants::PROMPT} #{keys}"
   end
 
   def display_player_keys
@@ -67,8 +69,8 @@ class Board
   # displays the instructions, menu screen and food
   def draw
     unless finished? || menu?
-      Square.new(x: @food_x * Settings::GRID_SIZE, y: @food_y * Settings::GRID_SIZE, size: Settings::NODE_SIZE,
-                 color: @food_color)
+      Square.new(x: @food.location.x * Settings::GRID_SIZE, y: @food.location.y * Settings::GRID_SIZE, size: Settings::NODE_SIZE,
+                 color: @food.color)
     end
 
     display_menu_prompts if menu?
@@ -77,13 +79,13 @@ class Board
   end
 
   # returns a string of who wins
-  def winner(p1, p2)
+  def winner(player1, player2)
     return Settings::TIE_MESSAGE if @tie
 
-    winner = if p1.crash? || p2.hit_wall?(p1)
-               p2
+    winner = if player1.crash? || player2.hit_wall?(player1)
+               player2
              else
-               p1
+               player1
              end
     winner.color_name.concat(Settings::WINNER_MESSAGE)
   end
@@ -100,17 +102,12 @@ class Board
   end
 
   def snake_eat_food?(snake)
-    @food_x == snake.x && @food_y == snake.y
+    @food.x == snake.x && @food.y == snake.y
   end
 
   # want to respawn the food in any location that is not occupied by a snake
   def respawn_food(pos)
-    @food_x = rand(Settings::GRID_WIDTH)
-    @food_y = rand(Settings::GRID_HEIGHT)
-    while pos.include?([@food_x, @food_y])
-      @food_x = rand(Settings::GRID_WIDTH)
-      @food_y = rand(Settings::GRID_HEIGHT)
-    end
+    @food.respawn(pos)
   end
 
   def finish
@@ -127,10 +124,15 @@ class Board
 
   private
 
-  def tie_lemma?(h_ndx, p1, p2, dir1, dir2)
-    return true if p1.head[h_ndx] - 1 == p2.head[h_ndx] && p1.direction == dir1 && p2.direction == dir2
-    return true if p1.head[h_ndx] + 1 == p2.head[h_ndx] && p1.direction == dir2 && p2.direction == dir1
+  def tie_lemma?(h_ndx, player1, player2, dir1, dir2)
+    head1 = player1.head[h_ndx]
+    head2 = player2.head[h_ndx]
+    dir_p1 = player1.direction
+    dir_p2 = player2.direction
 
-    false
+    adjacent = (head1 - head2).abs == 1
+    opposing_directions = (dir_p1 == dir1 && dir_p2 == dir2) || (dir_p1 == dir2 && dir_p2 == dir1)
+
+    adjacent && opposing_directions
   end
 end

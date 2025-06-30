@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'ruby2d'
 require 'racing_snakes_gem'
 
@@ -14,7 +16,7 @@ game.draw_snakes
 update do
   clear
 
-  game.move unless game.is_paused?
+  game.move unless game.paused?
 
   game.draw_board
 

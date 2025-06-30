@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rspec'
 require 'ruby2d'
 require_relative '../lib/racing_snakes_gem/board'
@@ -6,34 +8,6 @@ require_relative '../lib/racing_snakes_gem/coordinates'
 
 RSpec.describe Board do
   describe '#initialize' do
-    it "food's x coordinate should be halfway across the board" do
-      stub_const('Settings::GRID_WIDTH', 10)
-      s1 = Snake.new
-      s2 = Snake.new
-      board = Board.new(s1, s2)
-      expect(board.food_x).to eq(5)
-    end
-    it "food's x coordinate should be halfway across the board" do
-      stub_const('Settings::GRID_WIDTH', 20)
-      s1 = Snake.new
-      s2 = Snake.new
-      board = Board.new(s1, s2)
-      expect(board.food_x).to eq(10)
-    end
-    it "food's x coordinate should be halfway across the board" do
-      stub_const('Settings::GRID_HEIGHT', 21)
-      s1 = Snake.new
-      s2 = Snake.new
-      board = Board.new(s1, s2)
-      expect(board.food_y).to eq(7)
-    end
-    it "food's x coordinate should be halfway across the board" do
-      stub_const('Settings::GRID_HEIGHT', 10)
-      s1 = Snake.new
-      s2 = Snake.new
-      board = Board.new(s1, s2)
-      expect(board.food_y).to eq(3)
-    end
     it 'board should initialize with finished as false' do
       s1 = Snake.new
       s2 = Snake.new

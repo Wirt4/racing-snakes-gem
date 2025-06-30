@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'button'
 require_relative 'settings'
 require_relative 'directions'
@@ -11,11 +13,11 @@ class Snake
 
   # snakes are initialized with a color and integer, player one of two
   # colors are ruby2d keywords
-  def initialize(player = PlayerIds::PLAYER_ONE)
+  def initialize(player = PlayerIds::PLAYER_ONE, color = nil)
     @playerButton = Button.new(player)
     set_staring_position(player)
     @z = 0
-    @color = select_color(player)
+    @color = color || select_color(player)
     @direction = Directions::UP
     @growing = @turned = false
   end
@@ -134,7 +136,7 @@ class Snake
 
   # returns all slots occupied by the snake minus the head
   def body
-    @position[0..-1]
+    @position
   end
 
   def head

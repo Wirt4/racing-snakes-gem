@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'racing_snakes_gem/version'
 require 'racing_snakes_gem/constants'
 require 'racing_snakes_gem/board'
@@ -12,3 +14,4 @@ require 'racing_snakes_gem/player'
 require 'racing_snakes_gem/player_ids'
 require 'racing_snakes_gem/settings'
 require 'racing_snakes_gem/snake'
+require 'racing_snakes_gem/food'
